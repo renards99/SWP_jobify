@@ -190,11 +190,18 @@
             $(document).ready(function () {
                 $('[data-toggle="tooltip"]').tooltip();
             });
+            function checkDelete(){
+                if (confirm('are you sure you want to delete?'))
+                {
+                    your_form_variable.submit();
+                }
+            }
         </script>
     </head>
     <body>
         <jsp:include page="Header.jsp"></jsp:include>
-            <div class="container-xl vh-100">
+        
+            <div class="container-xl ">
                 <div class="table-responsive">
                     <div class="table-wrapper">
                         <div class="table-title">
@@ -226,7 +233,7 @@
                                     <td>
                                         <a href="account_profile?username=${o.username}" class="settings" title="View profile" data-toggle="tooltip"><i
                                                 class="material-icons">&#xe3c9;</i></a>
-                                        <a href="account_delete?username=${o.username}" class="delete" title="Delete" data-toggle="tooltip"><i
+                                        <a href="account_delete?username=${o.username}" onclick="checkDelete(); return false;"  class="delete" title="Delete" data-toggle="tooltip"><i
                                                 class="material-icons">&#xE5C9;</i></a>
                                     </td>
                                 </tr>

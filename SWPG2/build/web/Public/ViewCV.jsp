@@ -74,28 +74,32 @@
         <jsp:include page="Header.jsp"></jsp:include>
             <div class="container" style="margin-bottom: 3%">
                 <div class="text-center mt-5 ">
-                    <h1>View CV</h1>
-                </div>
-                <div class="row mb-5">
-                    <div class="col-lg-7 mx-auto">
-                        <div class="card mt-2 mx-auto p-4 bg-light">
-                            <div class="card-body bg-light">
-                                <div class="container">
-                                    <div class="controls">
-                                        <div class="row">
-                                            <div class="col-md-6" style="font-weight:bolder; font-size: 20px;">
-                                                <p>General Information</p>
-                                            </div>
+                ${messages}
+                <%
+                    session.removeAttribute("messages");
+                %>
+                <h1>View CV</h1>
+            </div>
+            <div class="row mb-5">
+                <div class="col-lg-7 mx-auto">
+                    <div class="card mt-2 mx-auto p-4 bg-light">
+                        <div class="card-body bg-light">
+                            <div class="container">
+                                <div class="controls">
+                                    <div class="row">
+                                        <div class="col-md-6" style="font-weight:bolder; font-size: 20px;">
+                                            <p>General Information</p>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-4" style=";">
-                                                <img class="rounded-circle img-fluid" src=${acc.image}>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4" style=";">
+                                            <img class="rounded-circle img-fluid" src=${acc.image}>
                                         </div>
                                         <div class="col-md-8">
                                             <div class="form-group"><label>Fullname:</label></div>
-                                            <div class="form-group" style="border-bottom: 1px solid;" ><b>${cv.getFullname()}</b></div>
+                                            <div class="form-group" style="border-bottom: 1px solid;" ><b>${viewCV.getFullname()}</b></div>
                                             <div class="form-group"><label>Birthdate:</label></div>
-                                            <div class="form-group" style="border-bottom: 1px solid"><b>${cv.getDob()}</b></div>
+                                            <div class="form-group" style="border-bottom: 1px solid"><b>${viewCV.getDob()}</b></div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -114,32 +118,32 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group"><label>Location: </label></div>
-                                            <div class="form-group" style="border-bottom: 1px solid"><b>${cv.getLocation()}</b></div>
+                                            <div class="form-group" style="border-bottom: 1px solid"><b>${viewCV.getLocation()}</b></div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group"><label>Phone: </label></div>
-                                            <div class="form-group" style="border-bottom: 1px solid"><b>${cv.getPhone()}</b></div>
+                                            <div class="form-group" style="border-bottom: 1px solid"><b>${viewCV.getPhone()}</b></div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group"><label>Contact: </label></div>
-                                            <div class="form-group" style="border-bottom: 1px solid"><b>${cv.getContact()}</b></div>
+                                            <div class="form-group" style="border-bottom: 1px solid"><b>${viewCV.getContact()}</b></div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group"><label>Education: </label></div>
-                                            <div class="form-group" style="border-bottom: 1px solid"><b>${cv.getEducation()}</b></div>
+                                            <div class="form-group" style="border-bottom: 1px solid"><b>${viewCV.getEducation()}</b></div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group"><label>School: </label></div>
-                                            <div class="form-group" style="border-bottom: 1px solid"><b>${cv.getSchool()}</b></div>
+                                            <div class="form-group" style="border-bottom: 1px solid"><b>${viewCV.getSchool()}</b></div>
                                         </div>
                                         <div class="row">
                                             <div>
                                                 <div class="form-group"><label>Experience: </label></div>
-                                                <div class="form-group" style="border-bottom: 1px solid"><b>${cv.getExperience()}</b></div>
+                                                <div class="form-group" style="border-bottom: 1px solid"><b>${viewCV.getExperience()}</b></div>
                                             </div>
                                         </div>
                                     </div>
@@ -201,6 +205,22 @@
                     </div>
                 </div>
             </div>
+            <script type="text/javascript">
+                var alertList = document.querySelectorAll('.alert')
+                alertList.forEach(function (alert) {
+                    new bootstrap.Alert(alert)
+                })
+
+// Get the alert element
+// var alertQs = document.querySelector('.alert')  // This line would target all alerts on the page
+                var alertQs = document.querySelector('#alertID') // This line only targets the element with ID #alertID
+// Create a Bootstrap alert instance
+                var bsAlert = bootstrap.Alert.getInstance(alertQs)
+// Dismiss alert after specified amount of time in milliseconds
+                window.setTimeout(() => {
+                    bsAlert.close();
+                }, 10000);
+            </script>
             <jsp:include page="Footer.jsp"></jsp:include>
     </body>
 </html>

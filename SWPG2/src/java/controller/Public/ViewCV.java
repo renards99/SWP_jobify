@@ -62,16 +62,15 @@ public class ViewCV extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("acc");
-         CvDAO cvdao = new CvDAO();
+        CvDAO cvdao = new CvDAO();
         if (user.getRoleID() == 2) {
             String id = request.getParameter("id");
             CV cv = cvdao.GetCVById(Integer.parseInt(id));
-            session.setAttribute("cv", cv);
-        }
-        else if (user.getRoleID() == 3) {
+            session.setAttribute("viewCV", cv);
+        } else if (user.getRoleID() == 3) {
             CV cv = cvdao.GetCVByUser(user.getUsername());
-            session.setAttribute("cv", cv);
-        } 
+            session.setAttribute("viewCV", cv);
+        }
         request.getRequestDispatcher("Public/ViewCV.jsp").forward(request, response);
     }
 

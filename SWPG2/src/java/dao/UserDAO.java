@@ -22,7 +22,8 @@ public class UserDAO {
 
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
-        User user = dao.login("1", "123");
+        User user = dao.login("minhnv", "1234");
+        dao.deleteUser("hoangosaka");
         System.out.println(user);
     }
 

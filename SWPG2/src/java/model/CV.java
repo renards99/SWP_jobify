@@ -273,4 +273,9 @@ public class CV {
         this.Jobusername = Jobusername;
     }
 
+    @Override
+    public String toString() {
+        return "CV{" + "id=" + id + ", username=" + username + ", fullname=" + fullname + ", dob=" + dob + ", gender=" + gender + ", locationID=" + locationID + ", location=" + location + ", phone=" + phone + ", contact=" + contact + ", educationID=" + educationID + ", education=" + education + ", school=" + school + ", experience=" + experience + ", image=" + image + ", statusID=" + statusID + ", status=" + status + ", jobid=" + jobid + ", company=" + company + ", jobName=" + jobName + ", email=" + email + ", phonecompany=" + phonecompany + ", Jobusername=" + Jobusername + '}';
+    }
+
 }

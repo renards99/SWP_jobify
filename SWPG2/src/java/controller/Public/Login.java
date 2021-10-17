@@ -14,7 +14,7 @@ import model.User;
 import model.Wallet;
 
 public class Login extends HttpServlet {
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

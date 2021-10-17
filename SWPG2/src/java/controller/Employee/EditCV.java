@@ -38,7 +38,7 @@ public class EditCV extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EditCV</title>");            
+            out.println("<title>Servlet EditCV</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet EditCV at " + request.getContextPath() + "</h1>");
@@ -59,7 +59,7 @@ public class EditCV extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-             request.getRequestDispatcher("Employee/EditCV.jsp").forward(request, response);
+        request.getRequestDispatcher("Employee/EditCV.jsp").forward(request, response);
     }
 
     /**
@@ -73,7 +73,7 @@ public class EditCV extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session =request.getSession();
+        HttpSession session = request.getSession();
         User user = (User) session.getAttribute("acc");
         String fullname = request.getParameter("fullname");
         String dob = request.getParameter("dob");
@@ -86,7 +86,14 @@ public class EditCV extends HttpServlet {
         String experience = request.getParameter("experience");
         CvDAO cvdao = new CvDAO();
         cvdao.UpdateCV(fullname, dob, Boolean.parseBoolean(gender), Integer.parseInt(location), phone, contact, Integer.parseInt(education), school, experience, user.getUsername());
-        session.setAttribute("cv", cvdao.GetCVByUser(user.getUsername()));
+        session.setAttribute("viewCV", cvdao.GetCVByUser(user.getUsername()));
+
+        session.setAttribute("messages", "<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
+                + "            <strong>Edit CV successfully</strong> \n"
+                + "            <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\n"
+                + "        </div>");
+
+
         response.sendRedirect("view_cv");
     }
 

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controller.Employee;
 
 import dao.CvDAO;
@@ -38,7 +34,7 @@ public class CreateCV extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CreateCV</title>");            
+            out.println("<title>Servlet CreateCV</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet CreateCV at " + request.getContextPath() + "</h1>");
@@ -59,7 +55,7 @@ public class CreateCV extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       request.getRequestDispatcher("Employee/CreateCV.jsp").forward(request, response);
+        request.getRequestDispatcher("Employee/CreateCV.jsp").forward(request, response);
     }
 
     /**
@@ -73,7 +69,7 @@ public class CreateCV extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session =request.getSession();
+        HttpSession session = request.getSession();
         User user = (User) session.getAttribute("acc");
         String fullname = request.getParameter("fullname");
         String gender = request.getParameter("gender");
@@ -86,7 +82,13 @@ public class CreateCV extends HttpServlet {
         String school = request.getParameter("school");
         String experience = request.getParameter("experience");
         CvDAO cvdao = new CvDAO();
-        cvdao.CreateCV(fullname, dob, Boolean.parseBoolean(gender), Integer.parseInt(location), phone, contact, Integer.parseInt(education), "FPT University", experience, user.getUsername(),Integer.parseInt(status));
+        cvdao.CreateCV(fullname, dob, Boolean.parseBoolean(gender), Integer.parseInt(location), phone, contact, Integer.parseInt(education), "FPT University", experience, user.getUsername(), Integer.parseInt(status));
+        session.setAttribute("cv", "true");
+        session.setAttribute("messages", "<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
+                + "            <strong>Create CV successfully</strong> \n"
+                + "            <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\n"
+                + "        </div>");
+
         response.sendRedirect("home");
     }
 

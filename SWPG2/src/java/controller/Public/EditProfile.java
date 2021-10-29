@@ -53,6 +53,11 @@ public class EditProfile extends HttpServlet {
         
         UserDAO udao=new UserDAO();
         udao.changeUserInfo(username, fullname, dob, Integer.parseInt(gender), address, phone, image, Integer.parseInt(location), Integer.parseInt(major));
+        
+         session.setAttribute("edit_profile_message", "<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
+                + "            <strong>edit profile successfully</strong> \n"
+                + "            <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\n"
+                + "        </div>");
         session.setAttribute("acc", udao.login(username, u.getPassword())); 
         response.sendRedirect("view_profile");
     }

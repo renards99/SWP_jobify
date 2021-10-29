@@ -53,7 +53,7 @@ public class Home extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Home</title>");            
+            out.println("<title>Servlet Home</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Home at " + request.getContextPath() + "</h1>");
@@ -82,15 +82,16 @@ public class Home extends HttpServlet {
         JobTypeDAO jobtypedao = new JobTypeDAO();
         JobDAO jobdao = new JobDAO();
         EducationDAO educationdao = new EducationDAO();
-        ArrayList<Location>location = locationdao.GetAllLocation();
-        ArrayList<Major>major = majordao.GetAllMajor();
-        ArrayList<Education>education = educationdao.GetAllJobEducation();
+        ArrayList<Location> location = locationdao.GetAllLocation();
+        ArrayList<Major> major = majordao.GetAllMajor();
+        ArrayList<Education> education = educationdao.GetAllJobEducation();
         ArrayList<Salary> salary = salarydao.GetAllSalary();
-        ArrayList<JobType>jobtype = jobtypedao.GetAllJobType();
+        ArrayList<JobType> jobtype = jobtypedao.GetAllJobType();
         ArrayList<Job> remotejob = jobdao.RemoteJob();
         User user = (User) session.getAttribute("acc");
         ArrayList<Job> nearbyjob = jobdao.NearbyJob(user.getLocationID());
         ArrayList<Job> suitablejob = jobdao.SuitableJob(user.getMajorID());
+
         session.setAttribute("location", location);
         session.setAttribute("salary", salary);
         session.setAttribute("major", major);
@@ -104,7 +105,11 @@ public class Home extends HttpServlet {
             ArrayList<History> h = wDAO.getAllHistory();
             session.setAttribute("transaction_history", h);
         }
-        request.getRequestDispatcher("Public/Home.jsp").forward(request, response);
+        if (user.getFullname() == null || user.getDob() == null || user.getAddress() == null || user.getPhone() == null || user.getLocation() == null || user.getMajor() == null) {
+            response.sendRedirect("edit_profile");
+        } else {
+            request.getRequestDispatcher("Public/Home.jsp").forward(request, response);
+        }
     }
 
     /**

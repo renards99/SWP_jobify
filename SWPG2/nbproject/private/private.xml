@@ -3,25 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/web/Public/Home.jsp</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/controller/Public/Login.java</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/web/Admin/AccountManagement.jsp</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/controller/Employee/EditCV.java</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/web/Public/newjsp.jsp</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/controller/Employee/CreateCV.java</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/controller/Public/ForgetPassword.java</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/web/Public/ViewProfile.jsp</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/web/Public/Header.jsp</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/dao/CvDAO.java</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/web/Employee/EditCV.jsp</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/web/Public/ViewCV.jsp</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/web/Public/Login.jsp</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/controller/Public/ViewCV.java</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/controller/Public/Home.java</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/controller/Admin/AccountManagement.java</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/model/CV.java</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/web/Public/SearchJob.jsp</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/controller/Public/ChangePassword.java</file>
+            <file>file:/C:/Users/PC/Desktop/SWPG2/src/java/controller/Public/Login.java</file>
+            <file>file:/C:/Users/PC/Desktop/SWPG2/src/java/dao/CvDAO.java</file>
+            <file>file:/C:/Users/PC/Desktop/SWPG2/src/java/model/User.java</file>
+            <file>file:/C:/Users/PC/Desktop/SWPG2/web/Public/ViewCV.jsp</file>
+            <file>file:/C:/Users/PC/Desktop/SWPG2/src/java/dao/DBContext.java</file>
+            <file>file:/C:/Users/PC/Desktop/SWPG2/src/java/controller/Employee/SubmitCV.java</file>
+            <file>file:/C:/Users/PC/Desktop/SWPG2/web/Employee/CreateCV.jsp</file>
+            <file>file:/C:/Users/PC/Desktop/SWPG2/src/java/dao/WishlistDAO.java</file>
+            <file>file:/C:/Users/PC/Desktop/SWPG2/src/java/model/CV.java</file>
+            <file>file:/C:/Users/PC/Desktop/SWPG2/src/java/controller/Employee/EditCV.java</file>
+            <file>file:/C:/Users/PC/Desktop/SWPG2/src/java/controller/Public/Home.java</file>
+            <file>file:/C:/Users/PC/Desktop/SWPG2/web/Employee/EditCV.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -297,5 +297,18 @@ public class UserDAO {
         }
         return null;
     }
+ public User changePasswordByEmail(String email, String password) {
+        String query = "update [user] set [password] = ? where email=? ";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, password);
+            ps.setString(2, email);
+            ps.executeUpdate();
 
+        } catch (Exception e) {
+
+        }
+        return null;
+    }
 }

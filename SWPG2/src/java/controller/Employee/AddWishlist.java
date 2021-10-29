@@ -39,7 +39,7 @@ public class AddWishlist extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Wishlist</title>");            
+            out.println("<title>Servlet Wishlist</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Wishlist at " + request.getContextPath() + "</h1>");
@@ -61,10 +61,14 @@ public class AddWishlist extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        User user = (User)session.getAttribute("acc");
-        Job jobbyid = (Job)session.getAttribute("jobbyid");
+        User user = (User) session.getAttribute("acc");
+        Job jobbyid = (Job) session.getAttribute("jobbyid");
         WishlistDAO wishlistdao = new WishlistDAO();
         wishlistdao.AddWishlist(user.getUsername(), jobbyid.getId());
+        session.setAttribute("add_wishlist_message", "<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
+                + "            <strong>add wishlist successfully</strong> \n"
+                + "            <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\n"
+                + "        </div>");
         response.sendRedirect("home");
     }
 

@@ -40,7 +40,7 @@ public class SubmitCV extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SubmitCV</title>");            
+            out.println("<title>Servlet SubmitCV</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet SubmitCV at " + request.getContextPath() + "</h1>");
@@ -61,7 +61,7 @@ public class SubmitCV extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     /**
@@ -75,12 +75,16 @@ public class SubmitCV extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-               HttpSession session =request.getSession();
-        Job jobbyid= (Job)session.getAttribute("jobbyid");
+        HttpSession session = request.getSession();
+        Job jobbyid = (Job) session.getAttribute("jobbyid");
         User user = (User) session.getAttribute("acc");
         CvDAO cvdao = new CvDAO();
         CV cv = cvdao.GetCVByUser(user.getUsername());
-        cvdao.SubmitCV(cv.getFullname(), cv.getDob(), cv.isGender(), cv.getLocationID(), cv.getPhone(), cv.getContact(), cv.getEducationID(), cv.getSchool(), cv.getExperience(), user.getUsername(),1,jobbyid.getId());
+        cvdao.SubmitCV(cv.getFullname(), cv.getDob(), cv.getGender(), cv.getLocationID(), cv.getPhone(), cv.getContact(), cv.getEducationID(), cv.getSchool(), cv.getExperience(), user.getUsername(), 1, jobbyid.getId());
+        session.setAttribute("submit_cv_message", "<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
+                + "            <strong>submit cv successfully</strong> \n"
+                + "            <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\n"
+                + "        </div>");
         response.sendRedirect("home");
     }
 

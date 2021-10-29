@@ -74,9 +74,9 @@
         <jsp:include page="Header.jsp"></jsp:include>
             <div class="container" style="margin-bottom: 3%">
                 <div class="text-center mt-5 ">
-                ${messages}
+                ${edit_cv_message}
                 <%
-                    session.removeAttribute("messages");
+                    session.removeAttribute("edit_cv_message");
                 %>
                 <h1>View CV</h1>
             </div>
@@ -107,7 +107,7 @@
                                             <div class="form-group"><label>Gender: </label></div>
                                             <div class="form-group" style="border-bottom: 1px solid">
                                                 <c:choose>
-                                                    <c:when test="${sessionScope.acc.gender==1}">
+                                                    <c:when test="${viewCV.gender==1}">
                                                         <b>Male</b>
                                                     </c:when>    
                                                     <c:otherwise>
@@ -211,15 +211,15 @@
                     new bootstrap.Alert(alert)
                 })
 
-// Get the alert element
-// var alertQs = document.querySelector('.alert')  // This line would target all alerts on the page
+                // Get the alert element
+                // var alertQs = document.querySelector('.alert')  // This line would target all alerts on the page
                 var alertQs = document.querySelector('#alertID') // This line only targets the element with ID #alertID
-// Create a Bootstrap alert instance
+                // Create a Bootstrap alert instance
                 var bsAlert = bootstrap.Alert.getInstance(alertQs)
-// Dismiss alert after specified amount of time in milliseconds
+                // Dismiss alert after specified amount of time in milliseconds
                 window.setTimeout(() => {
                     bsAlert.close();
-                }, 10000);
+                }, 4000);
             </script>
             <jsp:include page="Footer.jsp"></jsp:include>
     </body>

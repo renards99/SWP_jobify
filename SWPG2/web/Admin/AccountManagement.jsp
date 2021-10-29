@@ -191,7 +191,7 @@
                 $('[data-toggle="tooltip"]').tooltip();
             });
             function checkDelete(){
-                if (confirm('are you sure you want to delete?'))
+                if (confirm('Are you sure you want to delete?'))
                 {
                     your_form_variable.submit();
                 }

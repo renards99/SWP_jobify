@@ -14,7 +14,7 @@ public class CV {
     String username;
     String fullname;
     String dob;
-    boolean gender;
+    String gender;
     int locationID;
     String location;
     String phone;
@@ -36,7 +36,7 @@ public class CV {
     public CV(String username) {
         this.username = username;
     }
-    public CV(String fullname, String dob, boolean gender, int locationID, String phone, String contact, int educationID, String school, String experience) {
+    public CV(String fullname, String dob, String gender, int locationID, String phone, String contact, int educationID, String school, String experience) {
         this.fullname = fullname;
         this.dob = dob;
         this.gender = gender;
@@ -58,7 +58,7 @@ public class CV {
         this.status= status;
     }
 
-    public CV(String fullname, String dob, boolean gender, int locationID, String phone, String contact, int educationID, String school, String experience, int statusID) {
+    public CV(String fullname, String dob, String gender, int locationID, String phone, String contact, int educationID, String school, String experience, int statusID) {
         this.fullname = fullname;
         this.dob = dob;
         this.gender = gender;
@@ -71,7 +71,7 @@ public class CV {
         this.statusID = statusID;
     }
 
-    public CV(int id,String fullname, String dob, boolean gender, int locationID, String phone, String contact, int educationID, String school, String experience, String education, String location) {
+    public CV(int id,String fullname, String dob, String gender, int locationID, String phone, String contact, int educationID, String school, String experience, String education, String location) {
         this. id =id;
         this.fullname = fullname;
         this.dob = dob;
@@ -129,11 +129,11 @@ public class CV {
         this.dob = dob;
     }
 
-    public boolean isGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(boolean gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 

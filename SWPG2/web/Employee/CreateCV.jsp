@@ -125,8 +125,8 @@
                                             <div class="col-md-6">
                                                 <div class="form-group"> <label for="form_need">Gender:</label>
                                                     <select name="gender" class="form-control" required="required">
-                                                        <option value="false">Male</option>
-                                                        <option value="true">Female</option>
+                                                        <option value="0">Male</option>
+                                                        <option value="1">Female</option>
                                                     </select>
                                                 </div>
                                             </div>

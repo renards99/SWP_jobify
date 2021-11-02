@@ -105,7 +105,7 @@ public class Home extends HttpServlet {
             ArrayList<History> h = wDAO.getAllHistory();
             session.setAttribute("transaction_history", h);
         }
-        if (user.getFullname() == null || user.getDob() == null || user.getAddress() == null || user.getPhone() == null || user.getLocation() == null || user.getMajor() == null) {
+        if (user.getFullname() == null || user.getDob() == null || user.getAddress() == null || user.getPhone() == null || user.getLocationID()== 0 || user.getMajorID()== 0) {
             response.sendRedirect("edit_profile");
         } else {
             request.getRequestDispatcher("Public/Home.jsp").forward(request, response);

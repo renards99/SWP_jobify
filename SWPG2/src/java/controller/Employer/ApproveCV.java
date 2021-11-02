@@ -61,7 +61,7 @@ public class ApproveCV extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        CV cv =(CV) session.getAttribute("cv");
+        CV cv =(CV) session.getAttribute("viewcv");
 //        Job jobbyid = (Job) session.getAttribute("jobbyid");
         String statusid = request.getParameter("status");
         CvDAO cvdao= new CvDAO();

@@ -188,23 +188,8 @@
                             </div>
                         </c:forEach>
                     </div>
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination pagination-sm">
-                            <li class="page-item">
-                                <a class="page-link text-dark" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link text-dark" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                     <jsp:include page="PagingNearbyJob.jsp"></jsp:include>
+
                 </div>
             </section> 
             <%--promote banner--%>
@@ -257,23 +242,7 @@
                                 </c:forEach>
                             </div>
 
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination pagination-sm">
-                                    <li class="page-item">
-                                        <a class="page-link text-dark" href="#" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link text-dark" href="#" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
+                            <jsp:include page="Paging.jsp"></jsp:include>
                         </div>
                         <div class=" col-lg-4 ">
                             <div>

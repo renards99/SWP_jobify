@@ -75,6 +75,11 @@ public class Home extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        
+        
+       
+        
+        
         //employee
         LocationDAO locationdao = new LocationDAO();
         MajorDAO majordao = new MajorDAO();
@@ -87,11 +92,46 @@ public class Home extends HttpServlet {
         ArrayList<Education> education = educationdao.GetAllJobEducation();
         ArrayList<Salary> salary = salarydao.GetAllSalary();
         ArrayList<JobType> jobtype = jobtypedao.GetAllJobType();
-        ArrayList<Job> remotejob = jobdao.RemoteJob();
+        ArrayList<Job> remotejob = jobdao.RemoteJob(0,1);
         User user = (User) session.getAttribute("acc");
-        ArrayList<Job> nearbyjob = jobdao.NearbyJob(user.getLocationID());
-        ArrayList<Job> suitablejob = jobdao.SuitableJob(user.getMajorID());
-
+        
+         int pageSize = 9;
+            String index_raw = request.getParameter("page");
+            int pageIndex;
+            try
+            {
+                pageIndex = Integer.parseInt(index_raw);
+            }
+            catch (NumberFormatException e)
+            {
+                pageIndex = 1;
+            }
+            int numberOfPage = (jobdao.getNumberNearbyJob(user.getLocationID()) - 1) / pageSize + 1;
+            if (pageIndex > numberOfPage) pageIndex=numberOfPage;
+            ArrayList<Job> nearbyjob = jobdao.NearbyJob(user.getLocationID(),(pageIndex-1) * pageSize, pageSize);
+            
+            request.setAttribute("current1", pageIndex);
+            request.setAttribute("total1", numberOfPage);
+            
+             int pageSize2 = 6;
+            String index_raw2 = request.getParameter("page");
+            int pageIndex2;
+            try
+            {
+                pageIndex2 = Integer.parseInt(index_raw2);
+            }
+            catch (NumberFormatException e)
+            {
+                pageIndex2 = 1;
+            }
+            int numberOfPage2 = (jobdao.getNumberSuitableJob(user.getMajorID()) - 1) / pageSize2 + 1;
+            if (pageIndex2 > numberOfPage2) pageIndex2=numberOfPage2;
+            ArrayList<Job> suitablejob = jobdao.SuitableJob(user.getMajorID(),(pageIndex2-1) * pageSize2, pageSize2);
+            
+            request.setAttribute("current", pageIndex2);
+            request.setAttribute("total", numberOfPage2);
+            request.setAttribute("controller", "home");
+            
         session.setAttribute("location", location);
         session.setAttribute("salary", salary);
         session.setAttribute("major", major);

@@ -5,6 +5,7 @@
  */
 package controller.Public;
 
+import dao.JobDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -39,7 +40,7 @@ public class SearchJob extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SearchJob</title>");            
+            out.println("<title>Servlet SearchJob</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet SearchJob at " + request.getContextPath() + "</h1>");
@@ -60,7 +61,59 @@ public class SearchJob extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        String search = (String)session.getAttribute("search");
+        String location = (String)session.getAttribute("location");
+        String specialized = (String)session.getAttribute("specialized");
+        String type = (String)session.getAttribute("type");
+        String salary = (String)session.getAttribute("salary");
+        SearchDAO jdao = new SearchDAO();
+
+        int pageSize = 6;
+        String index_raw = request.getParameter("page");
+        int pageIndex;
+        try {
+            pageIndex = Integer.parseInt(index_raw);
+        } catch (NumberFormatException e) {
+            pageIndex = 1;
+        }
+        int numberOfPage = (jdao.numberSearchJob(search, location, specialized, type, null, null)- 1) / pageSize + 1;
+        if (salary.equals("1")) {
+           numberOfPage = (jdao.numberSearchJob(search, location, specialized, type, "0", "500")- 1) / pageSize + 1;
+        } else if (salary.equals("2")) {
+            numberOfPage = (jdao.numberSearchJob(search, location, specialized, type, "500", "1000")- 1) / pageSize + 1;
+        } else if (salary.equals("3")) {
+            numberOfPage = (jdao.numberSearchJob(search, location, specialized, type, "1000", "1500")- 1) / pageSize + 1;
+        } else if (salary.equals("4")) {
+            numberOfPage = (jdao.numberSearchJob(search, location, specialized, type, "1500", "10000")- 1) / pageSize + 1;
+        }
+//        response.getWriter().print(jdao.numberSearchJob(search, location, specialized, type, null, null));
+        if (pageIndex > numberOfPage) {
+            pageIndex = numberOfPage;
+        }
+        ArrayList<Job> searchjob = jdao.searchJob(search, location, specialized, type, null, null,(pageIndex - 1) * pageSize, pageSize);
+
+        if (salary.equals("1")) {
+             searchjob = jdao.searchJob(search, location, specialized, type, "0", "500",(pageIndex - 1) * pageSize, pageSize);
+        } else if (salary.equals("2")) {
+            searchjob = jdao.searchJob(search, location, specialized, type,  "500", "1000",(pageIndex - 1) * pageSize, pageSize);
+        } else if (salary.equals("3")) {
+             searchjob = jdao.searchJob(search, location, specialized, type, "1000", "1500",(pageIndex - 1) * pageSize, pageSize);
+        } else if (salary.equals("4")) {
+             searchjob = jdao.searchJob(search, location, specialized, type, "1500", "10000",(pageIndex - 1) * pageSize, pageSize);
+        }
+        request.setAttribute("current", pageIndex);
+        request.setAttribute("total", numberOfPage);
+        request.setAttribute("controller", "search_job");
+
+        session.setAttribute("search", search);
+        session.setAttribute("location", location);
+        session.setAttribute("specialized", specialized);
+        session.setAttribute("type", type);
+        session.setAttribute("salary", salary);
+        session.setAttribute("searchjob", searchjob);
+        request.getRequestDispatcher("Public/SearchJob.jsp").forward(request, response);
+        
     }
 
     /**
@@ -75,24 +128,55 @@ public class SearchJob extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-         String search = request.getParameter("search");
+        String search = request.getParameter("search");
         String location = request.getParameter("location");
         String specialized = request.getParameter("specialized");
         String type = request.getParameter("type");
         String salary = request.getParameter("salary");
         SearchDAO jdao = new SearchDAO();
-        response.getWriter().print(search+" "+location+" "+specialized+" "+type+" "+salary);
-        ArrayList<Job> searchjob = jdao.searchJob(search, location, specialized, type, null, null);
+
+        int pageSize = 6;
+        String index_raw = request.getParameter("page");
+        int pageIndex;
+        try {
+            pageIndex = Integer.parseInt(index_raw);
+        } catch (NumberFormatException e) {
+            pageIndex = 1;
+        }
+        int numberOfPage = (jdao.numberSearchJob(search, location, specialized, type, null, null)- 1) / pageSize + 1;
+        if (salary.equals("1")) {
+           numberOfPage = (jdao.numberSearchJob(search, location, specialized, type, "0", "500")- 1) / pageSize + 1;
+        } else if (salary.equals("2")) {
+            numberOfPage = (jdao.numberSearchJob(search, location, specialized, type, "500", "1000")- 1) / pageSize + 1;
+        } else if (salary.equals("3")) {
+            numberOfPage = (jdao.numberSearchJob(search, location, specialized, type, "1000", "1500")- 1) / pageSize + 1;
+        } else if (salary.equals("4")) {
+            numberOfPage = (jdao.numberSearchJob(search, location, specialized, type, "1500", "10000")- 1) / pageSize + 1;
+        }
+//        response.getWriter().print(jdao.numberSearchJob(search, location, specialized, type, null, null));
+        if (pageIndex > numberOfPage) {
+            pageIndex = numberOfPage;
+        }
+        ArrayList<Job> searchjob = jdao.searchJob(search, location, specialized, type, null, null,(pageIndex - 1) * pageSize, pageSize);
 
         if (salary.equals("1")) {
-            searchjob = jdao.searchJob(search, location, specialized, type, "0", "500");
+             searchjob = jdao.searchJob(search, location, specialized, type, "0", "500",(pageIndex - 1) * pageSize, pageSize);
         } else if (salary.equals("2")) {
-            searchjob = jdao.searchJob(search, location, specialized, type, "500", "1000");
+            searchjob = jdao.searchJob(search, location, specialized, type,  "500", "1000",(pageIndex - 1) * pageSize, pageSize);
         } else if (salary.equals("3")) {
-            searchjob = jdao.searchJob(search, location, specialized, type, "1000", "1500");
+             searchjob = jdao.searchJob(search, location, specialized, type, "1000", "1500",(pageIndex - 1) * pageSize, pageSize);
         } else if (salary.equals("4")) {
-            searchjob = jdao.searchJob(search, location, specialized, type, "1500", "10000");
-        } 
+             searchjob = jdao.searchJob(search, location, specialized, type, "1500", "10000",(pageIndex - 1) * pageSize, pageSize);
+        }
+        request.setAttribute("current", pageIndex);
+        request.setAttribute("total", numberOfPage);
+        request.setAttribute("controller", "search_job");
+
+        session.setAttribute("search", search);
+        session.setAttribute("location", location);
+        session.setAttribute("specialized", specialized);
+        session.setAttribute("type", type);
+        session.setAttribute("salary", salary);
         session.setAttribute("searchjob", searchjob);
         request.getRequestDispatcher("Public/SearchJob.jsp").forward(request, response);
     }

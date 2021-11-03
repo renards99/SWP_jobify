@@ -164,13 +164,15 @@ public class CvDAO {
         return null;
     }
     //Employer
-     public  ArrayList<CV> ListCV (int jobid){
+     public  ArrayList<CV> ListCV (int jobid, int start, int size){
          try {
             ArrayList<CV> list=new ArrayList<>();
-            String sql = "select * from cv join status on status.id=statusid join education on educationid= education.id join job on job.id=jobid where jobid=? and statusid=1";
+            String sql = "select * from cv join status on status.id=statusid join education on educationid= education.id join job on job.id=jobid where jobid=? and statusid=1 order by cv.id offset ? rows fetch next ? rows only";
             conn = DBContext.getConnection();
             pr = conn.prepareStatement(sql);
             pr.setInt(1, jobid);
+            pr.setInt(2, start);
+            pr.setInt(3, size);
             rs=pr.executeQuery();
             while(rs.next()){
                 CV c = new CV (rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(7),rs.getString(18),rs.getString(10),rs.getString(16));
@@ -182,6 +184,23 @@ public class CvDAO {
         }
         return null;
     }
+      public int getNumberCv(int jobid){
+          int count =0;
+           try {
+               String sql = "select count(*) from cv join status on status.id=statusid join education on educationid= education.id join job on job.id=jobid where jobid=? and statusid=1";
+               conn = DBContext.getConnection();
+               pr = conn.prepareStatement(sql);
+               pr.setInt(1, jobid);
+               rs= pr.executeQuery();
+               
+               while(rs.next()){
+                   count= rs.getInt(1);
+               }
+           } catch (SQLException ex) {
+               Logger.getLogger(JobDAO.class.getName()).log(Level.SEVERE, null, ex);
+           }
+           return count;
+      }
      public CV GetCVById(int id) {
         try {
             String sql = "select * from cv join education on educationid= education.id join location on locationid=location.id  where cv.id=?";

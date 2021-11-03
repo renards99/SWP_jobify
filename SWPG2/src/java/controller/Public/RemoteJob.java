@@ -5,6 +5,7 @@
  */
 package controller.Public;
 
+import dao.JobDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -59,8 +60,28 @@ public class RemoteJob extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        
+        HttpSession session = request.getSession();
+        JobDAO jobdao = new JobDAO();
+         int pageSize = 6;
+            String index_raw = request.getParameter("page");
+            int pageIndex;
+            try
+            {
+                pageIndex = Integer.parseInt(index_raw);
+            }
+            catch (NumberFormatException e)
+            {
+                pageIndex = 1;
+            }
+            int numberOfPage = (jobdao.getNumberRemoteJob()- 1) / pageSize + 1;
+            if (pageIndex > numberOfPage) pageIndex=numberOfPage;
+            ArrayList<Job> remotejob = jobdao.RemoteJob((pageIndex-1) * pageSize, pageSize);
+            
+            request.setAttribute("current", pageIndex);
+            request.setAttribute("total", numberOfPage);
+            request.setAttribute("controller", "remote_job");
+            session.setAttribute("remotejob", remotejob);
+            
          request.getRequestDispatcher("Public/RemoteJob.jsp").forward(request, response);
     }
 

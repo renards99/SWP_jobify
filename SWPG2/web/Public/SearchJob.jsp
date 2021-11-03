@@ -81,7 +81,7 @@
                     <div class="container col-lg-10 offset-lg-1 py-2">
                         <div class="row bg-primary bg-opacity-75 rounded-3" style="background-color: #f39f86; background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%)">
                             <div class="my-2 d-flex justify-content-between text-light">
-                                <span><i class="far fa-list font text-dark fw-bold"> REMOTE JOB</i> </span>
+                                <span><i class="far fa-list font text-dark fw-bold"> RESULT</i> </span>
                             </div>
                         </div>
                         <div class="row ">
@@ -115,23 +115,7 @@
 
                         </div>
 
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination pagination-sm">
-                                <li class="page-item">
-                                    <a class="page-link text-dark" href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link text-dark" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <jsp:include page="Paging.jsp"></jsp:include>
                     </div>
                 </section> 
 

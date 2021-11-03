@@ -5,12 +5,17 @@
  */
 package controller.Public;
 
+import dao.JobDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Job;
+import model.User;
 
 /**
  *
@@ -56,6 +61,28 @@ public class SuitableJob extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        JobDAO jobdao = new JobDAO();
+        User user = (User) session.getAttribute("acc");
+         int pageSize2 = 6;
+            String index_raw2 = request.getParameter("page");
+            int pageIndex2;
+            try
+            {
+                pageIndex2 = Integer.parseInt(index_raw2);
+            }
+            catch (NumberFormatException e)
+            {
+                pageIndex2 = 1;
+            }
+            int numberOfPage2 = (jobdao.getNumberSuitableJob(user.getMajorID()) - 1) / pageSize2 + 1;
+            if (pageIndex2 > numberOfPage2) pageIndex2=numberOfPage2;
+            ArrayList<Job> suitablejob = jobdao.SuitableJob(user.getMajorID(),(pageIndex2-1) * pageSize2, pageSize2);
+            
+            request.setAttribute("current", pageIndex2);
+            request.setAttribute("total", numberOfPage2);
+            request.setAttribute("controller", "suitable_job");
+            session.setAttribute("suitablejob", suitablejob);
          request.getRequestDispatcher("Public/SuitableJob.jsp").forward(request, response);
     }
 

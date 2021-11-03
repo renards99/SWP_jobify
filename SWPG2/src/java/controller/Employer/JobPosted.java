@@ -64,7 +64,26 @@ public class JobPosted extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("acc");
         JobDAO jobdao = new JobDAO();
-        ArrayList<Job> jobposted = jobdao.JobPosted(user.getUsername());
+        
+        int pageSize2 = 6;
+            String index_raw2 = request.getParameter("page");
+            int pageIndex2;
+            try
+            {
+                pageIndex2 = Integer.parseInt(index_raw2);
+            }
+            catch (NumberFormatException e)
+            {
+                pageIndex2 = 1;
+            }
+            int numberOfPage2 = (jobdao.getNumberJobPosted(user.getUsername()) - 1) / pageSize2 + 1;
+            if (pageIndex2 > numberOfPage2) pageIndex2=numberOfPage2;
+            ArrayList<Job> jobposted = jobdao.JobPosted(user.getUsername(),(pageIndex2-1) * pageSize2, pageSize2);
+            
+            request.setAttribute("current", pageIndex2);
+            request.setAttribute("total", numberOfPage2);
+            request.setAttribute("controller", "job_posted");
+            
         for (Job job : jobposted) {
             response.getWriter().print(job.getId());
         }

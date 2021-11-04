@@ -74,65 +74,76 @@
                                 <span><i class="far fa-thumbs-up font text-dark fw-bold"> JOB POSTED</i> </span>
                             </div>
                         </div>
-                          <div class="row ">
+                        <div class="row ">
                         <c:forEach var="j" items="${jobposted}">
-                        <div class="card mb-1 ">
-                            <div class="row g-0">
-                                <div class="col-md-3">
-                                    <a href="job_detail?id=${j.getId()}">
-                                        <img src="https://static.topcv.vn/company_logos/cong-ty-co-phan-chung-khoan-dai-nam-60d543347cdd8.jpg" class="img-fluid rounded-start" alt="...">
-                                    </a>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="card-body  text-truncate">
-                                        <p class="card-title">
-                                            <a href="job_detail?id=${j.id}" class="fw-bold text-dark text-decoration-none h5"> Developer Java</a>
-                                        </p>
-                                        <p class="card-text">${j.company}</p>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <small class="text-muted">Salary: $${j.salary}</small>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <small class="text-muted">Location: ${j.location}</small>
+                            <div class="card mb-1 ">
+                                <div class="row g-0">
+                                    <div class="col-md-3">
+                                        <a href="job_detail?id=${j.getId()}">
+                                            <img src="https://static.topcv.vn/company_logos/cong-ty-co-phan-chung-khoan-dai-nam-60d543347cdd8.jpg" class="img-fluid rounded-start" alt="...">
+                                        </a>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="card-body  text-truncate">
+                                            <p class="card-title">
+                                                <a href="job_detail?id=${j.id}" class="fw-bold text-dark text-decoration-none h5"> Developer Java</a>
+                                            </p>
+                                            <p class="card-text">${j.company}</p>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <small class="text-muted">Salary: $${j.salary}</small>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <small class="text-muted">Location: ${j.location}</small>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="row">
-                                        <div class="col-md-6" style="text-align: center">
-                                            <a href="#">
-                                                <button class="btn btn-success btn-send pt-2 btn-block mt-5" 
-                                                        style="background-color: #0062cc; color: black; background-color: #f39f86;
-                                                        background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%); 
-                                                        border-color: #f39f86; font-weight: bold; border-radius: 3px;" >
-                                                    Upgrade
-                                                </button>
-                                            </a>
-                                        </div>
-                                        <div class="col-md-6" style="text-align: center">
-                                            <a href="delete_job?id=${j.id}">
-                                                <button class="btn btn-success btn-send pt-2 btn-block mt-5" 
-                                                        style="background-color: #0062cc; color: black; background-color: #f39f86;
-                                                        background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%); 
-                                                        border-color: #f39f86; font-weight: bold; border-radius: 3px;" >
-                                                    Delete
-                                                </button>
-                                            </a>
+                                    <div class="col-md-4">
+                                        <div class="row">
+                                            <div class="col-md-6" style="text-align: center">
+                                                <a href="#">
+                                                    <button class="btn btn-success btn-send pt-2 btn-block mt-5" 
+                                                            style="background-color: #0062cc; color: black; background-color: #f39f86;
+                                                            background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%); 
+                                                            border-color: #f39f86; font-weight: bold; border-radius: 3px;" >
+                                                        Upgrade
+                                                    </button>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-6" style="text-align: center">
+                                                <a href="delete_job?id=${j.id}">
+                                                    <button class="btn btn-success btn-send pt-2 btn-block mt-5"  onclick="checkDelete(); return false;"
+                                                            style="background-color: #0062cc; color: black; background-color: #f39f86;
+                                                            background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%); 
+                                                            border-color: #f39f86; font-weight: bold; border-radius: 3px;" >
+                                                        Delete
+                                                    </button>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    
-  </c:forEach>
-                              </div>
-                    <jsp:include page="Paging.jsp"></jsp:include>
-                </div>
-            </section> 
 
-        </div>
+                        </c:forEach>
+                    </div>
+                    <jsp:include page="Paging.jsp"></jsp:include>
+                    </div>
+                </section> 
+
+            </div>
+            <script>
+                $(document).ready(function () {
+                    $('[data-toggle="tooltip"]').tooltip();
+                });
+                function checkDelete() {
+                    if (confirm('Are you sure you want to delete?'))
+                    {
+                        your_form_variable.submit();
+                    }
+                }
+            </script>
         <jsp:include page="Footer.jsp"></jsp:include>
     </body>
 </html>

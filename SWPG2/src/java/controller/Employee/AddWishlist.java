@@ -65,7 +65,7 @@ public class AddWishlist extends HttpServlet {
         Job jobbyid = (Job) session.getAttribute("jobbyid");
         WishlistDAO wishlistdao = new WishlistDAO();
         wishlistdao.AddWishlist(user.getUsername(), jobbyid.getId());
-        session.setAttribute("add_wishlist_message", "<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
+        session.setAttribute("add_wishlist_message", "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
                 + "            <strong>add wishlist successfully</strong> \n"
                 + "            <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\n"
                 + "        </div>");

@@ -33,6 +33,10 @@
     <body>
         <!------HEADER----------------------------------------------------------------------------------------------------------------------------------------------------------->
         <jsp:include page="Header.jsp"></jsp:include>
+        ${post_job_message}
+        <%
+            session.removeAttribute("create_cv_message");
+        %>
         ${create_cv_message}
         <%
             session.removeAttribute("create_cv_message");

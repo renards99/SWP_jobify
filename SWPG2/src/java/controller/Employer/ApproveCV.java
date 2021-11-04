@@ -61,12 +61,17 @@ public class ApproveCV extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        CV cv =(CV) session.getAttribute("viewcv");
+        CV cv =(CV) session.getAttribute("viewCV");
 //        Job jobbyid = (Job) session.getAttribute("jobbyid");
         String statusid = request.getParameter("status");
         CvDAO cvdao= new CvDAO();
         cvdao.ApproveCV(cv.getId(), Integer.parseInt(statusid));
 //        cvdao.ListCV(jobbyid.getId());
+        
+        session.setAttribute("approve_cv_message", "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
+                + "            <strong>CV approved successfully</strong> \n"
+                + "            <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\n"
+                + "        </div>");
         response.sendRedirect("list_cv");
     }
 

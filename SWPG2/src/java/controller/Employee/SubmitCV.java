@@ -81,7 +81,7 @@ public class SubmitCV extends HttpServlet {
         CvDAO cvdao = new CvDAO();
         CV cv = cvdao.GetCVByUser(user.getUsername());
         cvdao.SubmitCV(cv.getFullname(), cv.getDob(), cv.getGender(), cv.getLocationID(), cv.getPhone(), cv.getContact(), cv.getEducationID(), cv.getSchool(), cv.getExperience(), user.getUsername(), 1, jobbyid.getId());
-        session.setAttribute("submit_cv_message", "<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
+        session.setAttribute("submit_cv_message", "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
                 + "            <strong>submit cv successfully</strong> \n"
                 + "            <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\n"
                 + "        </div>");

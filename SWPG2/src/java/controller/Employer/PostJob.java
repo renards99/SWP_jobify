@@ -94,6 +94,10 @@ public class PostJob extends HttpServlet {
         JobDAO jobdao = new JobDAO();
         String time = dtf.format(now);
         jobdao.CreateJob(name, company, website, address, salary, description, requirement, email, phone, user.getUsername(), locationid, majorid, jobtypeid, time);
+        session.setAttribute("post_job_message", "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
+                + "            <strong>Job posted successfully</strong> \n"
+                + "            <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\n"
+                + "        </div>");
         response.sendRedirect("home");
     }
 

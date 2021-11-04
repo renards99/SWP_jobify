@@ -84,7 +84,7 @@ public class CreateCV extends HttpServlet {
         CvDAO cvdao = new CvDAO();
         cvdao.CreateCV(fullname, dob, Boolean.parseBoolean(gender), Integer.parseInt(location), phone, contact, Integer.parseInt(education), "FPT University", experience, user.getUsername(), Integer.parseInt(status));
         session.setAttribute("cv", "true");
-        session.setAttribute("create_cv_message", "<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
+        session.setAttribute("create_cv_message", "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
                 + "            <strong>Create CV successfully</strong> \n"
                 + "            <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\n"
                 + "        </div>");

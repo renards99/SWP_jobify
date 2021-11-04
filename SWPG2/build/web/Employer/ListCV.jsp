@@ -11,10 +11,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-   <style>
+        <style>
             .navbar .logo {
                 height: 50px;
                 margin: 0px;
@@ -29,7 +29,11 @@
         </style>
     </head>
     <body>
-           <jsp:include page="Header.jsp"></jsp:include>
+        <jsp:include page="Header.jsp"></jsp:include>
+        ${approve_cv_message}
+        <%
+            session.removeAttribute("approve_cv_message");
+        %>
             <div class="container vh-100">
                 <section id="promote_banner">
                     <div class="container col-lg-8 offset-lg-2 my-3">
@@ -64,40 +68,57 @@
                             </div>
                         </div>
                         <div class="row ">
-                            <c:forEach var="j" items="${listcv}">
-                                <div class="card mb-1 ">
-                                    <div class="row g-0">
-                                        <div class="col-md-3">
-                                            <a href="view_cv?id=${j.getId()}">
-                                                <img src="https://static.topcv.vn/company_logos/cong-ty-co-phan-chung-khoan-dai-nam-60d543347cdd8.jpg" class="img-fluid rounded-start" alt="...">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <div class="card-body  text-truncate">
-                                                <p class="card-title">
-                                                    <a href="view_cv?id=${j.getId()}" class="fw-bold text-dark text-decoration-none h5"> ${j.getFullname()}</a>
-                                                </p>
-                                                <p class="card-text">School: ${j.getSchool()}</p>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <small class="text-muted">${j.getPhone()}</small>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <small class="text-muted">Status: ${j.getStatus()}</small>
-                                                    </div>
+                        <c:forEach var="j" items="${listcv}">
+                            <div class="card mb-1 ">
+                                <div class="row g-0">
+                                    <div class="col-md-3">
+                                        <a href="view_cv?id=${j.getId()}">
+                                            <img src="https://static.topcv.vn/company_logos/cong-ty-co-phan-chung-khoan-dai-nam-60d543347cdd8.jpg" class="img-fluid rounded-start" alt="...">
+                                        </a>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="card-body  text-truncate">
+                                            <p class="card-title">
+                                                <a href="view_cv?id=${j.getId()}" class="fw-bold text-dark text-decoration-none h5"> ${j.getFullname()}</a>
+                                            </p>
+                                            <p class="card-text">School: ${j.getSchool()}</p>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <small class="text-muted">${j.getPhone()}</small>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <small class="text-muted">Status: ${j.getStatus()}</small>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </c:forEach>
-                        </div>
+                            </div>
+                        </c:forEach>
+                    </div>
 
-                         <jsp:include page="Paging.jsp"></jsp:include>
+                    <jsp:include page="Paging.jsp"></jsp:include>
                     </div>
                 </section> 
 
             </div>
+
+            <script type="text/javascript">
+                var alertList = document.querySelectorAll('.alert')
+                alertList.forEach(function (alert) {
+                    new bootstrap.Alert(alert)
+                })
+
+                // Get the alert element
+                // var alertQs = document.querySelector('.alert')  // This line would target all alerts on the page
+                var alertQs = document.querySelector('#alertID') // This line only targets the element with ID #alertID
+                // Create a Bootstrap alert instance
+                var bsAlert = bootstrap.Alert.getInstance(alertQs)
+                // Dismiss alert after specified amount of time in milliseconds
+                window.setTimeout(() => {
+                    bsAlert.close();
+                }, 4000);
+            </script>
         <jsp:include page="Footer.jsp"></jsp:include>
     </body>
 </html>

@@ -88,7 +88,7 @@ public class EditCV extends HttpServlet {
         cvdao.UpdateCV(fullname, dob, gender, Integer.parseInt(location), phone, contact, Integer.parseInt(education), school, experience, user.getUsername());
         session.setAttribute("viewCV", cvdao.GetCVByUser(user.getUsername()));
 
-        session.setAttribute("edit_cv_message", "<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
+        session.setAttribute("edit_cv_message", "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
                 + "            <strong>Edit CV successfully</strong> \n"
                 + "            <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\n"
                 + "        </div>");

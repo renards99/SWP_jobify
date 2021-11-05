@@ -6,8 +6,11 @@
 package controller.Employer;
 
 import dao.JobDAO;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,11 +19,23 @@ import javax.servlet.http.HttpSession;
 import model.User;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import javax.servlet.ServletContext;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.Part;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
  * @author PC
  */
+@MultipartConfig(
+        maxFileSize = 16177215
+)
 public class PostJob extends HttpServlet {
 
     /**
@@ -76,29 +91,51 @@ public class PostJob extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        String filename = null;
+        String image= null;
         User user = (User) session.getAttribute("acc");
-        String name = request.getParameter("name");
-        String company = request.getParameter("company");
-        String website = request.getParameter("website");
-        String address = request.getParameter("address");
-        String salary = request.getParameter("salary");
-        String description = request.getParameter("description");
-        String requirement = request.getParameter("requirement");
-        String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
-        int locationid = Integer.parseInt(request.getParameter("location"));
-        int majorid = Integer.parseInt(request.getParameter("major"));
-        int jobtypeid = Integer.parseInt(request.getParameter("jobtype"));
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         JobDAO jobdao = new JobDAO();
         String time = dtf.format(now);
-        jobdao.CreateJob(name, company, website, address, salary, description, requirement, email, phone, user.getUsername(), locationid, majorid, jobtypeid, time);
-        session.setAttribute("post_job_message", "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
-                + "            <strong>Job posted successfully</strong> \n"
-                + "            <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\n"
-                + "        </div>");
-        response.sendRedirect("home");
+        try {
+            DiskFileItemFactory factory = new DiskFileItemFactory();
+
+            ServletContext servletContext = this.getServletConfig().getServletContext();
+            File repository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
+            factory.setRepository(repository);
+
+            ServletFileUpload upload = new ServletFileUpload(factory);
+
+            List<FileItem> items = upload.parseRequest(request);
+            Iterator<FileItem> iter = items.iterator();
+            HashMap<String, String> fields = new HashMap<>();
+            while (iter.hasNext()) {
+                FileItem item = iter.next();
+
+                if (item.isFormField()) {
+                    String name = item.getFieldName();
+                    String value = item.getString();
+                    fields.put(name, value);
+                    System.out.println(name);
+                    System.out.println(value);
+                } else {
+                    filename = item.getName();
+                    Path path = Paths.get(filename);
+                    String save=  servletContext.getRealPath("/image");
+                    File uploadfile = new File(save + "\\" + path.getFileName());
+                    image= "./uploads/"+path.getFileName();
+                    item.write(uploadfile);
+                }
+                
+                response.getWriter().print(fields.get("name"));
+            }
+            jobdao.CreateJob(fields.get("name"), fields.get("company"), fields.get("website"), fields.get("address"), fields.get("salary"), fields.get("description"), fields.get("requirement"), fields.get("email"), fields.get("phone"), image, user.getUsername(), Integer.parseInt(fields.get("location")), Integer.parseInt(fields.get("major")), Integer.parseInt(fields.get("jobtype")), time);
+            response.sendRedirect("home");
+        } catch (Exception e) {
+            
+        }
+
     }
 
     /**

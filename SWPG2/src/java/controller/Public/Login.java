@@ -46,6 +46,7 @@ public class Login extends HttpServlet {
             }else{
                 session.setAttribute("cv", "true");
             }
+            request.getSession().setAttribute("filter", "filter");
             
             session.setAttribute("acc", a);
             

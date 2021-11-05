@@ -1,31 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.1" 
-         xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-         xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-       
-         id="WebApp_ID">
+<web-app id="WebApp_ID" version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <context-param>
         <param-name>host</param-name>
         <param-value>smtp.gmail.com</param-value>
     </context-param>
-
     <context-param>
         <param-name>port</param-name>
         <param-value>587</param-value>
     </context-param>
-
     <context-param>
         <param-name>user</param-name>
         <param-value>swp.g2.project@gmail.com</param-value>
     </context-param>
-
     <context-param>
         <param-name>pass</param-name>
         <param-value>123456789SWP</param-value>
     </context-param>
-<servlet>
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>filter.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <servlet-name>Login</servlet-name>
+        <servlet-name>Register</servlet-name>
+        <servlet-name>ForgetPassword</servlet-name>
+        <servlet-name>Home</servlet-name>
+        <servlet-name>SuitableJob</servlet-name>
+        <servlet-name>RemoteJob</servlet-name>
+        <servlet-name>NearbyJob</servlet-name>
+        <servlet-name>ViewProfile</servlet-name>
+        <servlet-name>Logout</servlet-name>
+        <servlet-name>CreateCV</servlet-name>
+        <servlet-name>ViewCV</servlet-name>
+        <servlet-name>SearchJob</servlet-name>
+        <servlet-name>JobDetail</servlet-name>
+        <servlet-name>Notification</servlet-name>
+        <servlet-name>PostJob</servlet-name>
+        <servlet-name>ListPostJob</servlet-name>
+        <servlet-name>Wallet</servlet-name>
+        <servlet-name>SubmitCV</servlet-name>
+        <servlet-name>Wishlist</servlet-name>
+        <servlet-name>ListCV</servlet-name>
+        <servlet-name>ApproveCV</servlet-name>
+        <servlet-name>EditProfile</servlet-name>
+        <servlet-name>ChangePassword</servlet-name>
+        <servlet-name>EditCV</servlet-name>
+        <servlet-name>AccountManagement</servlet-name>
+        <servlet-name>AccountProfile</servlet-name>
+        <servlet-name>ListBanner</servlet-name>
+        <servlet-name>ApproveBanner</servlet-name>
+        <servlet-name>ListWishlist</servlet-name>
+        <servlet-name>DeleteJob</servlet-name>
+        <servlet-name>AccountDelete</servlet-name>
+    </filter-mapping>
+    <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>controller.Public.Login</servlet-class>
     </servlet>

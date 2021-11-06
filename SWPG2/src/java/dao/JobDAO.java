@@ -200,7 +200,7 @@ public class JobDAO {
       }
       public Job CreateJob(String name,String company, String website,String address,String salary,String description,String requirement,String email,String phone,String image,String username,int locationid, int majorid, int jobtypeid, String time) {
         try {
-            String sql = "insert into job(name,company, website,address,salary,description,requirement,email,phone,image,username, locationid, majorid, jobtypeid, time)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "insert into job(name,company, website,address,salary,description,requirement,[time],email,phone,image,username, locationid, majorid, jobtypeid)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             conn = DBContext.getConnection();
             pr = conn.prepareStatement(sql);
              pr.setString(1, name);
@@ -210,18 +210,19 @@ public class JobDAO {
             pr.setString(5, salary);
             pr.setString(6, description);
             pr.setString(7, requirement);
-            pr.setString(8, email);
-            pr.setString(9, phone);
-            pr.setString(10, image);
-            pr.setString(11, username);
-            pr.setInt(12, locationid);
-            pr.setInt(13, majorid);
-            pr.setInt(14, jobtypeid);
-            pr.setString(15, time);
+            
+            pr.setString(8, time);
+            pr.setString(9, email);
+            pr.setString(10, phone);
+            pr.setString(11, image);
+            pr.setString(12, username);
+            pr.setInt(13, locationid);
+            pr.setInt(14, majorid);
+            pr.setInt(15, jobtypeid);
             pr.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CvDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }   
         return null;
     }
 }

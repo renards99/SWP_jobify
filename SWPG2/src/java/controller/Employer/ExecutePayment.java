@@ -44,8 +44,6 @@ public class ExecutePayment extends HttpServlet {
                         wDAO.updateWallet(user.getUsername(), amount+wallet.getBalance());
                         
                         wDAO.addToHistory(user.getUsername(), 1, amount);
-                        wallet = wDAO.getWallet(user.getUsername());
-                         session.setAttribute("wallet", wallet);
             
 			request.getRequestDispatcher("Employer/receipt.jsp").forward(request, response);
 			

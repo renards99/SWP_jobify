@@ -21,6 +21,10 @@
             .banner-text{
                 color: blue;
             }
+            .job_img{
+                width: 140px;
+                height: 140px;
+            }
         </style>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Job posted</title>
@@ -38,12 +42,12 @@
     </head>
     <body>
         <jsp:include page="Header.jsp"></jsp:include>
-        <c:if test="${jobposted.size() < 4}">
+        <c:if test="${jobposted.size() < 3}">
             <div class="container vh-100">
-        </c:if>
-        <c:if test="${jobposted.size() >= 4}">
-            <div class="container">
-         </c:if>
+            </c:if>
+            <c:if test="${jobposted.size() >= 3}">
+                <div class="container">
+                </c:if>
                 <section id="promote_banner">
                     <div class="container col-lg-8 offset-lg-2 my-3">
                         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -78,17 +82,17 @@
                         </div>
                         <div class="row ">
                             <c:forEach var="j" items="${jobposted}">
-                                <div class="card mb-1 ">
+                                <div class="card mb-1 " style="height: 9rem;">
                                     <div class="row g-0">
                                         <div class="col-md-3">
-                                            <a href="job_detail?id=${j.getId()}">
-                                                <img src="https://static.topcv.vn/company_logos/cong-ty-co-phan-chung-khoan-dai-nam-60d543347cdd8.jpg" class="img-fluid rounded-start" alt="...">
+                                            <a href="job_detail?id=${j.getId()}" >
+                                                <img src="${j.image}" class="rounded job_img" alt="...">
                                             </a>
                                         </div>
                                         <div class="col-md-5">
                                             <div class="card-body  text-truncate">
                                                 <p class="card-title">
-                                                    <a href="job_detail?id=${j.id}" class="fw-bold text-dark text-decoration-none h5"> Developer Java</a>
+                                                    <a href="job_detail?id=${j.id}" class="fw-bold text-dark text-decoration-none h5"> ${j.name}</a>
                                                 </p>
                                                 <p class="card-text">${j.company}</p>
                                                 <div class="row">

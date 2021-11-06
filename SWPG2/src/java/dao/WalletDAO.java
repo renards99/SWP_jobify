@@ -84,7 +84,16 @@ public class WalletDAO {
         }
         return null;
     }
-
+    public void createWallet(String username){
+        String query = "insert into [Wallet] values (?,0) ";
+        try {
+            conn = new DBContext().getConnection();//mo ket noi voi sql
+            ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
     public Wallet getWallet(String username) {
         String query = "select * from [Wallet] where username=? ";
         try {

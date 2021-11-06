@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.History;
 import model.User;
+import model.Wallet;
 
 public class ViewWallet extends HttpServlet {
 
@@ -35,12 +36,15 @@ public class ViewWallet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HttpSession session = request.getSession();
         User u = (User) session.getAttribute("acc");
         WalletDAO wDAO = new WalletDAO();
         ArrayList<History> h = wDAO.getAllHistory(u.getUsername());
-        request.setAttribute("history",h );
+
+        Wallet wallet = wDAO.getWallet(u.getUsername());
+        session.setAttribute("wallet", wallet);
+        request.setAttribute("history", h);
         request.getRequestDispatcher("Employer/Wallet.jsp").forward(request, response);
     }
 

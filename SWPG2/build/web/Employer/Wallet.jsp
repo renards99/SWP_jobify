@@ -117,7 +117,7 @@
                 <tbody>
                     <c:if test="${empty history}">
                         <tr>
-                            Empty
+                            <td colspan="4">Empty</td>
                         </tr>
 
                     </c:if>

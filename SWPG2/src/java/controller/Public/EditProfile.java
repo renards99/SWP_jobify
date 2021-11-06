@@ -93,7 +93,7 @@ public class EditProfile extends HttpServlet {
         } catch (Exception e) {
 
         } finally {
-            session.setAttribute("edit_profile_message", "<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
+            session.setAttribute("edit_profile_message", "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
                     + "            <strong>edit profile successfully</strong> \n"
                     + "            <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\n"
                     + "        </div>");

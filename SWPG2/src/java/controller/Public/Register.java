@@ -6,6 +6,7 @@
 package controller.Public;
 
 import dao.UserDAO;
+import dao.WalletDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -53,13 +54,20 @@ public class Register extends HttpServlet {
             UserDAO dao = new UserDAO();
             User a = dao.checkUserExist(user, email);
             if (a == null) {
+                //sign up
                 dao.signup(user, pass, email, role);
+                //initiate wallet
+                if (role == 2) {
+                    WalletDAO wDAO = new WalletDAO();
+                    wDAO.createWallet(user);
+                }
+                
                 response.sendRedirect("login");
             } else {
                 request.setAttribute("message", "<div class=\"alert alert-danger\" role=\"alert\">\n"
-                    + "                                <i class=\"far fa-times-circle\"></i>\n"
-                    + "                               username or email already existed.\n"
-                    + "                            </div>");
+                        + "                                <i class=\"far fa-times-circle\"></i>\n"
+                        + "                               username or email already existed.\n"
+                        + "                            </div>");
                 request.getRequestDispatcher("Public/Register.jsp").forward(request, response);
             }
         }

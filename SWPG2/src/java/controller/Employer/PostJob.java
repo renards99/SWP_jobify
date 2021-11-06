@@ -6,6 +6,7 @@
 package controller.Employer;
 
 import dao.JobDAO;
+import dao.WalletDAO;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,6 +26,7 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
+import model.Wallet;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -91,52 +93,72 @@ public class PostJob extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String filename = null;
-        String image = null;
+        double amount = 5;
         User user = (User) session.getAttribute("acc");
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        JobDAO jobdao = new JobDAO();
-        String time = dtf.format(now);
-        try {
-            DiskFileItemFactory factory = new DiskFileItemFactory();
+        WalletDAO wDAO = new WalletDAO();
+        Wallet wallet = wDAO.getWallet(user.getUsername());
+        if (wallet.getBalance()<5) {
+            session.setAttribute("post_job_message", "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
+                        + "            <strong>Post job failed. your balance need to be higher than 5$</strong> \n"
+                        + "            <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\n"
+                        + "        </div>");
+            response.sendRedirect("home");
+        } else {
 
-            ServletContext servletContext = this.getServletConfig().getServletContext();
-            File repository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
-            factory.setRepository(repository);
+            String filename = null;
+            String image = null;
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+            JobDAO jobdao = new JobDAO();
+            String time = dtf.format(now);
+            try {
+                DiskFileItemFactory factory = new DiskFileItemFactory();
 
-            ServletFileUpload upload = new ServletFileUpload(factory);
+                ServletContext servletContext = this.getServletConfig().getServletContext();
+                File repository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
+                factory.setRepository(repository);
 
-            List<FileItem> items = upload.parseRequest(request);
-            Iterator<FileItem> iter = items.iterator();
-            HashMap<String, String> fields = new HashMap<>();
-            while (iter.hasNext()) {
-                FileItem item = iter.next();
+                ServletFileUpload upload = new ServletFileUpload(factory);
 
-                if (item.isFormField()) {
-                    String name = item.getFieldName();
-                    String value = item.getString();
-                    fields.put(name, value);
-                    System.out.println(name);
-                    System.out.println(value);
-                } else {
-                    filename = item.getName();
-                    Path path = Paths.get(filename);
-                    String save = "C:\\Users\\TNC\\OneDrive\\Documents\\NetBeansProjects\\swp\\SWPG2\\web\\image";
-                    File uploadfile = new File(save + "\\" + path.getFileName());
-                    image = "image/" + path.getFileName();
-                    item.write(uploadfile);
+                List<FileItem> items = upload.parseRequest(request);
+                Iterator<FileItem> iter = items.iterator();
+                HashMap<String, String> fields = new HashMap<>();
+                while (iter.hasNext()) {
+                    FileItem item = iter.next();
+
+                    if (item.isFormField()) {
+                        String name = item.getFieldName();
+                        String value = item.getString();
+                        fields.put(name, value);
+                        System.out.println(name);
+                        System.out.println(value);
+                    } else {
+                        filename = item.getName();
+                        Path path = Paths.get(filename);
+                        String save = "C:\\Users\\TNC\\OneDrive\\Documents\\NetBeansProjects\\swp\\SWPG2\\web\\image";
+                        File uploadfile = new File(save + "\\" + path.getFileName());
+                        image = "image/" + path.getFileName();
+                        item.write(uploadfile);
+                    }
+
                 }
+                //
+                
+                response.getWriter().print(fields.get("name"));
+                response.getWriter().print(image);
+                jobdao.CreateJob(fields.get("name"), fields.get("company"), fields.get("website"), fields.get("address"), fields.get("salary"), fields.get("description"), fields.get("requirement"), fields.get("email"), fields.get("phone"), image, user.getUsername(), Integer.parseInt(fields.get("location")), Integer.parseInt(fields.get("major")), Integer.parseInt(fields.get("jobtype")), time);
+                wDAO.updateWallet(user.getUsername(), wallet.getBalance()-amount );
+                wDAO.addToHistory(user.getUsername(), 0, amount);
+                session.setAttribute("post_job_message", "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
+                        + "            <strong>Job posted successfully</strong> \n"
+                        + "            <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\n"
+                        + "        </div>");
+                response.sendRedirect("home");
+
+            } catch (Exception e) {
 
             }
-            response.getWriter().print(fields.get("name"));
-            response.getWriter().print(image);
-            jobdao.CreateJob(fields.get("name"), fields.get("company"), fields.get("website"), fields.get("address"), fields.get("salary"), fields.get("description"), fields.get("requirement"), fields.get("email"), fields.get("phone"), image, user.getUsername(), Integer.parseInt(fields.get("location")), Integer.parseInt(fields.get("major")), Integer.parseInt(fields.get("jobtype")), time);
-            response.sendRedirect("home");
-        } catch (Exception e) {
-
         }
-
     }
 
     /**

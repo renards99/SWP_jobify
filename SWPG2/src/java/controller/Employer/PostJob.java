@@ -92,7 +92,7 @@ public class PostJob extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         String filename = null;
-        String image= null;
+        String image = null;
         User user = (User) session.getAttribute("acc");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
@@ -122,18 +122,19 @@ public class PostJob extends HttpServlet {
                 } else {
                     filename = item.getName();
                     Path path = Paths.get(filename);
-                    String save=  servletContext.getRealPath("/image");
+                    String save = "C:\\Users\\TNC\\OneDrive\\Documents\\NetBeansProjects\\swp\\SWPG2\\web\\image";
                     File uploadfile = new File(save + "\\" + path.getFileName());
-                    image= "./uploads/"+path.getFileName();
+                    image = "image/" + path.getFileName();
                     item.write(uploadfile);
                 }
-                
-                response.getWriter().print(fields.get("name"));
+
             }
+            response.getWriter().print(fields.get("name"));
+            response.getWriter().print(image);
             jobdao.CreateJob(fields.get("name"), fields.get("company"), fields.get("website"), fields.get("address"), fields.get("salary"), fields.get("description"), fields.get("requirement"), fields.get("email"), fields.get("phone"), image, user.getUsername(), Integer.parseInt(fields.get("location")), Integer.parseInt(fields.get("major")), Integer.parseInt(fields.get("jobtype")), time);
             response.sendRedirect("home");
         } catch (Exception e) {
-            
+
         }
 
     }

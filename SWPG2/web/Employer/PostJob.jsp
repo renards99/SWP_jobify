@@ -103,7 +103,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                   
-                                                    <input type="file" title=" " name="file2" id="img" accept="image/*"
+                                                    <input type="file" title=" " name="file" id="img" accept="image/*"
                                                            class="form-control" >
                                                     <!--<label for="img">Choose file</label>-->
                                                 </div>

@@ -75,9 +75,9 @@
                 border: none;
             }
         </style>
-
     </head>
     <body>
+        
         <jsp:include page="Header.jsp"></jsp:include>
             <div class="container" style="margin-bottom: 3%">
                 <div class="text-center mt-5 ">
@@ -87,8 +87,10 @@
                     <div class="col-lg-7 mx-auto">
                         <div class="card mt-2 mx-auto p-4 bg-light">
                             <div class="card-body bg-light">
+                                <form action="post_job" method="post" enctype="multipart/form-data">
                                 <div class="container">
                                     <div class="controls">
+                                        
                                         <div class="row">
                                             <div class="col-md-6" style="font-weight:bolder; font-size: 20px;">
                                                 <p>General Information</p>
@@ -100,13 +102,14 @@
                                                     <img class="rounded-circle" src="https://static.topcv.vn/company_logos/cong-ty-co-phan-chung-khoan-dai-nam-60d543347cdd8.jpg">
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="file" title=" " name="image" id="img" accept="image/*"
-                                                           class="form-control" required="required" style="display: none">
-                                                    <label for="img">Choose file</label>
+                                                  
+                                                    <input type="file" title=" " name="file" id="img" accept="image/*"
+                                                           class="form-control" >
+                                                    <!--<label for="img">Choose file</label>-->
                                                 </div>
                                             </div>
                                         </div>
-                                        <form action="post_job" method="post">
+                                       
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group"><label>Job name: </label></div>
@@ -225,6 +228,7 @@
                                            type="submit" class="btn btn-success btn-send pt-2 btn-block" value="POST JOB">
                                 </div>
                             </div>
+                                </form>
                         </div>
                     </div>
                 </div>

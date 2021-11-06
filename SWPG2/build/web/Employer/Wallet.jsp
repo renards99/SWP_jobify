@@ -85,55 +85,54 @@
                                 Wallet Balance:
                             </label> <br>
                             <label style="color: white;">
-                                ${wallet.getBalance()}
-                            </label>
-                        </div>
+                            ${wallet.getBalance()}
+                        </label>
                     </div>
-                    <div class="col-md-6 text-center mt-4 mb-4 border-left border-white text-wrap py-3">
-                        <form action="https://google.com">
+                </div>
+                <div class="col-md-6 text-center mt-4 mb-4 border-left border-white text-wrap py-3">
+                    <form action="add_money" method="post">
 
                         <button type ="submit" style="background-color: #37474f; font-weight: bold; border-color: #37474f; width: 70%" 
                                 class="btn btn-success btn-send pt-2 btn-block">
                             Add money to wallet
 
                         </button>
-                            </form>
-                    </div>
+                    </form>
                 </div>
+            </div>
 
-                <div class="text-center mt-5 ">
-                    <h1>Transaction history</h1>
-                </div>
+            <div class="text-center mt-5 ">
+                <h1>Transaction history</h1>
+            </div>
 
-                <table class="table table-hover" style="width: 60%; margin: auto">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Username</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Balance</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            <table class="table table-hover" style="width: 60%; margin: auto">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
                     <c:if test="${empty history}">
                         <tr>
                             Empty
                         </tr>
-                        
+
                     </c:if>
-                        <c:forEach var="o" items="${history}">
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>${acc.username}</td>
-                                <td>${o.getType()=="1"?"deposit":"spent"}</td>
-                                <td>${o.amount}</td>
-                                <td>${wallet.getBalance()}</td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-            </div>
-            <jsp:include page="Footer.jsp"></jsp:include>
-        </body>
-    </html>
+                        <%int count=1;%>
+                    <c:forEach var="o" items="${history}">
+                        <tr>
+                            <td> <%=count%></td> <%count++;%>
+                            <td>${acc.username}</td>
+                            <td>${o.getType()=="1"?"deposit":"spent"}</td>
+                            <td>${o.amount}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
+        <jsp:include page="Footer.jsp"></jsp:include>
+    </body>
+</html>

@@ -33,11 +33,25 @@ public class WalletDAO {
             System.out.println(h);
         }
     }
+    public void addToHistory(String username,int type,double amount) {
+        try {
+            
+            String sql = "insert into [History] values(?,?,?)";
+            conn = DBContext.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setInt(2,type);
+            ps.setDouble(3, amount);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(History.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public ArrayList<History> getAllHistory(String username) {
         try {
             ArrayList<History> list = new ArrayList<>();
-            String sql = "select * from history where username=?";
+            String sql = "select * from history where username=? ORDER BY id desc";
             conn = DBContext.getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, username);
@@ -86,5 +100,16 @@ public class WalletDAO {
         } catch (Exception e) {
         }
         return null;
+    }
+    public void updateWallet(String username, double balance) {
+        String query = "Update [Wallet] set balance = ? where username=? ";
+        try {
+            conn = new DBContext().getConnection();//mo ket noi voi sql
+            ps = conn.prepareStatement(query);
+            ps.setDouble(1,balance);
+            ps.setString(2, username);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
     }
 }

@@ -81,7 +81,7 @@
                                 <img class="profile-img" src="https://cdyduochopluc.edu.vn/wp-content/uploads/2019/07/anh-dai-dien-FB-200-1.jpg">
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="wallet">Wallet</a></li>
+                                <li><a class="dropdown-item" href="view_wallet">Wallet</a></li>
                                 <li><a class="dropdown-item" href="view_profile">View profile</a></li>
                                 <li><a class="dropdown-item" href="notification">Notification</a></li>
                                 <li><hr class="dropdown-divider"></li>

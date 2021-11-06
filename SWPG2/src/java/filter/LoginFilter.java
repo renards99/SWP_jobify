@@ -37,7 +37,7 @@ public class LoginFilter implements Filter{
             if (req.getSession().getAttribute("filter") != null)
                 chain.doFilter(request, response);
             else
-                ((HttpServletResponse) response).sendRedirect("login");
+                ((HttpServletResponse) response).sendRedirect("/SWPG2/login");
         }
     }
 

@@ -40,7 +40,7 @@ public class NearbyJob extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet NearbyJob</title>");            
+            out.println("<title>Servlet NearbyJob</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet NearbyJob at " + request.getContextPath() + "</h1>");
@@ -61,29 +61,28 @@ public class NearbyJob extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-          HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
         JobDAO jobdao = new JobDAO();
         User user = (User) session.getAttribute("acc");
-         int pageSize2 = 6;
-            String index_raw2 = request.getParameter("page");
-            int pageIndex2;
-            try
-            {
-                pageIndex2 = Integer.parseInt(index_raw2);
-            }
-            catch (NumberFormatException e)
-            {
-                pageIndex2 = 1;
-            }
-            int numberOfPage2 = (jobdao.getNumberNearbyJob(user.getLocationID()) - 1) / pageSize2 + 1;
-            if (pageIndex2 > numberOfPage2) pageIndex2=numberOfPage2;
-            ArrayList<Job> nearbyjob = jobdao.NearbyJob(user.getLocationID(),(pageIndex2-1) * pageSize2, pageSize2);
-            
-            request.setAttribute("current", pageIndex2);
-            request.setAttribute("total", numberOfPage2);
-            request.setAttribute("controller", "nearby_job");
-            session.setAttribute("nearbyjob", nearbyjob);
-      request.getRequestDispatcher("Public/NearbyJob.jsp").forward(request, response);
+        int pageSize2 = 6;
+        String index_raw2 = request.getParameter("page");
+        int pageIndex2;
+        try {
+            pageIndex2 = Integer.parseInt(index_raw2);
+        } catch (NumberFormatException e) {
+            pageIndex2 = 1;
+        }
+        int numberOfPage2 = (jobdao.getNumberNearbyJob(user.getLocationID()) - 1) / pageSize2 + 1;
+        if (pageIndex2 > numberOfPage2) {
+            pageIndex2 = numberOfPage2;
+        }
+        ArrayList<Job> nearbyjob = jobdao.NearbyJob(user.getLocationID(), (pageIndex2 - 1) * pageSize2, pageSize2);
+
+        request.setAttribute("current", pageIndex2);
+        request.setAttribute("total", numberOfPage2);
+        request.setAttribute("controller", "nearby_job");
+        session.setAttribute("nearbyjob", nearbyjob);
+        request.getRequestDispatcher("Public/NearbyJob.jsp").forward(request, response);
     }
 
     /**

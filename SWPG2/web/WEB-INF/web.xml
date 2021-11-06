@@ -22,13 +22,18 @@
     </filter>
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/Public/*</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
-        <servlet-name>Login</servlet-name>
-        <servlet-name>Register</servlet-name>
-        <servlet-name>ForgetPassword</servlet-name>
+        <url-pattern>/Employee/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/Employer/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
         <servlet-name>Home</servlet-name>
         <servlet-name>SuitableJob</servlet-name>
         <servlet-name>RemoteJob</servlet-name>
@@ -42,7 +47,6 @@
         <servlet-name>Notification</servlet-name>
         <servlet-name>PostJob</servlet-name>
         <servlet-name>ListPostJob</servlet-name>
-        <servlet-name>Wallet</servlet-name>
         <servlet-name>SubmitCV</servlet-name>
         <servlet-name>Wishlist</servlet-name>
         <servlet-name>ListCV</servlet-name>
@@ -57,6 +61,11 @@
         <servlet-name>ListWishlist</servlet-name>
         <servlet-name>DeleteJob</servlet-name>
         <servlet-name>AccountDelete</servlet-name>
+        <servlet-name>AuthorizePayment</servlet-name>
+        <servlet-name>ExecutePayment</servlet-name>
+        <servlet-name>ReviewPayment</servlet-name>
+        <servlet-name>AddMoney</servlet-name>
+        <servlet-name>ViewWallet</servlet-name>
     </filter-mapping>
     <servlet>
         <servlet-name>Login</servlet-name>
@@ -123,8 +132,8 @@
         <servlet-class>controller.Employer.JobPosted</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Wallet</servlet-name>
-        <servlet-class>controller.Employer.Wallet</servlet-class>
+        <servlet-name>ViewWallet</servlet-name>
+        <servlet-class>controller.Employer.ViewWallet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SubmitCV</servlet-name>
@@ -181,6 +190,22 @@
     <servlet>
         <servlet-name>AccountDelete</servlet-name>
         <servlet-class>controller.Admin.AccountDelete</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AuthorizePayment</servlet-name>
+        <servlet-class>controller.Employer.AuthorizePayment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ExecutePayment</servlet-name>
+        <servlet-class>controller.Employer.ExecutePayment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReviewPayment</servlet-name>
+        <servlet-class>controller.Employer.ReviewPayment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddMoney</servlet-name>
+        <servlet-class>controller.Employer.AddMoney</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -247,8 +272,8 @@
         <url-pattern>/job_posted</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Wallet</servlet-name>
-        <url-pattern>/wallet</url-pattern>
+        <servlet-name>ViewWallet</servlet-name>
+        <url-pattern>/view_wallet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SubmitCV</servlet-name>
@@ -305,6 +330,22 @@
     <servlet-mapping>
         <servlet-name>AccountDelete</servlet-name>
         <url-pattern>/account_delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AuthorizePayment</servlet-name>
+        <url-pattern>/authorize_payment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExecutePayment</servlet-name>
+        <url-pattern>/execute_payment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReviewPayment</servlet-name>
+        <url-pattern>/review_payment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddMoney</servlet-name>
+        <url-pattern>/add_money</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

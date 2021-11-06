@@ -73,7 +73,12 @@
     </head>
     <body>
         <jsp:include page="Header.jsp"></jsp:include>
+        <c:if test="${history.size() < 9}">
             <div class="container vh-100">
+            </c:if>
+            <c:if test="${history.size() >= 9}">
+                <div class="container">
+                </c:if>
                 <div class="text-center mt-5 ">
                     <h1>My wallet</h1>
                 </div>
@@ -85,7 +90,7 @@
                                 Wallet Balance:
                             </label> <br>
                             <label style="color: white;">
-                            ${wallet.getBalance()}
+                            ${wallet.getBalance()}$
                         </label>
                     </div>
                 </div>
@@ -105,7 +110,7 @@
                 <h1>Transaction history</h1>
             </div>
 
-            <table class="table table-hover" style="width: 60%; margin: auto">
+            <table class="table table-hover mb-5" style="width: 60%; margin: auto">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -127,7 +132,7 @@
                             <td> <%=count%></td> <%count++;%>
                             <td>${acc.username}</td>
                             <td>${o.getType()=="1"?"deposit":"spent"}</td>
-                            <td>${o.amount}</td>
+                            <td>${o.amount}$</td>
                         </tr>
                     </c:forEach>
                 </tbody>

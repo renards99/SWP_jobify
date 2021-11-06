@@ -86,7 +86,7 @@
                                     <div class="row g-0">
                                         <div class="col-md-3">
                                             <a href="job_detail?id=${j.getId()}" >
-                                                <img src="${j.image}" class="rounded job_img" alt="...">
+                                                <img src="${j.getImage()}" class="rounded job_img" alt="...">
                                             </a>
                                         </div>
                                         <div class="col-md-5">

@@ -88,7 +88,7 @@
                                             </div>
                                         </div>
                                     <c:if test="${acc.getRoleID()==3}">
-                                        <form action="submit_cv" method="post">
+                                        <!--<form action="submit_cv" method="post">-->
                                         </c:if>
                                         <div class="row">
                                             <div class="col-md-8">
@@ -160,12 +160,14 @@
                                 <c:choose>
                                     <c:when test="${acc.getRoleID()==3}">
                                         <div class="row" style="margin-top: 2%">
-                                            <div class="col-md-6" style="text-align: center">
-                                                <button class="btn btn-success btn-send pt-2 btn-block" style="background-color: #0062cc; color: black; background-color: #f39f86;background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%); border-color: #f39f86; font-weight: bold; border-radius: 3px;" >
-                                                    Submit CV
-                                                </button>
+                                             <div class="col-md-6" style="text-align: center">
+                                                <a href="choose_cv">
+                                                    <button class="btn btn-success btn-send pt-2 btn-block"style="background-color: #0062cc; color: black; background-color: #f39f86;background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%); border-color: #f39f86; font-weight: bold; border-radius: 3px" >
+                                                        Choose CV
+                                                    </button>
+                                                </a>
                                             </div>
-                                            </form>
+                                            <!--</form>-->
                                             <div class="col-md-6" style="text-align: center">
                                                 <a href="add_wishlist">
                                                     <button class="btn btn-success btn-send pt-2 btn-block"style="background-color: #0062cc; color: black; background-color: #f39f86;background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%); border-color: #f39f86; font-weight: bold; border-radius: 3px" >

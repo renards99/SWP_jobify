@@ -32,6 +32,7 @@ public class CV {
     String email;
     String phonecompany;
     String Jobusername;
+    String time;
     
     public CV(String username) {
         this.username = username;
@@ -70,7 +71,22 @@ public class CV {
         this.experience = experience;
         this.statusID = statusID;
     }
-
+       public CV(int id,String fullname, String dob, String gender, int locationID, String phone, String contact, int educationID, String school, String experience, String education, String location, String time) {
+        this. id =id;
+        this.fullname = fullname;
+        this.dob = dob;
+        this.gender = gender;
+        this.locationID = locationID;
+        this.phone = phone;
+        this.contact = contact;
+        this.educationID = educationID;
+        this.school = school;
+        this.experience = experience;
+        this.education = education;
+        this.location = location;
+        this.time= time;
+    }
+    // 
     public CV(int id,String fullname, String dob, String gender, int locationID, String phone, String contact, int educationID, String school, String experience, String education, String location) {
         this. id =id;
         this.fullname = fullname;
@@ -271,6 +287,14 @@ public class CV {
 
     public void setJobusername(String Jobusername) {
         this.Jobusername = Jobusername;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     @Override

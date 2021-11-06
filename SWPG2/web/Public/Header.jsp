@@ -45,7 +45,8 @@
                                     <li><a class="dropdown-item" href="create_cv">Create CV</a></li>
                                     </c:if>
                                     <c:if test="<%=cv.equals("true")%>">
-                                    <li><a class="dropdown-item" href="view_cv">View CV</a></li>
+                                    <li><a class="dropdown-item" href="cv_user">View CV</a></li>
+                                     <li><a class="dropdown-item" href="create_cv">Create CV</a></li>
                                     </c:if>
                                 <li><a class="dropdown-item" href="list_wishlist">Wishlist</a></li>
                                 <li><hr class="dropdown-divider"></li>

@@ -84,9 +84,10 @@ public class EditCV extends HttpServlet {
         String education = request.getParameter("education");
         String school = request.getParameter("school");
         String experience = request.getParameter("experience");
+        int id = Integer.parseInt(request.getParameter("id"));
         CvDAO cvdao = new CvDAO();
-        cvdao.UpdateCV(fullname, dob, gender, Integer.parseInt(location), phone, contact, Integer.parseInt(education), school, experience, user.getUsername());
-        session.setAttribute("viewCV", cvdao.GetCVByUser(user.getUsername()));
+        cvdao.UpdateCV(fullname, dob, gender, Integer.parseInt(location), phone, contact, Integer.parseInt(education), school, experience, id);
+        session.setAttribute("viewCV", cvdao.GetCVById(id));
 
         session.setAttribute("edit_cv_message", "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
                 + "            <strong>Edit CV successfully</strong> \n"

@@ -207,6 +207,14 @@
         <servlet-name>AddMoney</servlet-name>
         <servlet-class>controller.Employer.AddMoney</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CvUser</servlet-name>
+        <servlet-class>controller.Employee.CvUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChooseCV</servlet-name>
+        <servlet-class>controller.Employee.ChooseCV</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -346,6 +354,14 @@
     <servlet-mapping>
         <servlet-name>AddMoney</servlet-name>
         <url-pattern>/add_money</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CvUser</servlet-name>
+        <url-pattern>/cv_user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChooseCV</servlet-name>
+        <url-pattern>/choose_cv</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

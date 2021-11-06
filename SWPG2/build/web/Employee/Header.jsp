@@ -4,18 +4,10 @@
     Created on : Oct 12, 2021, 11:34:12 AM
     Author     : PC
 --%>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <%
     String cv = (String) session.getAttribute("cv");
 %>
@@ -53,7 +45,8 @@
                                     <li><a class="dropdown-item" href="create_cv">Create CV</a></li>
                                     </c:if>
                                     <c:if test="<%=cv.equals("true")%>">
-                                    <li><a class="dropdown-item" href="view_cv">View CV</a></li>
+                                    <li><a class="dropdown-item" href="cv_user">View CV</a></li>
+                                     <li><a class="dropdown-item" href="create_cv">Create CV</a></li>
                                     </c:if>
                                 <li><a class="dropdown-item" href="list_wishlist">Wishlist</a></li>
                                 <li><hr class="dropdown-divider"></li>
@@ -61,7 +54,6 @@
                             </ul>
                         </li>
                     </ul>
-
                 </div>
             </div>
         </nav>
@@ -113,13 +105,13 @@
                 </button>
                 <div class="collapse navbar-collapse f-flex justify-content-end" id="navbarSupportedContent">  
                     <ul class="navbar-nav ml-auto ">
-                        <li class="nav-item ">
+                        <li class="nav-item px-2 border-end border-dark ">
                             <a class="nav-link active" href="home">Finance management</a>
                         </li>
-                        <li class="nav-item ">
+                        <li class="nav-item px-2 border-end border-dark ">
                             <a class="nav-link" href="account_management">Account management</a>
                         </li>
-                        <li class="nav-item ">
+                        <li class="nav-item px-2 border-end border-dark ">
                             <a class="nav-link" href="list_banner">Banner management</a>
                         </li>
                         <li class="nav-item dropdown">

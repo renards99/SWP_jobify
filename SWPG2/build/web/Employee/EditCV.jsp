@@ -106,6 +106,7 @@
                                                 </div>
                                             </div>
                                             <form action="edit_cv" method="post">
+                                                <input type="text" name="id" value="${viewCV.getId()}" hidden="">
                                                 <div class="col-md-8">
                                                     <div class="form-group"><label>Fullname:</label></div>
                                                     <div class="form-group" style="border-bottom: 1px solid;" >

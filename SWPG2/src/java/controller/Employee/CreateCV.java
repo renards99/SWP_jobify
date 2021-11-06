@@ -4,6 +4,8 @@ package controller.Employee;
 import dao.CvDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -81,8 +83,11 @@ public class CreateCV extends HttpServlet {
         String education = request.getParameter("education");
         String school = request.getParameter("school");
         String experience = request.getParameter("experience");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String time=now.format(dtf);
         CvDAO cvdao = new CvDAO();
-        cvdao.CreateCV(fullname, dob, Boolean.parseBoolean(gender), Integer.parseInt(location), phone, contact, Integer.parseInt(education), "FPT University", experience, user.getUsername(), Integer.parseInt(status));
+        cvdao.CreateCV(fullname, dob, Boolean.parseBoolean(gender), Integer.parseInt(location), phone, contact, Integer.parseInt(education), "FPT University", experience, user.getUsername(), Integer.parseInt(status), time);
         session.setAttribute("cv", "true");
         session.setAttribute("create_cv_message", "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
                 + "            <strong>Create CV successfully</strong> \n"

@@ -66,24 +66,24 @@ public class ListCV extends HttpServlet {
         Job jobbyid = (Job) session.getAttribute("jobbyid");
         CvDAO cvdao = new CvDAO();
         
-        int pageSize2 = 6;
-            String index_raw2 = request.getParameter("page");
-            int pageIndex2;
-            try
-            {
-                pageIndex2 = Integer.parseInt(index_raw2);
-            }
-            catch (NumberFormatException e)
-            {
-                pageIndex2 = 1;
-            }
-            int numberOfPage2 = (cvdao.getNumberCv(jobbyid.getId()) - 1) / pageSize2 + 1;
-            if (pageIndex2 > numberOfPage2) pageIndex2=numberOfPage2;
-            ArrayList<CV> listcv = cvdao.ListCV(jobbyid.getId(),(pageIndex2-1) * pageSize2, pageSize2);
-            
-            request.setAttribute("current", pageIndex2);
-            request.setAttribute("total", numberOfPage2);
-            request.setAttribute("controller", "list_cv");
+            int pageSize2 = 6;
+                String index_raw2 = request.getParameter("page");
+                int pageIndex2;
+                try
+                {
+                    pageIndex2 = Integer.parseInt(index_raw2);
+                }
+                catch (NumberFormatException e)
+                {
+                    pageIndex2 = 1;
+                }
+                int numberOfPage2 = (cvdao.getNumberCv(jobbyid.getId()) - 1) / pageSize2 + 1;
+                if (pageIndex2 > numberOfPage2) pageIndex2=numberOfPage2;
+                ArrayList<CV> listcv = cvdao.ListCV(jobbyid.getId(),(pageIndex2-1) * pageSize2, pageSize2);
+
+                request.setAttribute("current", pageIndex2);
+                request.setAttribute("total", numberOfPage2);
+                request.setAttribute("controller", "list_cv");
             
         session.setAttribute("listcv", listcv);
         request.getRequestDispatcher("Employer/ListCV.jsp").forward(request, response);

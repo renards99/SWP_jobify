@@ -78,8 +78,9 @@ public class SubmitCV extends HttpServlet {
         HttpSession session = request.getSession();
         Job jobbyid = (Job) session.getAttribute("jobbyid");
         User user = (User) session.getAttribute("acc");
+        int id = Integer.parseInt(request.getParameter("id"));
         CvDAO cvdao = new CvDAO();
-        CV cv = cvdao.GetCVByUser(user.getUsername());
+        CV cv = cvdao.GetCVById(id);
         cvdao.SubmitCV(cv.getFullname(), cv.getDob(), cv.getGender(), cv.getLocationID(), cv.getPhone(), cv.getContact(), cv.getEducationID(), cv.getSchool(), cv.getExperience(), user.getUsername(), 1, jobbyid.getId());
         session.setAttribute("submit_cv_message", "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
                 + "            <strong>submit cv successfully</strong> \n"

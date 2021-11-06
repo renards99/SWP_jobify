@@ -26,9 +26,9 @@ public class CvDAO {
 
     
 //    Empployee
-    public CV UpdateCV(String fullname, String dob, String gender, int locationid, String phone, String contact, int educationid, String school, String experience, int id) {
+    public CV UpdateCV(String fullname, String dob, String gender, int locationid, String phone, String contact, int educationid, String school, String experience, String image,int id) {
         try {
-            String sql = "update cv set fullname=?, dob=?, gender=?, locationid=?, phone=?, contact=?, educationid=?, school=?, experience=? where id=?";
+            String sql = "update cv set fullname=?, dob=?, gender=?, locationid=?, phone=?, contact=?, educationid=?, school=?, image=?,experience=? where id=?";
             conn = DBContext.getConnection();
             pr = conn.prepareStatement(sql);
             pr.setString(1, fullname);
@@ -39,8 +39,9 @@ public class CvDAO {
             pr.setString(6, contact);
             pr.setInt(7, educationid);
             pr.setString(8, school);
-            pr.setString(9, experience);
-            pr.setInt(10, id);
+            pr.setString(9, image);
+            pr.setString(10, experience);
+            pr.setInt(11, id);
             pr.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CvDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -101,9 +102,9 @@ public class CvDAO {
            }
            return count;
       }
-    public CV CreateCV(String fullname, String dob, boolean gender, int locationid, String phone, String contact, int educationid, String school, String experience, String username,int statusid, String time) {
+    public CV CreateCV(String fullname, String dob, boolean gender, int locationid, String phone, String contact, int educationid, String school, String experience, String username,int statusid, String time, String image) {
         try {
-            String sql = "insert into cv(fullname,dob, gender,locationid,phone,contact,educationid,school,experience,username, statusid, time)values(?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "insert into cv(fullname,dob, gender,locationid,phone,contact,educationid,school,experience,username, statusid, image,time)values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
             conn = DBContext.getConnection();
             pr = conn.prepareStatement(sql);
              pr.setString(1, fullname);
@@ -117,7 +118,8 @@ public class CvDAO {
             pr.setString(9, experience);
             pr.setString(10, username);
             pr.setInt(11, statusid);
-            pr.setString(12, time);
+            pr.setString(12, image);
+            pr.setString(13, time);
             pr.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CvDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -247,7 +249,7 @@ public class CvDAO {
             pr.setInt(1, id);
             rs=pr.executeQuery();
             while(rs.next()){
-                CV c = new CV (rs.getInt(1),rs.getString(3), rs.getString(4), rs.getString(5),rs.getInt(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getString(10),rs.getString(11),rs.getString(16),rs.getString(18));
+                CV c = new CV (rs.getInt(1),rs.getString(3), rs.getString(4), rs.getString(5),rs.getInt(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getString(10),rs.getString(11),rs.getString(16),rs.getString(18),rs.getString(12));
                 return c;
             }
         } catch (SQLException ex) {

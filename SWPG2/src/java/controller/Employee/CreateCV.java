@@ -2,16 +2,26 @@
 package controller.Employee;
 
 import dao.CvDAO;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.User;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -73,28 +83,58 @@ public class CreateCV extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("acc");
-        String fullname = request.getParameter("fullname");
-        String gender = request.getParameter("gender");
-        String dob = request.getParameter("dob");
-        String status = request.getParameter("status");
-        String location = request.getParameter("location");
-        String contact = request.getParameter("contact");
-        String phone = request.getParameter("phone");
-        String education = request.getParameter("education");
-        String school = request.getParameter("school");
-        String experience = request.getParameter("experience");
+        String filename = null;
+        String image = null;
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         String time=now.format(dtf);
         CvDAO cvdao = new CvDAO();
-        cvdao.CreateCV(fullname, dob, Boolean.parseBoolean(gender), Integer.parseInt(location), phone, contact, Integer.parseInt(education), "FPT University", experience, user.getUsername(), Integer.parseInt(status), time);
+        try {
+            DiskFileItemFactory factory = new DiskFileItemFactory();
+
+            ServletContext servletContext = this.getServletConfig().getServletContext();
+            File repository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
+            factory.setRepository(repository);
+
+            ServletFileUpload upload = new ServletFileUpload(factory);
+
+            List<FileItem> items = upload.parseRequest(request);
+            Iterator<FileItem> iter = items.iterator();
+            HashMap<String, String> fields = new HashMap<>();
+            while (iter.hasNext()) {
+                FileItem item = iter.next();
+
+                if (item.isFormField()) {
+                    String name = item.getFieldName();
+                    String value = item.getString();
+                    fields.put(name, value);
+                    System.out.println(name);
+                    System.out.println(value);
+                } else {
+                    filename = item.getName();
+                    Path path = Paths.get(filename);
+                    String save = "C:\\Users\\PC\\Desktop\\swp\\SWPG2\\build\\web\\image";
+                    File uploadfile = new File(save + "\\" + path.getFileName());
+                    image = "image/" + path.getFileName();
+                    item.write(uploadfile);
+                }
+
+            }
+            response.getWriter().print(fields.get("name"));
+            response.getWriter().print(image);
+             cvdao.CreateCV(fields.get("fullname"), fields.get("dob"), Boolean.parseBoolean(fields.get("gender")), Integer.parseInt(fields.get("location")), fields.get("phone"), fields.get("contact"), Integer.parseInt(fields.get("education")), fields.get("school"), fields.get("experience"), user.getUsername(), Integer.parseInt( fields.get("status")), image,time);
+            
+        } catch (Exception e) {
+
+        }
+        finally{
         session.setAttribute("cv", "true");
         session.setAttribute("create_cv_message", "<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
                 + "            <strong>Create CV successfully</strong> \n"
                 + "            <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\n"
                 + "        </div>");
-
         response.sendRedirect("home");
+        }
     }
 
     /**

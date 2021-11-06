@@ -58,7 +58,7 @@ public class CV {
         this.school = school;
         this.status= status;
     }
-
+    
     public CV(String fullname, String dob, String gender, int locationID, String phone, String contact, int educationID, String school, String experience, int statusID) {
         this.fullname = fullname;
         this.dob = dob;

@@ -97,7 +97,7 @@
                         <div class="card mt-2 mb-5 mx-auto p-4 bg-light">
                             <div class="card-body bg-light">
                                 <div class="container">
-                                    <form id="contact-form" role="form" action="create_cv" method="POST">
+                                    <form id="contact-form" role="form" action="create_cv" method="POST" enctype="multipart/form-data">
                                         <div class="controls">
                                             <div class="row">
                                                 <div class="col-md-6" style="font-weight:bolder; font-size: 20px;">
@@ -116,7 +116,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group"> <label>Image:</label>
-                                                    <input style="" type="file" name="image" accept="image/*"
+                                                    <input style="" type="file" name="file" accept="image/*"
                                                            class="form-control" >
                                                 </div>
                                             </div>
@@ -182,9 +182,9 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <div class="form-group" style="display: none" id="highschool"> 
+                                                <div class="form-group"  id="highschool"> 
                                                     <label>School name:</label>
-                                                    <input type="text" name="school" id="highschool2" style="display: none;" class="form-control" >
+                                                    <input type="text" name="school" id="highschool2"class="form-control" >
                                                 </div>
                                             </div>
                                         </div>
@@ -211,8 +211,9 @@
                                                background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%); border-color: #f39f86; font-weight: bold;" 
                                                type="submit" class="btn btn-success btn-send pt-2 btn-block" value="Create CV">
                                     </div>
+                                                </form>
                             </div>
-                            </form>
+                           
                         </div>
                     </div>
                 </div>

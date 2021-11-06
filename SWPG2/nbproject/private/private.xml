@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/web/Public/ViewCV.jsp</file>
-            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/web/Employee/EditCV.jsp</file>
-            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/src/java/controller/Public/ViewCV.java</file>
-            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/src/java/controller/Employee/EditCV.java</file>
-            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/src/java/model/CV.java</file>
+            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/src/java/controller/Public/EditProfile.java</file>
+            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/src/java/controller/Employer/PostJob.java</file>
+            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/web/Public/EditProfile.jsp</file>
+            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/web/Employer/PostJob.jsp</file>
         </group>
     </open-files>
 </project-private>

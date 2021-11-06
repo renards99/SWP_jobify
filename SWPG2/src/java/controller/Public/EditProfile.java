@@ -8,9 +8,16 @@ package controller.Public;
 import dao.MajorDAO;
 import dao.LocationDAO;
 import dao.UserDAO;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +26,9 @@ import javax.servlet.http.HttpSession;
 import model.Location;
 import model.Major;
 import model.User;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -39,27 +49,56 @@ public class EditProfile extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        User u=(User) session.getAttribute("acc");
-        
-        String username=u.getUsername();
-        String fullname= request.getParameter("fullname");
-        String dob =request.getParameter("dob");
-        String gender=request.getParameter("gender");   
-        String address=request.getParameter("address");
-        String location=request.getParameter("location");
-        String phone=request.getParameter("phone");
-        String major=request.getParameter("major");
-        String image=request.getParameter("image");
-        
-        UserDAO udao=new UserDAO();
-        udao.changeUserInfo(username, fullname, dob, Integer.parseInt(gender), address, phone, image, Integer.parseInt(location), Integer.parseInt(major));
-        
-         session.setAttribute("edit_profile_message", "<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
-                + "            <strong>edit profile successfully</strong> \n"
-                + "            <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\n"
-                + "        </div>");
-        session.setAttribute("acc", udao.login(username, u.getPassword())); 
-        response.sendRedirect("view_profile");
+        User u = (User) session.getAttribute("acc");
+        String filename = null;
+        String image = null;
+        String username = u.getUsername();
+        UserDAO udao = new UserDAO();
+
+        try {
+            DiskFileItemFactory factory = new DiskFileItemFactory();
+
+            ServletContext servletContext = this.getServletConfig().getServletContext();
+            File repository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
+            factory.setRepository(repository);
+
+            ServletFileUpload upload = new ServletFileUpload(factory);
+
+            List<FileItem> items = upload.parseRequest(request);
+            Iterator<FileItem> iter = items.iterator();
+            HashMap<String, String> fields = new HashMap<>();
+            while (iter.hasNext()) {
+                FileItem item = iter.next();
+
+                if (item.isFormField()) {
+                    String name = item.getFieldName();
+                    String value = item.getString();
+                    fields.put(name, value);
+                    System.out.println(name);
+                    System.out.println(value);
+                } else {
+                    filename = item.getName();
+                    Path path = Paths.get(filename);
+                    String save = "C:\\Users\\TNC\\OneDrive\\Documents\\NetBeansProjects\\swp\\SWPG2\\web\\image";
+                    File uploadfile = new File(save + "\\" + path.getFileName());
+                    image = "image/" + path.getFileName();
+                    item.write(uploadfile);
+                }
+
+            }
+            response.getWriter().print(fields.get("name"));
+            response.getWriter().print(image);
+            udao.changeUserInfo(username, fields.get("fullname"), fields.get("dob"), Integer.parseInt(fields.get("gender")), fields.get("address"), fields.get("phone"), image, Integer.parseInt(fields.get("location")), Integer.parseInt(fields.get("major")));
+            session.setAttribute("acc", udao.login(username, u.getPassword()));
+        } catch (Exception e) {
+
+        } finally {
+            session.setAttribute("edit_profile_message", "<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
+                    + "            <strong>edit profile successfully</strong> \n"
+                    + "            <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\n"
+                    + "        </div>");
+            response.sendRedirect("view_profile");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -77,7 +116,7 @@ public class EditProfile extends HttpServlet {
         LocationDAO ldao = new LocationDAO();
         MajorDAO mdao = new MajorDAO();
         ArrayList<Location> l = ldao.GetAllLocation();
-        ArrayList<Major>m=mdao.GetAllMajor();
+        ArrayList<Major> m = mdao.GetAllMajor();
         request.setAttribute("location", l);
         request.setAttribute("major", m);
         request.getRequestDispatcher("Public/EditProfile.jsp").forward(request, response);

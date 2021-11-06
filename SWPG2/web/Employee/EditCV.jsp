@@ -89,6 +89,7 @@
                             <div class="card-body bg-light">
                                 <div class="container">
                                     <div class="controls">
+                                            <form action="edit_cv" method="post" enctype="multipart/form-data">
                                         <div class="row">
                                             <div class="col-md-6" style="font-weight:bolder; font-size: 20px;">
                                                 <p>General Information</p>
@@ -97,15 +98,15 @@
                                         <div class="row">
                                             <div class="col-md-4" style=";">
                                                 <div class="form-group">
-                                                    <img class="rounded-circle" src="https://static.topcv.vn/company_logos/cong-ty-co-phan-chung-khoan-dai-nam-60d543347cdd8.jpg">
+                                                    <img class="rounded-circle" src="${viewCV.image}">
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="file" title=" " name="image" id="img" accept="image/*"
-                                                           class="form-control" required="required" style="display: none">
-                                                    <label style="margin-left: 40px;" for="img">Choose file</label>
+                                                    <input type="file" title=" " name="file" id="img" accept="image/*"
+                                                           class="form-control" required="required">
+                                                    <!--<label style="margin-left: 40px;" for="img">Choose file</label>-->
                                                 </div>
                                             </div>
-                                            <form action="edit_cv" method="post">
+                                        
                                                 <input type="text" name="id" value="${viewCV.getId()}" hidden="">
                                                 <div class="col-md-8">
                                                     <div class="form-group"><label>Fullname:</label></div>
@@ -182,7 +183,6 @@
                                                 Save changes
                                             </button>
                                         </div>
-                                        </form>
                                         <div class="col-md-6" style="text-align: center">
                                             <a href="view_cv">
                                                 <button  class="btn btn-success btn-send pt-2 btn-block" 
@@ -194,6 +194,7 @@
                                             </a>
                                         </div>
                                     </div>
+                                                </form>
                                 </div>
                             </div>
                         </div>

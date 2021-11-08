@@ -68,7 +68,7 @@ public class PaymentServices {
 	
 	private RedirectUrls getRedirectURLs() {
 		RedirectUrls redirectUrls = new RedirectUrls();
-		redirectUrls.setCancelUrl("http://localhost:8080/SWPG2/cancel.jsp");
+		redirectUrls.setCancelUrl("http://localhost:8080/SWPG2/add_money");
 		redirectUrls.setReturnUrl("http://localhost:8080/SWPG2/review_payment");
 		
 		return redirectUrls;

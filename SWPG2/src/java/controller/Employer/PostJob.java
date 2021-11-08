@@ -99,7 +99,7 @@ public class PostJob extends HttpServlet {
         Wallet wallet = wDAO.getWallet(user.getUsername());
         if (wallet.getBalance()<5) {
             session.setAttribute("post_job_message", "<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\" id=\"alertID\">\n"
-                        + "            <strong>Post job failed. your balance need to be higher than 5$</strong> \n"
+                        + "            <strong>Post job failed. You must have more than 5$ in your wallet</strong> \n"
                         + "            <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\n"
                         + "        </div>");
             response.sendRedirect("home");

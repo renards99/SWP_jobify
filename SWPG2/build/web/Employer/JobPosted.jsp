@@ -47,17 +47,18 @@
                 var id = document.getElementById("jobid").value;
                 MyWindow = window.open("", "Banner",
                         "height=200,width=400,status=yes,toolbar=no,menubar=no,location=abc");
-                MyWindow.document.write("<h3 style='color: red'>Warning you should upload the image with any information about your job</h3>");
+                MyWindow.document.write("<h3 style='color: red'>Warning your image should contain all the information about your job</h3>");
                 MyWindow.document.write(" <form action='submit_banner' enctype='multipart/form-data' method='post'>");
                 MyWindow.document.write("<input type='text' hidden='' value='" + id + "' name='id'>");
                 MyWindow.document.write("<input type='file' name='file'>");
                 MyWindow.document.write(" <br>");
-                MyWindow.document.write(" <input type='submit' value='Payment'>");
+                MyWindow.document.write(" <input type='submit' value='Process'>");
                 MyWindow.document.write("</form>");
                 MyWindow.document.write();
             }
         </script>
         <jsp:include page="Header.jsp"></jsp:include>
+        
         <c:if test="${jobposted.size() < 3}">
             <div class="container vh-100">
             </c:if>
@@ -161,7 +162,7 @@
                         $('[data-toggle="tooltip"]').tooltip();
                     });
                     function checkDelete() {
-                        if (confirm('Are you sure you want to delete?'))
+                        if (confirm('Are you sure you want to decline?'))
                         {
                             your_form_variable.submit();
                         }

@@ -77,7 +77,7 @@
         </style>
     </head>
     <body>
-        
+
         <jsp:include page="Header.jsp"></jsp:include>
             <div class="container" style="margin-bottom: 3%">
                 <div class="text-center mt-5 ">
@@ -88,33 +88,33 @@
                         <div class="card mt-2 mx-auto p-4 bg-light">
                             <div class="card-body bg-light">
                                 <form action="post_job" method="post" enctype="multipart/form-data">
-                                <div class="container">
-                                    <div class="controls">
-                                        
-                                        <div class="row">
-                                            <div class="col-md-6" style="font-weight:bolder; font-size: 20px;">
-                                                <p>General Information</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center" style=";">
-                                                <div class="form-group">
-                                                    <img class="rounded-circle" src="https://static.topcv.vn/company_logos/cong-ty-co-phan-chung-khoan-dai-nam-60d543347cdd8.jpg">
-                                                </div>
-                                                <div class="form-group">
-                                                  
-                                                    <input type="file" title=" " name="file" id="img" accept="image/*"
-                                                           class="form-control" >
-                                                    <!--<label for="img">Choose file</label>-->
+                                    <div class="container">
+                                        <div class="controls">
+
+                                            <div class="row">
+                                                <div class="col-md-6" style="font-weight:bolder; font-size: 20px;">
+                                                    <p>General Information</p>
                                                 </div>
                                             </div>
-                                        </div>
-                                       
+                                            <div class="row">
+                                                <div class="col-md-12 text-center" style=";">
+                                                    <div class="form-group">
+                                                        <img class="rounded-circle" src="https://static.topcv.vn/company_logos/cong-ty-co-phan-chung-khoan-dai-nam-60d543347cdd8.jpg">
+                                                    </div>
+                                                    <div class="form-group">
+
+                                                        <input type="file" title=" " name="file" id="img" accept="image/*"
+                                                               class="form-control" >
+                                                        <!--<label for="img">Choose file</label>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group"><label>Job name: </label></div>
                                                     <div class="form-group" style="border-bottom: 1px solid;" >
-                                                        <input type="text" name="name">
+                                                        <input type="text" name="name" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,113 +122,113 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group"><label>Company name: </label></div>
                                                     <div class="form-group" style="border-bottom: 1px solid">
-                                                        <input type="text" name="company">
+                                                        <input type="text" name="company" required>
                                                     </div>
                                                 </div>
                                             </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group"><label>Website: </label></div>
-                                            <div class="form-group" style="border-bottom: 1px solid">
-                                                <input type="text" name="website">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group"><label>Website: </label></div>
+                                                <div class="form-group" style="border-bottom: 1px solid">
+                                                    <input type="text" name="website" required>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group"><label>Address: </label></div>
-                                            <div class="form-group" style="border-bottom: 1px solid">
-                                                <input type="text" name="address">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group"><label>Address: </label></div>
+                                                <div class="form-group" style="border-bottom: 1px solid">
+                                                    <input type="text" name="address" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group"><label>Salary: </label></div>
+                                                <div class="form-group" style="border-bottom: 1px solid">
+                                                    <input type="text" name="salary" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group"> 
+                                                    <label>
+                                                        Job type:    
+                                                    </label>
+                                                    <select name="jobtype" class="form-control" required>
+                                                        <option value="0">--Choose job type--</option>
+                                                    <c:forEach var="o" items="${jobtype}">
+                                                        <option value="${o.id}">${o.name}</option>
+                                                    </c:forEach>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group"><label>Salary: </label></div>
-                                            <div class="form-group" style="border-bottom: 1px solid">
-                                                <input type="text" name="salary">
+                                            <div class="form-group"> 
+                                                <label>
+                                                    Location:  
+                                                </label>
+                                                <select name="location" class="form-control" required>
+                                                    <option value="0">--Choose location--</option>
+                                                    <c:forEach var="o" items="${location}">
+                                                        <option value="${o.id}">${o.name}</option>
+                                                    </c:forEach>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group"> 
                                                 <label>
-                                                    Job type:    
+                                                    Major:   
                                                 </label>
-                                                <select name="jobtype" class="form-control" required="required">
-                                                    <option value="0">--Choose job type--</option>
-                                                <c:forEach var="o" items="${jobtype}">
-                                                    <option value="${o.id}">${o.name}</option>
-                                                </c:forEach>
-                                            </select>
+                                                <select name="major" class="form-control" required>
+                                                    <option value="0">--Choose major--</option>
+                                                    <c:forEach var="o" items="${major}">
+                                                        <option value="${o.id}">${o.name}</option>
+                                                    </c:forEach>
+                                                </select>
+                                            </div>
                                         </div>
+                                    </div>
+                                    <div class="row">
+                                        <div>
+                                            <div class="form-group"><label>Description: </label></div>
+                                            <div class="form-group">
+                                                <textarea class="form-control" name="description" rows="3" required></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div>
+                                            <div class="form-group"><label>Requirement: </label></div>
+                                            <div class="form-group">
+                                                <textarea class="form-control" name="requirement" rows="3" required></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group"><label>Email: </label></div>
+                                            <div class="form-group" style="border-bottom: 1px solid">
+                                                <input type="email" name="email" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group"><label>Phone: </label></div>
+                                            <div class="form-group" style="border-bottom: 1px solid">
+                                                <input type="text" name="phone" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12"> 
+                                        <input style="background-color: #0062cc; color: black; background-color: #f39f86;
+                                               background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%); border-color: #f39f86; font-weight: bold;" 
+                                               type="submit" class="btn btn-success btn-send pt-2 btn-block" value="POST JOB">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group"> 
-                                            <label>
-                                                Location:  
-                                            </label>
-                                            <select name="location" class="form-control" required="required">
-                                                <option value="0">--Choose location--</option>
-                                                <c:forEach var="o" items="${location}">
-                                                    <option value="${o.id}">${o.name}</option>
-                                                </c:forEach>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group"> 
-                                            <label>
-                                                Major:   
-                                            </label>
-                                            <select name="major" class="form-control" required="required">
-                                                <option value="0">--Choose major--</option>
-                                                <c:forEach var="o" items="${major}">
-                                                    <option value="${o.id}">${o.name}</option>
-                                                </c:forEach>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div>
-                                        <div class="form-group"><label>Description: </label></div>
-                                        <div class="form-group">
-                                            <textarea class="form-control" name="description" rows="3"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div>
-                                        <div class="form-group"><label>Requirement: </label></div>
-                                        <div class="form-group">
-                                            <textarea class="form-control" name="requirement" rows="3"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group"><label>Email: </label></div>
-                                        <div class="form-group" style="border-bottom: 1px solid">
-                                            <input type="text" name="email">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group"><label>Phone: </label></div>
-                                        <div class="form-group" style="border-bottom: 1px solid">
-                                            <input type="text" name="phone">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12"> 
-                                    <input style="background-color: #0062cc; color: black; background-color: #f39f86;
-                                           background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%); border-color: #f39f86; font-weight: bold;" 
-                                           type="submit" class="btn btn-success btn-send pt-2 btn-block" value="POST JOB">
-                                </div>
-                            </div>
-                                </form>
+                            </form>
                         </div>
                     </div>
                 </div>

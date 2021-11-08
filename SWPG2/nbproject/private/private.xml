@@ -3,11 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/src/java/controller/Admin/ApproveBanner.java</file>
-            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/web/Admin/BannerDetail.jsp</file>
-            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/src/java/dao/BannerDAO.java</file>
-            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/src/java/model/Banner.java</file>
-            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/web/Admin/ListBanner.jsp</file>
+            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/web/Employer/Banner.jsp</file>
+            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/web/Public/Home.jsp</file>
+            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/controller/Employer/PostJob.java</file>
+            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/web/Employer/PostJob.jsp</file>
+            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/controller/Employer/JobPosted.java</file>
+            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/controller/Employer/ReviewPayment.java</file>
+            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/controller/Employer/SubmitBanner.java</file>
+            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/controller/Employer/PaymentServices.java</file>
+            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/web/Employer/receipt.jsp</file>
+            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/web/Employer/AddMoney.jsp</file>
+            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/web/Employer/Footer.jsp</file>
+            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/web/Employer/Header.jsp</file>
+            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/web/Employer/JobPosted.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -9,13 +9,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>notification</title>
     </head>
-   <script>
-</script>
-    <body>
+    <script>
+    </script>
+    <body onload="waitFiveSec()">
         <h3 style="color: red">${message}</h3>
-       
-       
-    </body>
+
+
+    </body><script>
+        setTimeout(function () {
+            window.close()
+        }, 10000);
+    </script>
 </html>

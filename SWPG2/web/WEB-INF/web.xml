@@ -215,6 +215,14 @@
         <servlet-name>ChooseCV</servlet-name>
         <servlet-class>controller.Employee.ChooseCV</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SubmitBanner</servlet-name>
+        <servlet-class>controller.Employer.SubmitBanner</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BannerDetail</servlet-name>
+        <servlet-class>controller.Admin.BannerDetail</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -362,6 +370,14 @@
     <servlet-mapping>
         <servlet-name>ChooseCV</servlet-name>
         <url-pattern>/choose_cv</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubmitBanner</servlet-name>
+        <url-pattern>/submit_banner</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BannerDetail</servlet-name>
+        <url-pattern>/banner_detail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

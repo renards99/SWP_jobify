@@ -19,7 +19,7 @@ import model.Banner;
  *
  * @author PC
  */
-public class ApproveBanner extends HttpServlet {
+public class BannerDetail extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +38,10 @@ public class ApproveBanner extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ApproveBanner</title>");            
+            out.println("<title>Servlet BannerDetail</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ApproveBanner at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet BannerDetail at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,12 +59,12 @@ public class ApproveBanner extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session =request.getSession();
-        int statusid = Integer.parseInt(request.getParameter("status"));
-        Banner banner = (Banner)session.getAttribute("bannerdetail");
+        HttpSession session = request.getSession();
         BannerDAO bannerdao = new BannerDAO();
-        bannerdao.ApproveBanner(statusid, banner.getBannerID());
-        response.sendRedirect("list_banner");
+        String id = request.getParameter("id");
+        Banner banner = bannerdao.getBannerById(Integer.parseInt(id));
+        session.setAttribute("bannerdetail", banner);
+        request.getRequestDispatcher("Admin/BannerDetail.jsp").forward(request, response);
     }
 
     /**

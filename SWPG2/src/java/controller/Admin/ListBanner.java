@@ -5,12 +5,17 @@
  */
 package controller.Admin;
 
+import dao.BannerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Banner;
+import model.CV;
 
 /**
  *
@@ -56,6 +61,27 @@ public class ListBanner extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        BannerDAO bannerdao = new BannerDAO();
+        int pageSize2 = 6;
+                String index_raw2 = request.getParameter("page");
+                int pageIndex2;
+                try
+                {
+                    pageIndex2 = Integer.parseInt(index_raw2);
+                }
+                catch (NumberFormatException e)
+                {
+                    pageIndex2 = 1;
+                }
+                int numberOfPage2 = (bannerdao.numberBanner()- 1) / pageSize2 + 1;
+                if (pageIndex2 > numberOfPage2) pageIndex2=numberOfPage2;
+                ArrayList<Banner> listbanner = bannerdao. listBanner((pageIndex2-1) * pageSize2, pageSize2);
+
+                request.setAttribute("current", pageIndex2);
+                request.setAttribute("total", numberOfPage2);
+                request.setAttribute("controller", "list_banner");
+                session.setAttribute("listbanner", listbanner);
        request.getRequestDispatcher("Admin/ListBanner.jsp").forward(request, response);
     }
 

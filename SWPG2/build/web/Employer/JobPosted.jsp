@@ -41,6 +41,22 @@
 
     </head>
     <body>
+        <script>
+            function display() {
+                var MyWindow;
+                var id = document.getElementById("jobid").value;
+                MyWindow = window.open("", "Banner",
+                        "height=200,width=400,status=yes,toolbar=no,menubar=no,location=abc");
+                MyWindow.document.write("<h3 style='color: red'>Warning you should upload the image with any information about your job</h3>");
+                MyWindow.document.write(" <form action='submit_banner' enctype='multipart/form-data' method='post'>");
+                MyWindow.document.write("<input type='text' hidden='' value='" + id + "' name='id'>");
+                MyWindow.document.write("<input type='file' name='file'>");
+                MyWindow.document.write(" <br>");
+                MyWindow.document.write(" <input type='submit' value='Payment'>");
+                MyWindow.document.write("</form>");
+                MyWindow.document.write();
+            }
+        </script>
         <jsp:include page="Header.jsp"></jsp:include>
         <c:if test="${jobposted.size() < 3}">
             <div class="container vh-100">
@@ -82,6 +98,7 @@
                         </div>
                         <div class="row ">
                             <c:forEach var="j" items="${jobposted}">
+                                <input type="text" hidden="" value="${j.id}" id="jobid"> 
                                 <div class="card mb-1 " style="height: 9rem;">
                                     <div class="row g-0">
                                         <div class="col-md-3">
@@ -108,7 +125,7 @@
                                         <div class="col-md-4">
                                             <div class="row">
                                                 <div class="col-md-6" style="text-align: center">
-                                                    <a href="#">
+                                                    <a href="#" onclick="return display();">
                                                         <button class="btn btn-success btn-send pt-2 btn-block mt-5" 
                                                                 style="background-color: #0062cc; color: black; background-color: #f39f86;
                                                                 background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%); 

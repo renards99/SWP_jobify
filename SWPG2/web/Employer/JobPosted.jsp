@@ -1,3 +1,5 @@
+<%@page import="model.Banner"%>
+<%@page import="dao.BannerDAO"%>
 <%@page import="model.Job"%>
 <%@page import="java.util.ArrayList"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -41,7 +43,17 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-        <% ArrayList<Job>jobpost = (ArrayList<Job>) session.getAttribute("jobposted"); %>
+        <% ArrayList<Job> jobpost = (ArrayList<Job>) session.getAttribute("jobposted"); %>
+        <%!  public boolean checkBanner(int jobid) {
+                BannerDAO wishlistdao = new BannerDAO();
+                ArrayList<Banner> wishlist = wishlistdao.listBanner2();
+                for (Banner job : wishlist) {
+                    if (job.getJobid() == jobid) {
+                        return false;
+                    }
+                }
+                return true;
+            }%>
     </head>
     <body>
         <script>
@@ -61,7 +73,7 @@
             }
         </script>
         <jsp:include page="Header.jsp"></jsp:include>
-        
+
         <c:if test="${jobposted.size() < 3}">
             <div class="container vh-100">
             </c:if>
@@ -101,34 +113,36 @@
                             </div>
                         </div>
                         <div class="row ">
-                            <c:forEach var="j" items="${jobposted}">
-                                <input type="text" hidden="" value="${j.id}" id="jobid"> 
+                        <% for (Job j : jobpost) { %>
+                                  
+                            
+                                <input type="text" hidden="" value="<%=j.getId()%>" id="jobid"> 
                                 <div class="card mb-1 " style="height: 9rem;">
                                     <div class="row g-0">
                                         <div class="col-md-3">
-                                            <a href="job_detail?id=${j.getId()}" >
+                                            <a href="job_detail?id=<%=j.getId()%>" >
                                                 <img src="${j.getImage()}" class="rounded job_img" alt="...">
                                             </a>
                                         </div>
                                         <div class="col-md-5">
                                             <div class="card-body  text-truncate">
                                                 <p class="card-title">
-                                                    <a href="job_detail?id=${j.id}" class="fw-bold text-dark text-decoration-none h5"> ${j.name}</a>
+                                                    <a href="job_detail?id=<%=j.getId()%>" class="fw-bold text-dark text-decoration-none h5"> <%=j.getName()%></a>
                                                 </p>
                                                 <p class="card-text">${j.company}</p>
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        <small class="text-muted">Salary: $${j.salary}</small>
+                                                        <small class="text-muted">Salary: $<%=j.getSalary()%></small>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <small class="text-muted">Location: ${j.location}</small>
+                                                        <small class="text-muted">Location: <%=j.getSalary()%></small>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="row">
-                                              
+                                                <% if(checkBanner(j.getId())){ %>
                                                 <div class="col-md-6" style="text-align: center">
                                                     <a href="#" onclick="return display();">
                                                         <button class="btn btn-success btn-send pt-2 btn-block mt-5" 
@@ -139,10 +153,10 @@
                                                         </button>
                                                     </a>
                                                 </div>
+                                                <%}%>
                                                 
-                                               <% %>
                                                 <div class="col-md-6" style="text-align: center">
-                                                    <a href="delete_job?id=${j.id}">
+                                                    <a href="delete_job?id=<%=j.getId()%>">
                                                         <button class="btn btn-success btn-send pt-2 btn-block mt-5"  onclick="checkDelete(); return false;"
                                                                 style="background-color: #0062cc; color: black; background-color: #f39f86;
                                                                 background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%); 
@@ -156,7 +170,7 @@
                                     </div>
                                 </div>
 
-                            </c:forEach>
+                            <%} %>
                         </div>
                         <jsp:include page="Paging.jsp"></jsp:include>
                         </div>

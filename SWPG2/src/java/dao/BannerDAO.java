@@ -71,10 +71,10 @@ public class BannerDAO {
         }
         return null;
     }
-     public ArrayList<Banner> listBanner() {
+     public ArrayList<Banner> listBanner2() {
         try {
             ArrayList<Banner> list = new ArrayList<>();
-            String sql = "select * from banner join job on jobid=job.id join status on statusid= status.id  join Location on job.locationid= Location.id join Major on job.majorid= Major.id join Jobtype on job.jobtypeid= Jobtype.id order by banner.id offset ? rows fetch next ? rows only ";
+            String sql = "select * from banner join job on jobid=job.id join status on statusid= status.id  join Location on job.locationid= Location.id join Major on job.majorid= Major.id join Jobtype on job.jobtypeid= Jobtype.id where statusid=2 ";
             conn = DBContext.getConnection();
             pr = conn.prepareStatement(sql);
             rs = pr.executeQuery();

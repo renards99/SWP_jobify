@@ -24,16 +24,18 @@ import model.User;
  * @author PC
  */
 public class JobPosted extends HttpServlet {
- public static boolean check(int id){
-     BannerDAO bannerdao = new BannerDAO();
-     ArrayList<Banner> banner = bannerdao.listBanner();
-     for (Banner banner1 : banner) {
-         if(banner1.getJobid()==id && banner1.getStatus().equals("approved")){
-             return false;
-         }
-     }
-     return true;
- }
+
+    public  boolean checkBanner(int jobid) {
+        BannerDAO wishlistdao = new BannerDAO();
+        ArrayList<Banner> wishlist = wishlistdao.listBanner2();
+        for (Banner job : wishlist) {
+            if (job.getJobid() == jobid) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -75,31 +77,33 @@ public class JobPosted extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("acc");
         JobDAO jobdao = new JobDAO();
-        
+
         int pageSize2 = 6;
-            String index_raw2 = request.getParameter("page");
-            int pageIndex2;
-            try
-            {
-                pageIndex2 = Integer.parseInt(index_raw2);
-            }
-            catch (NumberFormatException e)
-            {
-                pageIndex2 = 1;
-            }
-            int numberOfPage2 = (jobdao.getNumberJobPosted(user.getUsername()) - 1) / pageSize2 + 1;
-            if (pageIndex2 > numberOfPage2) pageIndex2=numberOfPage2;
-            ArrayList<Job> jobposted = jobdao.JobPosted(user.getUsername(),(pageIndex2-1) * pageSize2, pageSize2);
-            
-            request.setAttribute("current", pageIndex2);
-            request.setAttribute("total", numberOfPage2);
-            request.setAttribute("controller", "job_posted");
-            
+        String index_raw2 = request.getParameter("page");
+        int pageIndex2;
+        try {
+            pageIndex2 = Integer.parseInt(index_raw2);
+        } catch (NumberFormatException e) {
+            pageIndex2 = 1;
+        }
+        int numberOfPage2 = (jobdao.getNumberJobPosted(user.getUsername()) - 1) / pageSize2 + 1;
+        if (pageIndex2 > numberOfPage2) {
+            pageIndex2 = numberOfPage2;
+        }
+        ArrayList<Job> jobposted = jobdao.JobPosted(user.getUsername(), (pageIndex2 - 1) * pageSize2, pageSize2);
+
+        request.setAttribute("current", pageIndex2);
+        request.setAttribute("total", numberOfPage2);
+        request.setAttribute("controller", "job_posted");
+
         for (Job job : jobposted) {
             response.getWriter().print(job.getId());
         }
         session.setAttribute("jobposted", jobposted);
-//        response.getWriter().print(check(2));
+//        response.getWriter().print(checkBanner(1));
+
+   
+        
         request.getRequestDispatcher("Employer/JobPosted.jsp").forward(request, response);
     }
 

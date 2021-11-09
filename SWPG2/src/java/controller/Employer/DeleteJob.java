@@ -71,6 +71,7 @@ public class DeleteJob extends HttpServlet {
         wishdao.DeleteWishlist(id);
         bannerdao.DeleteBanner(id);
         jobdao.DeleteJob(id);
+        checkBanner(2);
         response.sendRedirect("job_posted");
     }
 

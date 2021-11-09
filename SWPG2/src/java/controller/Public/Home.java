@@ -5,6 +5,7 @@
  */
 package controller.Public;
 
+import dao.BannerDAO;
 import dao.EducationDAO;
 import dao.JobDAO;
 import dao.JobTypeDAO;
@@ -15,12 +16,15 @@ import dao.UserDAO;
 import dao.WalletDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Banner;
 import model.Education;
 import model.History;
 import model.Job;
@@ -82,6 +86,7 @@ public class Home extends HttpServlet {
         
         //employee
         LocationDAO locationdao = new LocationDAO();
+        BannerDAO bannerdao = new BannerDAO();
         MajorDAO majordao = new MajorDAO();
         SalaryDAO salarydao = new SalaryDAO();
         JobTypeDAO jobtypedao = new JobTypeDAO();
@@ -93,6 +98,19 @@ public class Home extends HttpServlet {
         ArrayList<Salary> salary = salarydao.GetAllSalary();
         ArrayList<JobType> jobtype = jobtypedao.GetAllJobType();
         ArrayList<Job> remotejob = jobdao.RemoteJob(user.getMajorID(),0,1);
+        ArrayList<Banner> banner = bannerdao.listBanner2();
+         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String time=now.format(dtf);
+        try{
+        for (Banner b : banner) {
+            if(b.getExpired().equals(time)){
+                bannerdao.DeleteBannerExprised(time);
+            }
+        }}
+        catch(Exception e){
+            
+        }
         
          int pageSize = 6;
             String index_raw = request.getParameter("page");
@@ -139,6 +157,7 @@ public class Home extends HttpServlet {
         session.setAttribute("nearbyjob", nearbyjob);
         session.setAttribute("alljob", alljob);
         session.setAttribute("education", education);
+        session.setAttribute("banner", banner);
         if (user.getRoleID() == 1) {
             WalletDAO wDAO = new WalletDAO();
             ArrayList<History> h = wDAO.getAllHistory();

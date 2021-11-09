@@ -129,16 +129,12 @@
             <section id="promote_banner">
                 <div class="container col-lg-8 offset-lg-2 my-3">
                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
+                        <c:forEach var="j" items="${banner}">
+                             <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="https://static.topcv.vn/img/21.09.08%20Banner%20SO-01.png" class="d-block w-100" alt="...">
+                                <a href="job_detail?id=${j.jobid}"><img src="${j.image}" class="d-block w-100" alt="..."></a>
                             </div>
-                            <div class="carousel-item">
-                                <img src="https://static.topcv.vn/img/21.09.08%20Banner%20SO-01.png" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://static.topcv.vn/img/21.09.08%20Banner%20SO-01.png" class="d-block w-100" alt="...">
-                            </div>
+                          
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -148,6 +144,8 @@
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
+                        </c:forEach>
+                       
                     </div>
                 </div>
             </section>

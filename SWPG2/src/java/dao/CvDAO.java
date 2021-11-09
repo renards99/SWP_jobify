@@ -102,7 +102,7 @@ public class CvDAO {
            }
            return count;
       }
-    public CV CreateCV(String fullname, String dob, boolean gender, int locationid, String phone, String contact, int educationid, String school, String experience, String username,int statusid, String time, String image) {
+    public CV CreateCV(String fullname, String dob, boolean gender, int locationid, String phone, String contact, int educationid, String school, String experience, String username,int statusid, String image, String time) {
         try {
             String sql = "insert into cv(fullname,dob, gender,locationid,phone,contact,educationid,school,experience,username, statusid, image,time)values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
             conn = DBContext.getConnection();

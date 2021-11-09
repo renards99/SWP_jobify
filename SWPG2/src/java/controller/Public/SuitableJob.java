@@ -77,7 +77,7 @@ public class SuitableJob extends HttpServlet {
             }
             int numberOfPage2 = (jobdao.getNumberSuitableJob(user.getMajorID()) - 1) / pageSize2 + 1;
             if (pageIndex2 > numberOfPage2) pageIndex2=numberOfPage2;
-            ArrayList<Job> suitablejob = jobdao.SuitableJob(user.getMajorID(),(pageIndex2-1) * pageSize2, pageSize2);
+            ArrayList<Job> suitablejob = jobdao.RemoteJob(user.getMajorID(),(pageIndex2-1) * pageSize2, pageSize2);
             
             request.setAttribute("current", pageIndex2);
             request.setAttribute("total", numberOfPage2);

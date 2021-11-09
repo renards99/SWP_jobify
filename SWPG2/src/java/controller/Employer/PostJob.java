@@ -135,7 +135,7 @@ public class PostJob extends HttpServlet {
                     } else {
                         filename = item.getName();
                         Path path = Paths.get(filename);
-                        String save = "C:\\Users\\TNC\\OneDrive\\Documents\\NetBeansProjects\\swp\\SWPG2\\web\\image";
+                        String save = "C:\\Users\\PC\\Desktop\\swp\\SWPG2\\web\\image";
                         File uploadfile = new File(save + "\\" +user.getUsername()+"_job_img.png");
                         image = "image/" + user.getUsername()+"_job_img.png";
                         item.write(uploadfile);

@@ -29,10 +29,10 @@
                             <a class="nav-link" href="remote_job">Remote job</a>
                         </li>
                         <li class="nav-item px-2 border-end border-dark ">
-                            <a class="nav-link" href="nearby_job">Nearby job</a>
+                            <a class="nav-link" href="fulltime_job">Full-time job</a>
                         </li>
                         <li class="nav-item px-2 border-end border-dark ">
-                            <a class="nav-link" href="suitable_job">Suitable job</a>
+                            <a class="nav-link" href="parttime_job">Part-time job</a>
                         </li>
                         <li class="nav-item dropdown ms-3">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

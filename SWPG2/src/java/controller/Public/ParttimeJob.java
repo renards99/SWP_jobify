@@ -5,7 +5,7 @@
  */
 package controller.Public;
 
-import dao.UserDAO;
+import dao.JobDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -14,13 +14,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Job;
 import model.User;
 
 /**
  *
  * @author PC
  */
-public class ViewProfile extends HttpServlet {
+public class ParttimeJob extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,49 +35,18 @@ public class ViewProfile extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        String a = "N/A";
-        User u = (User) session.getAttribute("acc");
-        UserDAO dao = new UserDAO();
-
-        if (dao.getUser(u.getUsername(), u.getPassword()) != null) {
-            u = dao.getUser(u.getUsername(), u.getPassword());
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ParttimeJob</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ParttimeJob at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-
-        if (u.getFullname() == null) {
-            u.setFullname(a);
-        }
-        if (u.getDob() == null) {
-            u.setDob(a);
-        }
-        if (u.getAddress() == null) {
-            u.setAddress(a);
-        }
-        if (u.getPhone() == null) {
-            u.setPhone(a);
-        }
-        if (u.getImage() == null||u.getImage().equalsIgnoreCase("image")) {
-            u.setImage("https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg");
-        }
-        switch (u.getRoleID()) {
-            case 1: u.setRole("Admin");
-                break;
-            case 2: u.setRole("Employer");
-                break;
-            case 3: u.setRole("Employee");
-                break;
-            default: u.setRole(a);
-        }
-        if(u.getLocation()==null){
-            u.setLocation(a);
-        }
-        if(u.getMajor()==null){
-            u.setMajor(a);
-        }
-        u= dao.getUser(u.getUsername(), u.getPassword());
-        session.setAttribute("acc", u);
-        
-        request.getRequestDispatcher("Public/ViewProfile.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -91,7 +61,30 @@ public class ViewProfile extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+         HttpSession session = request.getSession();
+          JobDAO jobdao = new JobDAO();
+        User user = (User) session.getAttribute("acc");
+         int pageSize = 6;
+            String index_raw = request.getParameter("page");
+            int pageIndex;
+            try
+            {
+                pageIndex = Integer.parseInt(index_raw);
+            }
+            catch (NumberFormatException e)
+            {
+                pageIndex = 1;
+            }
+            int numberOfPage = (jobdao.getNumberRemoteJob(user.getMajorID())- 1) / pageSize + 1;
+            if (pageIndex > numberOfPage) pageIndex=numberOfPage;
+            ArrayList<Job> parttimejob = jobdao.ParttimeJob(user.getMajorID(),(pageIndex-1) * pageSize, pageSize);
+            
+            request.setAttribute("current", pageIndex);
+            request.setAttribute("total", numberOfPage);
+            request.setAttribute("controller", "remote_job");
+            session.setAttribute("parttimejob", parttimejob);
+            
+         request.getRequestDispatcher("Public/ParttimeJob.jsp").forward(request, response);
     }
 
     /**

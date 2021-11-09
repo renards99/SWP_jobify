@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Job;
+import model.User;
 
 /**
  *
@@ -62,6 +63,7 @@ public class RemoteJob extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         JobDAO jobdao = new JobDAO();
+        User user = (User) session.getAttribute("acc");
          int pageSize = 6;
             String index_raw = request.getParameter("page");
             int pageIndex;
@@ -73,9 +75,9 @@ public class RemoteJob extends HttpServlet {
             {
                 pageIndex = 1;
             }
-            int numberOfPage = (jobdao.getNumberRemoteJob()- 1) / pageSize + 1;
+            int numberOfPage = (jobdao.getNumberRemoteJob(user.getMajorID())- 1) / pageSize + 1;
             if (pageIndex > numberOfPage) pageIndex=numberOfPage;
-            ArrayList<Job> remotejob = jobdao.RemoteJob((pageIndex-1) * pageSize, pageSize);
+            ArrayList<Job> remotejob = jobdao.RemoteJob(user.getMajorID(),(pageIndex-1) * pageSize, pageSize);
             
             request.setAttribute("current", pageIndex);
             request.setAttribute("total", numberOfPage);

@@ -223,6 +223,14 @@
         <servlet-name>BannerDetail</servlet-name>
         <servlet-class>controller.Admin.BannerDetail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FulltimeJob</servlet-name>
+        <servlet-class>controller.Public.FulltimeJob</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ParttimeJob</servlet-name>
+        <servlet-class>controller.Public.ParttimeJob</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -378,6 +386,14 @@
     <servlet-mapping>
         <servlet-name>BannerDetail</servlet-name>
         <url-pattern>/banner_detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FulltimeJob</servlet-name>
+        <url-pattern>/fulltime_job</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ParttimeJob</servlet-name>
+        <url-pattern>/parttime_job</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

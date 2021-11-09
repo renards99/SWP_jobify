@@ -23,14 +23,15 @@ public class JobDAO {
     PreparedStatement pr;
     ResultSet rs;
 
-    public ArrayList<Job> RemoteJob(int start, int size) {
+    public ArrayList<Job> RemoteJob(int majorid, int start, int size) {
           try {
             ArrayList<Job> list = new ArrayList<>();
-            String sql = "select * from job join location on location.id= job.locationid join major on major.id=job.majorid join jobtype on jobtype.id= jobtypeid where jobtypeid= 3 order by job.id offset ? rows fetch next ? rows only";
+            String sql = "select * from job join location on location.id= job.locationid join major on major.id=job.majorid join jobtype on jobtype.id= jobtypeid where jobtypeid= 3 and majorid=? order by job.id offset ? rows fetch next ? rows only";
             conn = DBContext.getConnection();
             pr = conn.prepareStatement(sql);
-            pr.setInt(1, start);
-            pr.setInt(2, size);
+            pr.setInt(1, majorid);
+            pr.setInt(2, start);
+            pr.setInt(3, size);
             rs = pr.executeQuery();
             while (rs.next()) {
                 Job j = new Job(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(18),rs.getString(20),rs.getString(22));
@@ -42,14 +43,86 @@ public class JobDAO {
         }
         return null;
     }
-    public int getNumberRemoteJob(){
+    public int getNumberRemoteJob(int majorid){
           int count =0;
            try {
-               String sql = "select count(*) from job where jobtypeid= 3";
+               String sql = "select count(*) from job where jobtypeid= 3 and majorid=?";
                conn = DBContext.getConnection();
                pr = conn.prepareStatement(sql);
+               pr.setInt(1, majorid);
                rs= pr.executeQuery();
-               
+               while(rs.next()){
+                   count= rs.getInt(1);
+               }
+           } catch (SQLException ex) {
+               Logger.getLogger(JobDAO.class.getName()).log(Level.SEVERE, null, ex);
+           }
+           return count;
+      }
+     public ArrayList<Job> ParttimeJob(int majorid, int start, int size) {
+          try {
+            ArrayList<Job> list = new ArrayList<>();
+            String sql = "select * from job join location on location.id= job.locationid join major on major.id=job.majorid join jobtype on jobtype.id= jobtypeid where jobtypeid= 1 and majorid=? order by job.id offset ? rows fetch next ? rows only";
+            conn = DBContext.getConnection();
+            pr = conn.prepareStatement(sql);
+            pr.setInt(1, majorid);
+            pr.setInt(2, start);
+            pr.setInt(3, size);
+            rs = pr.executeQuery();
+            while (rs.next()) {
+                Job j = new Job(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(18),rs.getString(20),rs.getString(22));
+                list.add(j);
+            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(Job.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    public int getNumberParttime(int majorid){
+          int count =0;
+           try {
+               String sql = "select count(*) from job where jobtypeid= 1 and majorid=?";
+               conn = DBContext.getConnection();
+               pr = conn.prepareStatement(sql);
+               pr.setInt(1, majorid);
+               rs= pr.executeQuery();
+               while(rs.next()){
+                   count= rs.getInt(1);
+               }
+           } catch (SQLException ex) {
+               Logger.getLogger(JobDAO.class.getName()).log(Level.SEVERE, null, ex);
+           }
+           return count;
+      }
+     public ArrayList<Job> FulltimeJob(int majorid, int start, int size) {
+          try {
+            ArrayList<Job> list = new ArrayList<>();
+            String sql = "select * from job join location on location.id= job.locationid join major on major.id=job.majorid join jobtype on jobtype.id= jobtypeid where jobtypeid= 2 and majorid=? order by job.id offset ? rows fetch next ? rows only";
+            conn = DBContext.getConnection();
+            pr = conn.prepareStatement(sql);
+            pr.setInt(1, majorid);
+            pr.setInt(2, start);
+            pr.setInt(3, size);
+            rs = pr.executeQuery();
+            while (rs.next()) {
+                Job j = new Job(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(18),rs.getString(20),rs.getString(22));
+                list.add(j);
+            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(Job.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    public int getNumberFulltimeJob(int majorid){
+          int count =0;
+           try {
+               String sql = "select count(*) from job where jobtypeid= 2 and majorid=?";
+               conn = DBContext.getConnection();
+               pr = conn.prepareStatement(sql);
+               pr.setInt(1, majorid);
+               rs= pr.executeQuery();
                while(rs.next()){
                    count= rs.getInt(1);
                }
@@ -95,15 +168,14 @@ public class JobDAO {
            }
            return count;
       }
-      public ArrayList<Job> SuitableJob(int major,int start, int size) {
+      public ArrayList<Job> getAllJob(int start, int size) {
           try {
             ArrayList<Job> list = new ArrayList<>();
-            String sql = "select * from job join location on location.id= job.locationid join major on major.id=job.majorid join jobtype on jobtype.id= jobtypeid where majorid= ? order by job.id offset ? rows fetch next ? rows only";
+            String sql = "select * from job join location on location.id= job.locationid join major on major.id=job.majorid join jobtype on jobtype.id= jobtypeid  order by job.id offset ? rows fetch next ? rows only";
             conn = DBContext.getConnection();
             pr = conn.prepareStatement(sql);
-            pr.setInt(1, major);
-            pr.setInt(2, start);
-            pr.setInt(3, size);
+            pr.setInt(1, start);
+            pr.setInt(2, size);
             rs = pr.executeQuery();
             while (rs.next()) {
                 Job j = new Job(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5),rs.getDouble(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(18),rs.getString(20),rs.getString(22));

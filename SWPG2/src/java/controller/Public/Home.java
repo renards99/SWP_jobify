@@ -76,7 +76,7 @@ public class Home extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         
-        
+        User user = (User) session.getAttribute("acc");
        
         
         
@@ -92,10 +92,9 @@ public class Home extends HttpServlet {
         ArrayList<Education> education = educationdao.GetAllJobEducation();
         ArrayList<Salary> salary = salarydao.GetAllSalary();
         ArrayList<JobType> jobtype = jobtypedao.GetAllJobType();
-        ArrayList<Job> remotejob = jobdao.RemoteJob(0,1);
-        User user = (User) session.getAttribute("acc");
+        ArrayList<Job> remotejob = jobdao.RemoteJob(user.getMajorID(),0,1);
         
-         int pageSize = 9;
+         int pageSize = 6;
             String index_raw = request.getParameter("page");
             int pageIndex;
             try
@@ -113,7 +112,7 @@ public class Home extends HttpServlet {
             request.setAttribute("current1", pageIndex);
             request.setAttribute("total1", numberOfPage);
             
-             int pageSize2 = 6;
+             int pageSize2 = 9;
             String index_raw2 = request.getParameter("page");
             int pageIndex2;
             try
@@ -126,7 +125,7 @@ public class Home extends HttpServlet {
             }
             int numberOfPage2 = (jobdao.getNumberSuitableJob(user.getMajorID()) - 1) / pageSize2 + 1;
             if (pageIndex2 > numberOfPage2) pageIndex2=numberOfPage2;
-            ArrayList<Job> suitablejob = jobdao.SuitableJob(user.getMajorID(),(pageIndex2-1) * pageSize2, pageSize2);
+            ArrayList<Job> alljob = jobdao.getAllJob((pageIndex2-1) * pageSize2, pageSize2);
             
             request.setAttribute("current", pageIndex2);
             request.setAttribute("total", numberOfPage2);
@@ -138,7 +137,7 @@ public class Home extends HttpServlet {
         session.setAttribute("jobtype", jobtype);
         session.setAttribute("remotejob", remotejob);
         session.setAttribute("nearbyjob", nearbyjob);
-        session.setAttribute("suitablejob", suitablejob);
+        session.setAttribute("alljob", alljob);
         session.setAttribute("education", education);
         if (user.getRoleID() == 1) {
             WalletDAO wDAO = new WalletDAO();
@@ -148,6 +147,9 @@ public class Home extends HttpServlet {
         if (user.getFullname() == null || user.getDob() == null || user.getAddress() == null || user.getPhone() == null || user.getLocationID()== 0 || user.getMajorID()== 0) {
             response.sendRedirect("edit_profile");
         } else {
+            UserDAO userdao = new UserDAO();
+            user= userdao.getUser(user.getUsername(), user.getPassword());
+            session.setAttribute("acc", user);
             request.getRequestDispatcher("Public/Home.jsp").forward(request, response);
         }
     }

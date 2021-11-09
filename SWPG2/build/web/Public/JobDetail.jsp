@@ -98,7 +98,7 @@
                                             <div class="form-group" style="border-bottom: 1px solid"><b>${jobbyid.getCompany()}</b></div>
                                         </div>
                                         <div class="col-md-4" style=";">
-                                            <img class="rounded-circle" src="https://static.topcv.vn/company_logos/cong-ty-co-phan-chung-khoan-dai-nam-60d543347cdd8.jpg">
+                                            <img style="width:200px; height: 200px" class="rounded-circle" src="${jobbyid.image}">
                                         </div>
                                     </div>
                                     <div class="row">

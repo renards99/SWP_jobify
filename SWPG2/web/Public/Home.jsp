@@ -159,12 +159,12 @@
                     <div class="row bg-primary bg-opacity-75 rounded-3"  style="background-color: #f39f86;
                          background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);">
                         <div class="my-2 d-flex justify-content-between text-light">
-                            <span><i class="fas fa-location-arrow font text-dark"> NEARBY JOB</i> </span>
-                            <span><a href="nearby_job" class="link-dark"> <i class="fas fa-angle-double-right"> View more</i></a></span>
+                            <span><i class="fas fa-location-arrow font text-dark"> ALL JOB</i> </span>
+                            <span><a href="#" class="link-dark"> <i class="fas fa-angle-double-right"> View more</i></a></span>
                         </div>
                     </div>
                     <div class="row">
-                        <c:forEach var="j" items="${nearbyjob}">
+                        <c:forEach var="j" items="${alljob}">
                             <div class="card col-lg-4 mb-1">
                                 <div class="row">
                                     <div class="col-xl-4 col-lg-12 py-4">
@@ -212,12 +212,12 @@
                             <div class="row bg-primary bg-opacity-75 rounded-3"  style="background-color: #f39f86;
                                  background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);">
                                 <div class="my-2 d-flex justify-content-between text-light">
-                                    <span><i class="fas fa-wifi text-dark"> SUITABLE JOB </i> </span>
-                                    <span><a href="suitable_job" class="link-dark"> <i class="fas fa-angle-double-right"> View more</i></a></span>
+                                    <span><i class="fas fa-wifi text-dark"> JOB AT ${acc.location} </i> </span>
+                                    <span><a href="nearby_job" class="link-dark"> <i class="fas fa-angle-double-right"> View more</i></a></span>
                                 </div>
                             </div>
                             <div class="row">
-                                <c:forEach var="j" items="${suitablejob}">
+                                <c:forEach var="j" items="${nearbyjob}">
                                     <div class="card col-lg-6 mb-1">
                                         <div class="row">
                                             <div class="col-xl-4 col-lg-12 py-4">
@@ -257,112 +257,7 @@
                 </div>
             </section>
             <!--Remote job-->
-            <section>
-                <div class="container col-lg-8 offset-lg-2">
-                    <div class="row py-2">
-                        <div class=" col-lg-4">
-                            <div class="row bg-primary bg-opacity-75 rounded-3 mx-1"  style="background-color: #f39f86;
-                                 background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);">
-                                <div class="my-2 d-flex justify-content-between text-light">
-                                    <span><i class="fas fa-wifi text-dark"> FULL-TIME JOB </i> </span>
-                                    <span><a href="search_job" class="link-dark"> <i class="fas fa-angle-double-right"></i></a></span>
-                                </div>
-                            </div>
-                            <div class="row mx-1">
-                                <div class="card col-lg-12 mb-1">
-                                    <div class="row">
-                                        <div class="col-xl-4 col-lg-12 py-4">
-                                            <a href="#">
-                                                <img src="https://static.topcv.vn/company_logos/cong-ty-co-phan-chung-khoan-dai-nam-60d543347cdd8.jpg" class="img-fluid rounded-start " alt="...">
-                                            </a>
-                                        </div>
-                                        <div class="col-xl-8 col-lg-12">
-                                            <div class="card-body  text-truncate">
-                                                <p class="card-title">
-                                                    <a href="#" class="link-dark"> Developer Java</a>
-                                                </p>
-                                                <p class="card-text">ABC Company</p>
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <small class="text-muted">$1000</small>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <small class="text-muted">Hanoi</small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class=" col-lg-4 ">
-                            <div class="row bg-primary bg-opacity-75 rounded-3 mx-1"  style="background-color: #f39f86;
-                                 background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);">
-                                <div class="my-2 d-flex justify-content-between text-light">
-                                    <span><i class="fas fa-wifi text-dark"> PART-TIME JOB </i> </span>
-                                    <span><a href="search_job" class="link-dark"> <i class="fas fa-angle-double-right"></i></a></span>
-                                </div>
-                            </div>
-                            <div class="row ">
-                                <c:forEach var="j" items="${job}">
-
-                                    <div class="card col-lg-6 mb-1">
-                                        <div class="row">
-                                            <div class="col-xl-4 col-lg-12">
-                                                <a href="jobAroundYou?id=${j.getCount()}">
-                                                    <img src="https://static.topcv.vn/company_logos/cong-ty-co-phan-chung-khoan-dai-nam-60d543347cdd8.jpg" class="img-fluid rounded-start" alt="...">
-                                                </a>
-                                            </div>
-                                            <div class="col-xl-8 col-lg-12">
-                                                <div class="card-body  text-truncate">
-                                                    <p class="card-title">
-                                                        <a href="jobAroundYou?id=${j.getCount()}" class="link-dark">${j.getJob()}</a>
-                                                    </p>
-                                                    <p class="card-text">${j.getCompany()}</p>
-                                                    <p class="card-text"><small class="text-muted">Annual Salary: $${j.getSalary()}         ${j.getAddress()}</small></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </c:forEach>
-                            </div>
-                        </div>
-                        <div class=" col-lg-4">
-                            <div class="row bg-primary bg-opacity-75 rounded-3 mx-1"  style="background-color: #f39f86;
-                                 background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);">
-                                <div class="my-2 d-flex justify-content-between text-light">
-                                    <span><i class="fas fa-wifi text-dark"> REMOTE JOB </i> </span>
-                                    <span><a href="remote_job" class="link-dark"> <i class="fas fa-angle-double-right"></i></a></span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <c:forEach var="j" items="${remote_job}">
-
-                                    <div class="card col-lg-6 mb-1">
-                                        <div class="row">
-                                            <div class="col-xl-4 col-lg-12">
-                                                <a href="job_detail?id=${j.getId()}">
-                                                    <img src="https://static.topcv.vn/company_logos/cong-ty-co-phan-chung-khoan-dai-nam-60d543347cdd8.jpg" class="img-fluid rounded-start" alt="...">
-                                                </a>
-                                            </div>
-                                            <div class="col-xl-8 col-lg-12">
-                                                <div class="card-body  text-truncate">
-                                                    <p class="card-title">
-                                                        <a href="jobAroundYou?id=job_detail?id=${j.getId()}" class="link-dark">${j.getJob()}</a>
-                                                    </p>
-                                                    <p class="card-text">${j.getCompany()}</p>
-                                                    <p class="card-text"><small class="text-muted"> Salary: $${j.getSalary()}         ${j.getLocation()}</small></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </c:forEach>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+    
         </c:if>
         
         <c:if test="${acc.roleID == 1}">

@@ -1,4 +1,4 @@
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
     Document   : JobProfile
     Created on : Oct 12, 2021, 12:01:34 PM
@@ -89,78 +89,78 @@
                                         </div>
                                     <c:if test="${acc.getRoleID()==3}">
                                         <!--<form action="submit_cv" method="post">-->
-                                        </c:if>
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                                <div class="form-group"><label>Jobname:</label></div>
-                                                <div class="form-group" style="border-bottom: 1px solid;" ><b>${jobbyid.getName()}</b></div>
-                                                <div class="form-group"><label>Company name:</label></div>
-                                                <div class="form-group" style="border-bottom: 1px solid"><b>${jobbyid.getCompany()}</b></div>
-                                            </div>
-                                            <div class="col-md-4" style=";">
-                                                <img class="rounded-circle" src="https://static.topcv.vn/company_logos/cong-ty-co-phan-chung-khoan-dai-nam-60d543347cdd8.jpg">
-                                            </div>
+                                    </c:if>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group"><label>Jobname:</label></div>
+                                            <div class="form-group" style="border-bottom: 1px solid;" ><b>${jobbyid.getName()}</b></div>
+                                            <div class="form-group"><label>Company name:</label></div>
+                                            <div class="form-group" style="border-bottom: 1px solid"><b>${jobbyid.getCompany()}</b></div>
                                         </div>
-                                        <div class="row">
-                                            <div>
-                                                <div class="form-group"><label>Website: </label></div>
-                                                <div class="form-group" style="border-bottom: 1px solid"><b>${jobbyid.getWebsite()}</b></div>
-                                            </div>
+                                        <div class="col-md-4" style=";">
+                                            <img class="rounded-circle" src="https://static.topcv.vn/company_logos/cong-ty-co-phan-chung-khoan-dai-nam-60d543347cdd8.jpg">
                                         </div>
-                                        <div class="row">
-                                            <div>
-                                                <div class="form-group"><label>Address: </label></div>
-                                                <div class="form-group" style="border-bottom: 1px solid"><b>${jobbyid.getAddress()}</b></div>
-                                            </div>
+                                    </div>
+                                    <div class="row">
+                                        <div>
+                                            <div class="form-group"><label>Website: </label></div>
+                                            <div class="form-group" style="border-bottom: 1px solid"><b>${jobbyid.getWebsite()}</b></div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">Major: </div>
-                                                <div class="form-group" style="border-bottom: 1px solid"><b>${jobbyid.major}</b></div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">Job type: </div>
-                                                <div class="form-group" style="border-bottom: 1px solid"><b>${jobbyid.jobType}</b></div>
-                                            </div>
+                                    </div>
+                                    <div class="row">
+                                        <div>
+                                            <div class="form-group"><label>Address: </label></div>
+                                            <div class="form-group" style="border-bottom: 1px solid"><b>${jobbyid.getAddress()}</b></div>
                                         </div>
-                                        <div class="row">
-                                            <div>
-                                                <div class="form-group"><label>Salary: </label></div>
-                                                <div class="form-group" style="border-bottom: 1px solid"><b>${jobbyid.getSalary()}</b></div>
-                                            </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">Major: </div>
+                                            <div class="form-group" style="border-bottom: 1px solid"><b>${jobbyid.major}</b></div>
                                         </div>
-                                        <div class="row">
-                                            <div>
-                                                <div class="form-group"><label>Description: </label></div>
-                                                <div class="form-group" style="border-bottom: 1px solid"><b>${jobbyid.getDescription()}</b></div>
-                                            </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">Job type: </div>
+                                            <div class="form-group" style="border-bottom: 1px solid"><b>${jobbyid.jobType}</b></div>
                                         </div>
-                                        <div class="row">
-                                            <div>
-                                                <div class="form-group"><label>Requirement </label></div>
-                                                <div class="form-group" style="border-bottom: 1px solid"><b>${jobbyid.getRequirement()}</b></div>
-                                            </div>
+                                    </div>
+                                    <div class="row">
+                                        <div>
+                                            <div class="form-group"><label>Salary: </label></div>
+                                            <div class="form-group" style="border-bottom: 1px solid"><b>${jobbyid.getSalary()}</b></div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6" style="font-weight:bolder; font-size: 20px;">
-                                                <p>Communications</p>
-                                            </div>
+                                    </div>
+                                    <div class="row">
+                                        <div>
+                                            <div class="form-group"><label>Description: </label></div>
+                                            <div class="form-group" style="border-bottom: 1px solid"><b>${jobbyid.getDescription()}</b></div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">Email:</div>
-                                                <div class="form-group" style="border-bottom: 1px solid"><b>${jobbyid.getEmail()}</b></div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">Phone:</div>
-                                                <div class="form-group" style="border-bottom: 1px solid"><b>${jobbyid.getPhone()}</b></div>
-                                            </div>
+                                    </div>
+                                    <div class="row">
+                                        <div>
+                                            <div class="form-group"><label>Requirement </label></div>
+                                            <div class="form-group" style="border-bottom: 1px solid"><b>${jobbyid.getRequirement()}</b></div>
                                         </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6" style="font-weight:bolder; font-size: 20px;">
+                                            <p>Communications</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">Email:</div>
+                                            <div class="form-group" style="border-bottom: 1px solid"><b>${jobbyid.getEmail()}</b></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">Phone:</div>
+                                            <div class="form-group" style="border-bottom: 1px solid"><b>${jobbyid.getPhone()}</b></div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <c:choose>
                                     <c:when test="${acc.getRoleID()==3}">
                                         <div class="row" style="margin-top: 2%">
-                                             <div class="col-md-6" style="text-align: center">
+                                            <div class="col-md-6" style="text-align: center">
                                                 <a href="choose_cv">
                                                     <button class="btn btn-success btn-send pt-2 btn-block"style="background-color: #0062cc; color: black; background-color: #f39f86;background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%); border-color: #f39f86; font-weight: bold; border-radius: 3px" >
                                                         Choose CV
@@ -168,6 +168,9 @@
                                                 </a>
                                             </div>
                                             <!--</form>-->
+                                            
+                                            <c:if test="${check}">
+                                       
                                             <div class="col-md-6" style="text-align: center">
                                                 <a href="add_wishlist">
                                                     <button class="btn btn-success btn-send pt-2 btn-block"style="background-color: #0062cc; color: black; background-color: #f39f86;background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%); border-color: #f39f86; font-weight: bold; border-radius: 3px" >
@@ -175,8 +178,8 @@
                                                     </button>
                                                 </a>
                                             </div>
+                                                     </c:if>
                                         </div>
-
                                     </c:when>
                                     <c:when test="${acc.getRoleID()==2}">
                                         <c:if test="${acc.username== jobbyid.username}">

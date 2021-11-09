@@ -15,6 +15,7 @@ public class Banner {
     String image;
     String expired;
     String status;
+    int jobid;
     
     String name;
     String company;
@@ -39,7 +40,7 @@ public class Banner {
 //    
 //
 
-    public Banner(int bannerID, String image, String expired, String status, String name, String company, String website, String address, double salary, String description, String requirement, String time, String email, String phone, String imagejob, String username, String location, String major, String jobType) {
+    public Banner(int bannerID, String image, String expired, String status, String name, String company, String website, String address, double salary, String description, String requirement, String time, String email, String phone, String imagejob, String username, String location, String major, String jobType, int jobid) {
         this.bannerID = bannerID;
         this.image = image;
         this.expired = expired;
@@ -59,8 +60,17 @@ public class Banner {
         this.location = location;
         this.major = major;
         this.jobType = jobType;
+        this.jobid= jobid;
     }
-    
+
+    public int getJobid() {
+        return jobid;
+    }
+
+    public void setJobid(int jobid) {
+        this.jobid = jobid;
+    }
+
     
     public int getBannerID() {
         return bannerID;

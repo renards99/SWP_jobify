@@ -5,6 +5,7 @@
  */
 package controller.Employer;
 
+import dao.BannerDAO;
 import dao.JobDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Banner;
 import model.Job;
 import model.User;
 
@@ -22,7 +24,16 @@ import model.User;
  * @author PC
  */
 public class JobPosted extends HttpServlet {
-
+ public static boolean check(int id){
+     BannerDAO bannerdao = new BannerDAO();
+     ArrayList<Banner> banner = bannerdao.listBanner();
+     for (Banner banner1 : banner) {
+         if(banner1.getJobid()==id && banner1.getStatus().equals("approved")){
+             return false;
+         }
+     }
+     return true;
+ }
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -88,6 +99,7 @@ public class JobPosted extends HttpServlet {
             response.getWriter().print(job.getId());
         }
         session.setAttribute("jobposted", jobposted);
+//        response.getWriter().print(check(2));
         request.getRequestDispatcher("Employer/JobPosted.jsp").forward(request, response);
     }
 

@@ -106,7 +106,7 @@
                                         <div class="col-md-4">
                                             <div class="row">
                                                 <div class="col-md-6" style="text-align: center">
-                                                    <a href="approve_banner?status=2">
+                                                    <a href="approve_banner?status=2&id=${j.bannerID}">
                                                         <button class="btn btn-success btn-send pt-2 btn-block mt-5" 
                                                                 style="background-color: #0062cc; color: black; background-color: #f39f86;
                                                                 background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%); 
@@ -116,7 +116,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="col-md-6" style="text-align: center">
-                                                    <a href="approve_banner?status=3">
+                                                    <a href="approve_banner?status=3&id=${j.bannerID}">
                                                         <button class="btn btn-success btn-send pt-2 btn-block mt-5"  onclick="checkDelete(); return false;"
                                                                 style="background-color: #0062cc; color: black; background-color: #f39f86;
                                                                 background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%); 

@@ -6,8 +6,10 @@
 package controller.Public;
 
 import dao.JobDAO;
+import dao.WishlistDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +23,17 @@ import model.User;
  * @author PC
  */
 public class JobDetail extends HttpServlet {
+    
+    public boolean checkJobExist(int jobid, String username){
+        WishlistDAO wishlistdao = new WishlistDAO();
+        ArrayList<Job> wishlist = wishlistdao.GetAllWishlist(username);
+        for (Job job : wishlist) {
+            if(job.getId()==jobid){
+                return false;
+            }
+        }
+        return true;
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -62,9 +75,14 @@ public class JobDetail extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         String id= request.getParameter("id");
+        User user = (User) session.getAttribute("acc");
         JobDAO jobdao = new JobDAO();
         Job jobbyid = jobdao.GetJobById(Integer.parseInt(id));
        session.setAttribute("jobbyid", jobbyid);
+        boolean a =checkJobExist(Integer.parseInt(id), user.getUsername());
+        response.getWriter().print(checkJobExist(Integer.parseInt(id), user.getUsername()));
+        session.setAttribute(id, user);
+        request.setAttribute("check", a);
        request.getRequestDispatcher("Public/JobDetail.jsp").forward(request, response);
     }
 

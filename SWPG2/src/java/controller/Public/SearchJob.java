@@ -102,6 +102,7 @@ public class SearchJob extends HttpServlet {
         } else if (salary.equals("4")) {
              searchjob = jdao.searchJob(search, location, specialized, type, "1500", "10000",(pageIndex - 1) * pageSize, pageSize);
         }
+        response.getWriter().print(searchjob.size());
         request.setAttribute("current", pageIndex);
         request.setAttribute("total", numberOfPage);
         request.setAttribute("controller", "search_job");
@@ -113,7 +114,6 @@ public class SearchJob extends HttpServlet {
         session.setAttribute("salary", salary);
         session.setAttribute("searchjob", searchjob);
         request.getRequestDispatcher("Public/SearchJob.jsp").forward(request, response);
-        
     }
 
     /**
@@ -153,7 +153,6 @@ public class SearchJob extends HttpServlet {
         } else if (salary.equals("4")) {
             numberOfPage = (jdao.numberSearchJob(search, location, specialized, type, "1500", "10000")- 1) / pageSize + 1;
         }
-//        response.getWriter().print(jdao.numberSearchJob(search, location, specialized, type, null, null));
         if (pageIndex > numberOfPage) {
             pageIndex = numberOfPage;
         }

@@ -102,7 +102,7 @@
                                             <option value="all">Job type</option>
                                             <c:forEach var="o" items="${jobtype}">
                                                 <option value="${o.getId()}">${o.getName()} </option>
-                                            </c:forEach>>
+                                            </c:forEach>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-2 ">

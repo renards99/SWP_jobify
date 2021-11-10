@@ -88,16 +88,6 @@ public class EditCV extends HttpServlet {
         String filename = null;
         String image = null;
         User user = (User) session.getAttribute("acc");
-//        String fullname = request.getParameter("fullname");
-//        String dob = request.getParameter("dob");
-//        String gender = request.getParameter("gender");
-//        String location = request.getParameter("location");
-//        String phone = request.getParameter("phone");
-//        String contact = request.getParameter("contact");
-//        String education = request.getParameter("education");
-//        String school = request.getParameter("school");
-//        String experience = request.getParameter("experience");
-//        int id = Integer.parseInt(request.getParameter("id"));
         CvDAO cvdao = new CvDAO();
         
         try {
@@ -129,8 +119,8 @@ public class EditCV extends HttpServlet {
                     }
                     else{
                     Path path = Paths.get(filename);
-                    String save = "C:\\Users\\PC\\Desktop\\swp\\SWPG2\\build\\web\\image";
-                    File uploadfile = new File(save + "\\" + path.getFileName());
+                    String save = servletContext.getRealPath("/image");
+                    File uploadfile = new File(save + "\\" +user.getUsername()+"_cv_img.png");
                     image = "./image/" + path.getFileName();
                     item.write(uploadfile);
                     }

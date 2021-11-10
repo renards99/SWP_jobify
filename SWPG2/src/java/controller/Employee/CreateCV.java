@@ -113,8 +113,8 @@ public class CreateCV extends HttpServlet {
                 } else {
                     filename = item.getName();
                     Path path = Paths.get(filename);
-                    String save = "C:\\Users\\PC\\Desktop\\swp\\SWPG2\\build\\web\\image";
-                    File uploadfile = new File(save + "\\" + path.getFileName());
+                   String save = servletContext.getRealPath("/image");
+                    File uploadfile = new File(save + "\\" +user.getUsername()+"_cv_img.png");
                     image = "image/" + path.getFileName();
                     item.write(uploadfile);
                 }

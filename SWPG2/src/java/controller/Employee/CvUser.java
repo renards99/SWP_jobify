@@ -64,7 +64,7 @@ public class CvUser extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("acc");
         CvDAO cvdao = new CvDAO();
-       int pageSize2 = 5;
+       int pageSize2 = 3;
             String index_raw2 = request.getParameter("page");
             int pageIndex2;
             try
@@ -81,7 +81,7 @@ public class CvUser extends HttpServlet {
             
             request.setAttribute("current", pageIndex2);
             request.setAttribute("total", numberOfPage2);
-            request.setAttribute("controller", "list_cv");
+            request.setAttribute("controller", "cv_user");
         request.setAttribute("listcvuser", cvuser);
         request.getRequestDispatcher("Employee/ListCV.jsp").forward(request, response);
 

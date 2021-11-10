@@ -77,12 +77,17 @@ public class EditProfile extends HttpServlet {
                     System.out.println(name);
                     System.out.println(value);
                 } else {
+                    if(filename.equals("")||filename==null){
+                       image= u.getImage();
+                    }
+                    else{
                     filename = item.getName();
                     Path path = Paths.get(filename);
-                    String save = "C:\\Users\\TNC\\OneDrive\\Documents\\NetBeansProjects\\swp\\SWPG2\\web\\image";
-                    File uploadfile = new File(save + "\\" + path.getFileName());
+                    String save = servletContext.getRealPath("/image");
+                    File uploadfile = new File(save + "\\" +u.getUsername()+"_avatar_img.png");
                     image = "image/" + path.getFileName();
                     item.write(uploadfile);
+                    }
                 }
 
             }

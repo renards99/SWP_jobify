@@ -130,11 +130,14 @@
                 <div class="container col-lg-8 offset-lg-2 my-3">
                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                    <a href="#"><img style="width: 600px; height: 150px" src="https://static.topcv.vn/img/21.09.08%20Banner%20SO-01.png" class="d-block w-100" alt="..."></a>
+                                </div>
                             <c:forEach var="j" items="${banner}">
-                                <div class="carousel-item active">
+                                <div class="carousel-item ">
                                     <a href="job_detail?id=${j.jobid}"><img style="width: 600px; height: 150px" src="https://i.ibb.co/wpBXMLr/home-banner.webp" class="d-block w-100" alt="..."></a>
                                 </div>
-                            </c:forEach>  
+                            </c:forEach> 
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

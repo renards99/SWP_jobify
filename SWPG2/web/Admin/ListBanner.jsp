@@ -39,7 +39,9 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </head>
     <body>
-       <c:if test="${listbanner.size() < 3}">
+
+        <jsp:include page="Header.jsp"></jsp:include>
+        <c:if test="${listbanner.size() < 3}">
             <div class="container vh-100">
             </c:if>
             <c:if test="${listbanner.size() >= 3}">
@@ -84,7 +86,7 @@
                                     <div class="row g-0">
                                         <div class="col-md-3">
                                             <a href="banner_detail?id=${j.bannerID}" >
-                                                <img src="" class="rounded job_img" alt="...">
+                                                <img style="height:140px;" src="${j.imagejob}" class="rounded job_img" alt="...">
                                             </a>
                                         </div>
                                         <div class="col-md-5">
@@ -150,5 +152,5 @@
                 </script>
             <jsp:include page="Footer.jsp"></jsp:include>
     </body>
-    
+
 </html>

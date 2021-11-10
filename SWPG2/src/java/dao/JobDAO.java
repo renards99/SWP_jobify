@@ -187,13 +187,12 @@ public class JobDAO {
         }
         return null;
     }
-       public int getNumberSuitableJob(int major){
+       public int getNumberAllJob(){
           int count =0;
            try {
-               String sql = "select count(*) from job where where majorid= ?";
+               String sql = "select count(*) from job ";
                conn = DBContext.getConnection();
                pr = conn.prepareStatement(sql);
-               pr.setInt(1, major);
                rs= pr.executeQuery();
                
                while(rs.next()){

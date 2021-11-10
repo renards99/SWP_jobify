@@ -136,7 +136,7 @@ public class Home extends HttpServlet {
         } catch (NumberFormatException e) {
             pageIndex2 = 1;
         }
-        int numberOfPage2 = (jobdao.getNumberSuitableJob(user.getMajorID()) - 1) / pageSize2 + 1;
+        int numberOfPage2 = (jobdao.getNumberAllJob() - 1) / pageSize2 + 1;
         if (pageIndex2 > numberOfPage2) {
             pageIndex2 = numberOfPage2;
         }

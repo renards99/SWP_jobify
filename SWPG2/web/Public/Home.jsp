@@ -49,7 +49,7 @@
         <%
             session.removeAttribute("submit_cv_message");
         %>
-            <!------BODY----------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!------BODY----------------------------------------------------------------------------------------------------------------------------------------------------------->
         <c:if test="${acc.roleID == 3 || acc.roleID == 2}">
             <%--box search--%>
             <section id="box-search-job" class="banner">
@@ -129,12 +129,12 @@
             <section id="promote_banner">
                 <div class="container col-lg-8 offset-lg-2 my-3">
                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                        <c:forEach var="j" items="${banner}">
-                             <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <a href="job_detail?id=${j.jobid}"><img src="${j.image}" class="d-block w-100" alt="..."></a>
-                            </div>
-                          
+                        <div class="carousel-inner">
+                            <c:forEach var="j" items="${banner}">
+                                <div class="carousel-item active">
+                                    <a href="job_detail?id=${j.jobid}"><img style="width: 600px; height: 150px" src="https://i.ibb.co/wpBXMLr/home-banner.webp" class="d-block w-100" alt="..."></a>
+                                </div>
+                            </c:forEach>  
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -144,8 +144,8 @@
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
-                        </c:forEach>
-                       
+
+
                     </div>
                 </div>
             </section>
@@ -190,10 +190,10 @@
                             </div>
                         </c:forEach>
                     </div>
-                     <jsp:include page="PagingNearbyJob.jsp"></jsp:include>
+                    <jsp:include page="Paging.jsp"></jsp:include>
 
-                </div>
-            </section> 
+                    </div>
+                </section> 
             <%--promote banner--%>
             <section id="promote_banner">
                 <div class="container col-lg-6 offset-lg-3 my-3">
@@ -244,25 +244,25 @@
                                 </c:forEach>
                             </div>
 
-                            <jsp:include page="Paging.jsp"></jsp:include>
-                        </div>
-                        <div class=" col-lg-4 ">
-                            <div>
-                                <img src="https://static.topcv.vn/img/z2766133453394_70eebe8ff115b6a024c0b705a4323f7d.jpg" class ="img-fluid w-100 h-100" alt="..." ">
+                            <jsp:include page="PagingNearbyJob.jsp"></jsp:include>
+                            </div>
+                            <div class=" col-lg-4 ">
+                                <div>
+                                    <img src="https://static.topcv.vn/img/z2766133453394_70eebe8ff115b6a024c0b705a4323f7d.jpg" class ="img-fluid w-100 h-100" alt="..." ">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-            <!--Remote job-->
-    
+                </section>
+                <!--Remote job-->
+
         </c:if>
-        
+
         <c:if test="${acc.roleID == 1}">
-        <%
-            ArrayList<History> list = (ArrayList<History>) session.getAttribute("transaction_history");
-            int size = list.size();
-        %>
+            <%
+                ArrayList<History> list = (ArrayList<History>) session.getAttribute("transaction_history");
+                int size = list.size();
+            %>
             <c:if test="<%=size <= 15%>">
                 <div class="container vh-100">
                 </c:if>
@@ -305,7 +305,7 @@
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     </body>
-     <script type="text/javascript">
+    <script type="text/javascript">
         var alertList = document.querySelectorAll('.alert')
         alertList.forEach(function (alert) {
             new bootstrap.Alert(alert)

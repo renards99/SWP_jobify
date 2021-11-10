@@ -102,7 +102,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <input type="file" title=" " name="file" id="img" accept="image/*"
-                                                           class="form-control" required="required">
+                                                           class="form-control" >
                                                     <!--<label style="margin-left: 40px;" for="img">Choose file</label>-->
                                                 </div>
                                             </div>

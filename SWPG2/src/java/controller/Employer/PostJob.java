@@ -78,6 +78,7 @@ public class PostJob extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.getWriter().print("Hi");
         request.getRequestDispatcher("Employer/PostJob.jsp").forward(request, response);
     }
 

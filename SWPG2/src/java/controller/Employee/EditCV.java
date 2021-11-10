@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.CV;
 import model.User;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -122,18 +123,24 @@ public class EditCV extends HttpServlet {
                     System.out.println(value);
                 } else {
                     filename = item.getName();
+                    if(filename.equals("")||filename==null){
+                        CV cv = (CV) session.getAttribute("viewCV");
+                        image= cv.getTime();
+                    }
+                    else{
                     Path path = Paths.get(filename);
                     String save = "C:\\Users\\PC\\Desktop\\swp\\SWPG2\\build\\web\\image";
                     File uploadfile = new File(save + "\\" + path.getFileName());
                     image = "./image/" + path.getFileName();
                     item.write(uploadfile);
+                    }
                 }
 
             }
             response.getWriter().print(fields.get("name"));
             response.getWriter().print(image);
-             cvdao.UpdateCV(fields.get("fullname"), fields.get("dob"), fields.get("gender"), Integer.parseInt(fields.get("location")), fields.get("phone"), fields.get("contact"), Integer.parseInt(fields.get("education")), fields.get("school"),fields.get("experience"),image,Integer.parseInt( fields.get("id")));
-              session.setAttribute("viewCV", cvdao.GetCVById(Integer.parseInt( fields.get("id"))));
+            cvdao.UpdateCV(fields.get("fullname"), fields.get("dob"), fields.get("gender"), Integer.parseInt(fields.get("location")), fields.get("phone"), fields.get("contact"), Integer.parseInt(fields.get("education")), fields.get("school"),fields.get("experience"),image,Integer.parseInt( fields.get("id")));
+            session.setAttribute("viewCV", cvdao.GetCVById(Integer.parseInt( fields.get("id"))));
 
             
         } catch (Exception e) {

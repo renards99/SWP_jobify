@@ -107,11 +107,11 @@ public class SearchJob extends HttpServlet {
         request.setAttribute("total", numberOfPage);
         request.setAttribute("controller", "search_job");
 
-        session.setAttribute("search", search);
-        session.setAttribute("location", location);
-        session.setAttribute("specialized", specialized);
-        session.setAttribute("type", type);
-        session.setAttribute("salary", salary);
+        session.setAttribute("search2", search);
+        session.setAttribute("location2", location);
+        session.setAttribute("specialized2", specialized);
+        session.setAttribute("type2", type);
+        session.setAttribute("salary2", salary);
         session.setAttribute("searchjob", searchjob);
         request.getRequestDispatcher("Public/SearchJob.jsp").forward(request, response);
     }
@@ -171,11 +171,11 @@ public class SearchJob extends HttpServlet {
         request.setAttribute("total", numberOfPage);
         request.setAttribute("controller", "search_job");
 
-        session.setAttribute("search", search);
-        session.setAttribute("location", location);
-        session.setAttribute("specialized", specialized);
-        session.setAttribute("type", type);
-        session.setAttribute("salary", salary);
+        session.setAttribute("search2", search);
+        session.setAttribute("location2", location);
+        session.setAttribute("specialized2", specialized);
+        session.setAttribute("type2", type);
+        session.setAttribute("salary2", salary);
         session.setAttribute("searchjob", searchjob);
         request.getRequestDispatcher("Public/SearchJob.jsp").forward(request, response);
     }

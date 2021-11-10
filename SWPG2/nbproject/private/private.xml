@@ -3,20 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/src/java/controller/Public/Home.java</file>
-            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/web/Employee/EditCV.jsp</file>
             <file>file:/C:/Users/PC/Desktop/swp/SWPG2/src/java/controller/Public/SearchJob.java</file>
             <file>file:/C:/Users/PC/Desktop/swp/SWPG2/src/java/controller/Employer/PostJob.java</file>
-            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/web/Employer/Header.jsp</file>
-            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/src/java/dao/JobDAO.java</file>
-            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/web/Public/Home.jsp</file>
-            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/web/Employer/PostJob.jsp</file>
             <file>file:/C:/Users/PC/Desktop/swp/SWPG2/web/Employee/Header.jsp</file>
-            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/web/Public/PagingNearbyJob.jsp</file>
+            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/web/Employer/Header.jsp</file>
             <file>file:/C:/Users/PC/Desktop/swp/SWPG2/src/java/dao/CvDAO.java</file>
-            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/web/Public/Paging.jsp</file>
             <file>file:/C:/Users/PC/Desktop/swp/SWPG2/src/java/controller/Public/ViewCV.java</file>
-            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/src/java/controller/Employee/EditCV.java</file>
+            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/web/Employer/PostJob.jsp</file>
             <file>file:/C:/Users/PC/Desktop/swp/SWPG2/src/java/model/CV.java</file>
         </group>
     </open-files>

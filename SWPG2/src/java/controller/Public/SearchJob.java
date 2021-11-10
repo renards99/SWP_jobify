@@ -62,11 +62,11 @@ public class SearchJob extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String search = (String)session.getAttribute("search");
-        String location = (String)session.getAttribute("location");
-        String specialized = (String)session.getAttribute("specialized");
-        String type = (String)session.getAttribute("type");
-        String salary = (String)session.getAttribute("salary");
+        String search = (String)session.getAttribute("search2");
+        String location = (String)session.getAttribute("location2");
+        String specialized = (String)session.getAttribute("specialized2");
+        String type = (String)session.getAttribute("type2");
+        String salary = (String)session.getAttribute("salary2");
         SearchDAO jdao = new SearchDAO();
 
         int pageSize = 6;

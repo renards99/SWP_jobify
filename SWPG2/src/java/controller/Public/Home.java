@@ -79,12 +79,11 @@ public class Home extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        
+
         User user = (User) session.getAttribute("acc");
-       
-        
-        
+
         //employee
+        UserDAO userdao = new UserDAO();
         LocationDAO locationdao = new LocationDAO();
         BannerDAO bannerdao = new BannerDAO();
         MajorDAO majordao = new MajorDAO();
@@ -97,58 +96,56 @@ public class Home extends HttpServlet {
         ArrayList<Education> education = educationdao.GetAllJobEducation();
         ArrayList<Salary> salary = salarydao.GetAllSalary();
         ArrayList<JobType> jobtype = jobtypedao.GetAllJobType();
-        ArrayList<Job> remotejob = jobdao.RemoteJob(user.getMajorID(),0,1);
+        ArrayList<Job> remotejob = jobdao.RemoteJob(user.getMajorID(), 0, 1);
         ArrayList<Banner> banner = bannerdao.listBanner2();
-         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        String time=now.format(dtf);
-        try{
-        for (Banner b : banner) {
-            if(b.getExpired().equals(time)){
-                bannerdao.DeleteBannerExprised(time);
+        String time = now.format(dtf);
+        try {
+            for (Banner b : banner) {
+                if (b.getExpired().equals(time)) {
+                    bannerdao.DeleteBannerExprised(time);
+                }
             }
-        }}
-        catch(Exception e){
-            
+        } catch (Exception e) {
+
         }
-        
-         int pageSize = 6;
-            String index_raw = request.getParameter("page");
-            int pageIndex;
-            try
-            {
-                pageIndex = Integer.parseInt(index_raw);
-            }
-            catch (NumberFormatException e)
-            {
-                pageIndex = 1;
-            }
-            int numberOfPage = (jobdao.getNumberNearbyJob(user.getLocationID()) - 1) / pageSize + 1;
-            if (pageIndex > numberOfPage) pageIndex=numberOfPage;
-            ArrayList<Job> nearbyjob = jobdao.NearbyJob(user.getLocationID(),(pageIndex-1) * pageSize, pageSize);
-            
-            request.setAttribute("current1", pageIndex);
-            request.setAttribute("total1", numberOfPage);
-            
-             int pageSize2 = 9;
-            String index_raw2 = request.getParameter("page");
-            int pageIndex2;
-            try
-            {
-                pageIndex2 = Integer.parseInt(index_raw2);
-            }
-            catch (NumberFormatException e)
-            {
-                pageIndex2 = 1;
-            }
-            int numberOfPage2 = (jobdao.getNumberSuitableJob(user.getMajorID()) - 1) / pageSize2 + 1;
-            if (pageIndex2 > numberOfPage2) pageIndex2=numberOfPage2;
-            ArrayList<Job> alljob = jobdao.getAllJob((pageIndex2-1) * pageSize2, pageSize2);
-            
-            request.setAttribute("current", pageIndex2);
-            request.setAttribute("total", numberOfPage2);
-            request.setAttribute("controller", "home");
-            
+
+        int pageSize = 6;
+        String index_raw = request.getParameter("page");
+        int pageIndex;
+        try {
+            pageIndex = Integer.parseInt(index_raw);
+        } catch (NumberFormatException e) {
+            pageIndex = 1;
+        }
+        int numberOfPage = (jobdao.getNumberNearbyJob(user.getLocationID()) - 1) / pageSize + 1;
+        if (pageIndex > numberOfPage) {
+            pageIndex = numberOfPage;
+        }
+        ArrayList<Job> nearbyjob = jobdao.NearbyJob(user.getLocationID(), (pageIndex - 1) * pageSize, pageSize);
+
+        request.setAttribute("current1", pageIndex);
+        request.setAttribute("total1", numberOfPage);
+
+        int pageSize2 = 9;
+        String index_raw2 = request.getParameter("page");
+        int pageIndex2;
+        try {
+            pageIndex2 = Integer.parseInt(index_raw2);
+        } catch (NumberFormatException e) {
+            pageIndex2 = 1;
+        }
+        int numberOfPage2 = (jobdao.getNumberSuitableJob(user.getMajorID()) - 1) / pageSize2 + 1;
+        if (pageIndex2 > numberOfPage2) {
+            pageIndex2 = numberOfPage2;
+        }
+        ArrayList<Job> alljob = jobdao.getAllJob((pageIndex2 - 1) * pageSize2, pageSize2);
+
+        request.setAttribute("current", pageIndex2);
+        request.setAttribute("total", numberOfPage2);
+        request.setAttribute("controller", "home");
+
         session.setAttribute("location", location);
         session.setAttribute("salary", salary);
         session.setAttribute("major", major);
@@ -163,11 +160,11 @@ public class Home extends HttpServlet {
             ArrayList<History> h = wDAO.getAllHistory();
             session.setAttribute("transaction_history", h);
         }
-        if (user.getFullname() == null || user.getDob() == null || user.getAddress() == null || user.getPhone() == null || user.getLocationID()== 0 || user.getMajorID()== 0) {
+        if (user.getFullname() == null || user.getDob() == null || user.getAddress() == null || user.getPhone() == null || user.getLocationID() == 0 || user.getMajorID() == 0) {
             response.sendRedirect("edit_profile");
         } else {
-            UserDAO userdao = new UserDAO();
-            user= userdao.getUser(user.getUsername(), user.getPassword());
+
+            user = userdao.getUser(user.getUsername(), user.getPassword());
             session.setAttribute("acc", user);
             request.getRequestDispatcher("Public/Home.jsp").forward(request, response);
         }

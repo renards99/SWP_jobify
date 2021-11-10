@@ -98,7 +98,7 @@
                                     <label>Full name</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="form-control border-top-0 border-start-0 border-end-0" name="fullname" type="text"value="${sessionScope.acc.fullname}">                                  
+                                    <input class="form-control border-top-0 border-start-0 border-end-0" name="fullname" type="text"value="${sessionScope.acc.fullname}" required>                                  
                                 </div>
                             </div>
                             <div class="row my-2">
@@ -114,7 +114,7 @@
                                     <label>Birth date</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="form-control border-top-0 border-start-0 border-end-0" name="dob" type="date"value="${sessionScope.acc.dob}">                                  
+                                    <input class="form-control border-top-0 border-start-0 border-end-0" name="dob" type="date"value="${sessionScope.acc.dob}" required>                                  
                                 </div>
                             </div>
                             <div class="row my-2">
@@ -122,9 +122,9 @@
                                     <label>Gender</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <select class="form-select" name="gender">
-                                        <option value="0" ${sessionScope.acc.dob==0?"selected":""}>Female</option>
-                                        <option value="1" ${sessionScope.acc.dob==1?"selected":""}>Male</option>
+                                    <select class="form-select" name="gender" required>
+                                        <option value="0" ${sessionScope.acc.gender==0?"selected":""}>Female</option>
+                                        <option value="1" ${sessionScope.acc.gender==1?"selected":""}>Male</option>
                                     </select>                                 
                                 </div>
                             </div>
@@ -133,7 +133,7 @@
                                     <label>Address</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="form-control border-top-0 border-start-0 border-end-0" name="address" type="text"value="${sessionScope.acc.address}">                                  
+                                    <input class="form-control border-top-0 border-start-0 border-end-0" name="address" type="text"value="${sessionScope.acc.address}" required>                                  
                                 </div>
                             </div>
                             <div class="row my-2">
@@ -141,7 +141,7 @@
                                     <label>Location</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <select class="form-select" name="location">
+                                    <select class="form-select" name="location" required>
                                         <option value="0">Location</option>
                                         <c:forEach var="o" items="${location}">
                                             <option value="${o.getId()}" ${acc.locationID==o.getId()?"selected":""} >${o.getName()} </option>
@@ -154,7 +154,7 @@
                                     <label>Phone</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="form-control border-top-0 border-start-0 border-end-0" name="phone" type="text"value="${sessionScope.acc.phone}">                                  
+                                    <input class="form-control border-top-0 border-start-0 border-end-0" name="phone" type="text"value="${sessionScope.acc.phone}" required>                                  
                                 </div>
                             </div>
                             <div class="row my-2">
@@ -162,7 +162,7 @@
                                     <label>Major</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <select class="form-select" name="major">
+                                    <select class="form-select" name="major" required>
                                         <option value="0">Major</option>
                                         <c:forEach var="o" items="${major}">
                                             <option value="${o.getId()}" ${acc.majorID==o.getId()?"selected":""} >${o.getName()} </option>
@@ -190,7 +190,7 @@
                                     <input class="form-control border-top-0 border-start-0 border-end-0" name="file" type="file">                                  
                                 </div>
                             </div>
-                            <input type="hidden" name="image" id="hiddenFieldId" value="${sessionScope.acc.image}"/> 
+                            <input type="hidden" name="image" id="hiddenFieldId" value="${sessionScope.acc.image}" /> 
                             <div class="row mt-4">
                                 <div class="col-md-6">
                                     <button class="btn btn-primary" type="submit">Save change</button>                                  

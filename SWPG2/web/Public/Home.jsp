@@ -167,7 +167,7 @@
                                 <div class="row">
                                     <div class="col-xl-4 col-lg-12 py-4">
                                         <a href="job_detail?id=${j.getId()}">
-                                            <img src="https://static.topcv.vn/company_logos/cong-ty-co-phan-chung-khoan-dai-nam-60d543347cdd8.jpg" class="img-fluid rounded-start " alt="...">
+                                            <img src="${j.getImage()}" class="img-fluid rounded-start " alt="...">
                                         </a>
                                     </div>
                                     <div class="col-xl-8 col-lg-12">
@@ -220,7 +220,7 @@
                                         <div class="row">
                                             <div class="col-xl-4 col-lg-12 py-4">
                                                 <a href="job_detail?id=${j.getId()}">
-                                                    <img src="https://static.topcv.vn/company_logos/cong-ty-co-phan-chung-khoan-dai-nam-60d543347cdd8.jpg" class="img-fluid rounded-start " alt="...">
+                                                    <img src="${j.getImage()}" class="img-fluid rounded-start " alt="...">
                                                 </a>
                                             </div>
                                             <div class="col-xl-8 col-lg-12">
@@ -233,7 +233,7 @@
                                                         <div class="col-md-3">
                                                             <small class="text-muted">$${j.getSalary()}</small>
                                                         </div>
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-3 ms-3">
                                                             <small class="text-muted">${j.getLocation()}</small>
                                                         </div>
                                                     </div>

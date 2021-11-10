@@ -190,7 +190,7 @@
             $(document).ready(function () {
                 $('[data-toggle="tooltip"]').tooltip();
             });
-            function checkDelete(){
+            function checkDelete() {
                 if (confirm('Are you sure you want to delete?'))
                 {
                     your_form_variable.submit();
@@ -200,7 +200,7 @@
     </head>
     <body>
         <jsp:include page="Header.jsp"></jsp:include>
-        
+
             <div class="container-xl ">
                 <div class="table-responsive">
                     <div class="table-wrapper">
@@ -222,14 +222,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <%int count=1;%>
+                            <%int count = 1;%>
                             <c:forEach var="o" items="${userList}" varStatus="theCount">
                                 <tr>
 
                                     <td> <%=count%></td> <%count++;%>
                                     <td>${o.getUsername()}</td>
                                     <td>${o.getEmail()}</td>
-                                    <td>${o.getRole()}</td>
+                                    <c:if test = "${o.roleID ==1}">
+                                        <td>Admin</td>
+                                    </c:if> 
+                                    <c:if test = "${o.roleID ==2}">
+                                        <td>Employer</td>
+                                    </c:if> 
+                                    <c:if test = "${o.roleID ==3}">
+                                        <td>Employee</td>
+                                    </c:if> 
+                                    <c:if test = "${o.roleID==0}">
+                                        <td></td>
+                                    </c:if>
                                     <td>
                                         <a href="account_profile?username=${o.username}" class="settings" title="View profile" data-toggle="tooltip"><i
                                                 class="material-icons">&#xe3c9;</i></a>

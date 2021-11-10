@@ -41,7 +41,7 @@
     </head>
     <body>
         <jsp:include page="Header.jsp"></jsp:include>
-        <div class="container " style="margin-bottom: 2%">
+            <div class="container " style="margin-bottom: 2%">
                 <section id="promote_banner">
                     <div class="container col-lg-8 offset-lg-2 my-3">
                         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -68,102 +68,203 @@
                     </div>
                 </section>
                 <div>
-                    <div class="row" >
-                        <div class="col-md-8">
-                            <div class="container py-2">
-                                <div class="row bg-primary bg-opacity-75 rounded-3" style="background-color: #f39f86; background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%)">
-                                    <div class="my-2 d-flex justify-content-between text-light">
-                                        <span><i class="far fa-thumbs-up font text-dark fw-bold"> Notification</i> </span>
+                <c:choose>
+                    <c:when test="${acc.roleID==3}">
+                        <div class="row" >
+                            <div class="col-md-8">
+                                <div class="container py-2">
+                                    <div class="row bg-primary bg-opacity-75 rounded-3" style="background-color: #f39f86; background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%)">
+                                        <div class="my-2 d-flex justify-content-between text-light">
+                                            <span><i class="far fa-thumbs-up font text-dark fw-bold"> Notification</i> </span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row ">
-                                <c:forEach var="j" items="${notification}">
-                                    <div class="card mb-1 ">
-                                        <div class="row g-0">
-                                            <div class="col-md-3">
-                                                <a href="job_detail?id=${j.getJobid()}">
-                                                    <img src="https://static.topcv.vn/company_logos/cong-ty-co-phan-chung-khoan-dai-nam-60d543347cdd8.jpg" class="img-fluid rounded-start" alt="...">
-                                                </a>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <div class="card-body  text-truncate">
-                                                    <p class="card-title">
-                                                        <a href="job_detail?id=${j.getJobid()}" class="fw-bold text-dark text-decoration-none h5"> ${j.getJobName()}</a>
-                                                    </p>
-                                                    <p class="card-text">${j.getCompany()}</p>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <small class="text-muted"> Status: ${j.getStatus()}</small>
-                                                        </div>
+                                    <div class="row ">
+                                        <c:forEach var="j" items="${notification}">
+                                            <div class="card mb-1 ">
+                                                <div class="row g-0">
+                                                    <div class="col-md-3">
+                                                        <a href="job_detail?id=${j.getJobid()}">
+                                                            <img src="${j.image}" class="img-fluid rounded-start" alt="...">
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <div class="card-body  text-truncate">
+                                                            <p class="card-title">
+                                                                <a href="job_detail?id=${j.getJobid()}" class="fw-bold text-dark text-decoration-none h5"> ${j.getJobName()}</a>
+                                                            </p>
+                                                            <p class="card-text">${j.getCompany()}</p>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <small class="text-muted"> Status: ${j.getStatus()}</small>
+                                                                </div>
 
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </c:forEach>
+
                                     </div>
-                                </c:forEach>
 
-                            </div>
-
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination pagination-sm">
-                                    <li class="page-item">
-                                        <a class="page-link text-dark" href="#" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link text-dark" href="#" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="container py-2">
-                            <div class="row bg-primary bg-opacity-75 rounded-3" style="background-color: #f39f86; background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%)">
-                                <div class="my-2 d-flex justify-content-between text-light">
-                                    <span><i class="far fa-thumbs-up font text-dark fw-bold"> Pending</i> </span>
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination pagination-sm">
+                                            <li class="page-item">
+                                                <a class="page-link text-dark" href="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link text-dark" href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
                                 </div>
                             </div>
-                            <div class="row ">
-                                <c:forEach var="j" items="${notification2}">
-                                    <div class="card mb-1 ">
-                                        <div class="row g-0">
-                                            <div class="col-md-3">
-                                                <a href="job_detail?id=${j.getJobid()}">
-                                                    <img src="https://static.topcv.vn/company_logos/cong-ty-co-phan-chung-khoan-dai-nam-60d543347cdd8.jpg" class="img-fluid rounded-start" alt="...">
-                                                </a>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <div class="card-body  text-truncate">
-                                                    <p class="card-title">
-                                                        <a href="job_detail?id=${j.getJobid()}" class="fw-bold text-dark text-decoration-none h5"> ${j.getJobName()}</a>
-                                                    </p>
-                                                    <p class="card-text">${j.getCompany()}</p>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <small class="text-muted"> Status: Pending</small>
-                                                        </div>
+                            <div class="col-md-4">
+                                <div class="container py-2">
+                                    <div class="row bg-primary bg-opacity-75 rounded-3" style="background-color: #f39f86; background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%)">
+                                        <div class="my-2 d-flex justify-content-between text-light">
+                                            <span><i class="far fa-thumbs-up font text-dark fw-bold"> Pending</i> </span>
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+                                        <c:forEach var="j" items="${notification2}">
+                                            <div class="card mb-1 ">
+                                                <div class="row g-0">
+                                                    <div class="col-md-3">
+                                                        <a href="job_detail?id=${j.getJobid()}">
+                                                            <img src="${j.image}" alt="...">
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <div class="card-body  text-truncate">
+                                                            <p class="card-title">
+                                                                <a href="job_detail?id=${j.getJobid()}" class="fw-bold text-dark text-decoration-none h5"> ${j.getJobName()}</a>
+                                                            </p>
+                                                            <p class="card-text">${j.getCompany()}</p>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <small class="text-muted"> Status: Pending</small>
+                                                                </div>
 
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </c:forEach>
                                     </div>
-                                </c:forEach>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="row" >
+                            <div class="col-md-8">
+                                <div class="container py-2">
+                                    <div class="row bg-primary bg-opacity-75 rounded-3" style="background-color: #f39f86; background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%)">
+                                        <div class="my-2 d-flex justify-content-between text-light">
+                                            <span><i class="far fa-thumbs-up font text-dark fw-bold"> Notification</i> </span>
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+                                        <c:forEach var="j" items="${notification}">
+                                            <div class="card mb-1 ">
+                                                <div class="row g-0">
+                                                    <div class="col-md-3">
+                                                        <a href="banner_detail?id=${j.bannerID}">
+                                                            <img src="${j.imagejob}" class="img-fluid rounded-start" alt="...">
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <div class="card-body  text-truncate">
+                                                            <p class="card-title">
+                                                                <a href="banner_detail?id=${j.bannerID}" class="fw-bold text-dark text-decoration-none h5"> ${j.name}</a>
+                                                            </p>
+                                                            <p class="card-text">${j.getCompany()}</p>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <small class="text-muted"> Status: ${j.getStatus()}</small>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </c:forEach>
+
+                                    </div>
+
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination pagination-sm">
+                                            <li class="page-item">
+                                                <a class="page-link text-dark" href="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link text-dark" href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="container py-2">
+                                    <div class="row bg-primary bg-opacity-75 rounded-3" style="background-color: #f39f86; background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%)">
+                                        <div class="my-2 d-flex justify-content-between text-light">
+                                            <span><i class="far fa-thumbs-up font text-dark fw-bold"> Pending</i> </span>
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+                                        <c:forEach var="j" items="${notification2}">
+                                            <div class="card mb-1 ">
+                                                <div class="row g-0">
+                                                    <div class="col-md-3">
+                                                        <a href="banner_detail?id=${j.bannerID}">
+                                                            <img src="${j.imagejob}" alt="...">
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <div class="card-body  text-truncate">
+                                                            <p class="card-title">
+                                                                <a href="banner_detail?id=${j.bannerID}" class="fw-bold text-dark text-decoration-none h5"> ${j.name}</a>
+                                                            </p>
+                                                            <p class="card-text">${j.getCompany()}</p>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <small class="text-muted"> Status: Pending</small>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </c:forEach>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+
+
+            </div>
+
         </div>
-       
-        </div>
-             <jsp:include page="Footer.jsp"></jsp:include>
+        <jsp:include page="Footer.jsp"></jsp:include>
     </body>
 </html>

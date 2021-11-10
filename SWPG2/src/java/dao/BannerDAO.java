@@ -177,4 +177,40 @@ public class BannerDAO {
         }
         return null;
     }
+         public ArrayList<Banner> EmployerPending(String username) {
+        try {
+            ArrayList<Banner> list = new ArrayList<>();
+            String sql = "select * from banner join job on jobid=job.id join status on statusid= status.id  join Location on job.locationid= Location.id join Major on job.majorid= Major.id join Jobtype on job.jobtypeid= Jobtype.id where statusid =1 and username= ? ";
+            conn = DBContext.getConnection();
+            pr = conn.prepareStatement(sql);
+            pr.setString(1, username);
+            rs = pr.executeQuery();
+            while (rs.next()) {
+                Banner b = new Banner(rs.getInt(1), rs.getString(4), rs.getString(5), rs.getString(23), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getDouble(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(25), rs.getString(27), rs.getString(29), rs.getInt(2));
+                list.add(b);
+            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(BannerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }   
+          public ArrayList<Banner> Notification(String username) {
+        try {
+            ArrayList<Banner> list = new ArrayList<>();
+            String sql = "select * from banner join job on jobid=job.id join status on statusid= status.id  join Location on job.locationid= Location.id join Major on job.majorid= Major.id join Jobtype on job.jobtypeid= Jobtype.id where (statusid =2 or statusid=3) and username= ? ";
+            conn = DBContext.getConnection();
+            pr = conn.prepareStatement(sql);
+            pr.setString(1, username);
+            rs = pr.executeQuery();
+            while (rs.next()) {
+                Banner b = new Banner(rs.getInt(1), rs.getString(4), rs.getString(5), rs.getString(23), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getDouble(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(25), rs.getString(27), rs.getString(29), rs.getInt(2));
+                list.add(b);
+            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(BannerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }   
 }

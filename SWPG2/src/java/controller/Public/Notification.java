@@ -5,6 +5,7 @@
  */
 package controller.Public;
 
+import dao.BannerDAO;
 import dao.CvDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Banner;
 import model.CV;
 import model.User;
 
@@ -67,13 +69,15 @@ public class Notification extends HttpServlet {
             CvDAO cvdao = new CvDAO();
             ArrayList<CV> notification = cvdao.NotificationForEmployee(user.getUsername());
             ArrayList<CV> notification2 = cvdao.NotificationForEmployeePending(user.getUsername());
-            session.setAttribute("notification", notification);
-            session.setAttribute("notification2", notification2);
+            request.setAttribute("notification", notification);
+            request.setAttribute("notification2", notification2);
         }
         else if (user.getRoleID() == 2){
-            CvDAO cvdao = new CvDAO();
-            ArrayList<CV> notification = cvdao.NotificationForEmployer(user.getUsername());
-            session.setAttribute("notification", notification);
+            BannerDAO bannerdao = new BannerDAO();
+            ArrayList<Banner> notification = bannerdao.Notification(user.getUsername());
+            ArrayList<Banner> notification2 = bannerdao.EmployerPending(user.getUsername());
+            request.setAttribute("notification", notification);
+            request.setAttribute("notification2", notification2);
         }
         else{
             

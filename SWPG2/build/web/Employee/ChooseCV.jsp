@@ -71,7 +71,7 @@
                                 <div class="row g-0">
                                     <div class="col-md-3">
                                         <a href="view_cv?id=${j.getId()}">
-                                            <img src="https://static.topcv.vn/company_logos/cong-ty-co-phan-chung-khoan-dai-nam-60d543347cdd8.jpg" class="img-fluid rounded-start" alt="...">
+                                            <img src="${j.image}" class="img-fluid rounded-start" alt="...">
                                         </a>
                                     </div>
                                     <div class="col-md-5">

@@ -120,7 +120,7 @@ public class EditCV extends HttpServlet {
                     else{
                     Path path = Paths.get(filename);
                     String save = servletContext.getRealPath("/image");
-                    File uploadfile = new File(save + "\\" +user.getUsername()+"_cv_img.png");
+                    File uploadfile = new File(save + "\\" + path.getFileName());
                     image = "./image/" + path.getFileName();
                     item.write(uploadfile);
                     }

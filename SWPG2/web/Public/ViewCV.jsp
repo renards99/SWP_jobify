@@ -93,7 +93,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4" style=";">
-                                            <img class="rounded-circle img-fluid" src=${viewCV.getTime()}>
+                                            <img class="rounded-circle img-fluid" src="${viewCV.time}">
                                         </div>
                                         <div class="col-md-8">
                                             <div class="form-group"><label>Fullname:</label></div>

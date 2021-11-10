@@ -84,7 +84,7 @@ public class EditProfile extends HttpServlet {
                     filename = item.getName();
                     Path path = Paths.get(filename);
                     String save = servletContext.getRealPath("/image");
-                    File uploadfile = new File(save + "\\" +u.getUsername()+"_avatar_img.png");
+                    File uploadfile = new File(save + "\\" +path.getFileName());
                     image = "image/" + path.getFileName();
                     item.write(uploadfile);
                     }

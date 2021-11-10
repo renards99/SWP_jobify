@@ -23,6 +23,10 @@
             .banner-text{
                 color: blue;
             }
+            .job_img{
+                height: 140px;
+                width: 140px;
+            }
         </style>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
@@ -94,7 +98,7 @@
                                     <div class="row g-0">
                                         <div class="col-md-3">
                                             <a href="job_detail?id=${j.getId()}">
-                                                <img src="https://static.topcv.vn/company_logos/cong-ty-co-phan-chung-khoan-dai-nam-60d543347cdd8.jpg" class="img-fluid rounded-start" alt="...">
+                                                <img src="${j.getImage()}" class="rounded-start job_img border border-3 activeborder-dark" alt="...">
                                             </a>
                                         </div>
                                         <div class="col-md-9">

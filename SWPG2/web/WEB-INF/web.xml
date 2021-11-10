@@ -84,16 +84,8 @@
         <servlet-class>controller.Public.Home</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SuitableJob</servlet-name>
-        <servlet-class>controller.Public.SuitableJob</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>RemoteJob</servlet-name>
         <servlet-class>controller.Public.RemoteJob</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>NearbyJob</servlet-name>
-        <servlet-class>controller.Public.NearbyJob</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ViewProfile</servlet-name>
@@ -248,16 +240,8 @@
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SuitableJob</servlet-name>
-        <url-pattern>/suitable_job</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>RemoteJob</servlet-name>
         <url-pattern>/remote_job</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>NearbyJob</servlet-name>
-        <url-pattern>/nearby_job</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ViewProfile</servlet-name>

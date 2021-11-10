@@ -36,8 +36,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img class="profile-img" src="https://cdyduochopluc.edu.vn/wp-content/uploads/2019/07/anh-dai-dien-FB-200-1.jpg">
-                            </a>
+                           <img width="35px" height="35px" style="border-radius: 100%"  src="${acc.image}">   </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="view_profile">View profile</a></li>
                                 <li><a class="dropdown-item" href="notification">Notification</a></li>

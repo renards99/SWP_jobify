@@ -93,7 +93,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4" style=";">
-                                            <img class="rounded-circle img-fluid" src="${viewCV.time}">
+                                            <img style="width:180px; height: 180px" class="rounded-circle img-fluid" src="${viewCV.time}">
                                         </div>
                                         <div class="col-md-8">
                                             <div class="form-group"><label>Fullname:</label></div>
@@ -221,6 +221,8 @@
                     bsAlert.close();
                 }, 4000);
             </script>
+            </div>
             <jsp:include page="Footer.jsp"></jsp:include>
+            
     </body>
 </html>

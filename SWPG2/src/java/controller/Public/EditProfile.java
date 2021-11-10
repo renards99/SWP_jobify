@@ -77,21 +77,25 @@ public class EditProfile extends HttpServlet {
                     System.out.println(name);
                     System.out.println(value);
                 } else {
-                    if(filename.equals("")||filename==null){
-                       image= u.getImage();
-                    }
-                    else{
-                    filename = item.getName();
-                    Path path = Paths.get(filename);
-                    String save = servletContext.getRealPath("/image");
-                    File uploadfile = new File(save + "\\" +path.getFileName());
-                    image = "image/" + path.getFileName();
-                    item.write(uploadfile);
+                      filename = item.getName();
+                    if (filename.equals("") || filename == null) {
+                        response.getWriter().println("HI");
+                        image = u.getImage();
+                        response.getWriter().println(u.getImage());
+                    } else {
+                        response.getWriter().println("HI");
+                        filename = item.getName();
+                        Path path = Paths.get(filename);
+                        String save = servletContext.getRealPath("/image");
+                        File uploadfile = new File(save + "\\" + path.getFileName());
+                        image = "image/" + path.getFileName();
+                        item.write(uploadfile);
                     }
                 }
 
             }
-            response.getWriter().print(fields.get("name"));
+            response.getWriter().println(fields.get("fullname"));
+//            response.getWriter().println("HI");
             response.getWriter().print(image);
             udao.changeUserInfo(username, fields.get("fullname"), fields.get("dob"), Integer.parseInt(fields.get("gender")), fields.get("address"), fields.get("phone"), image, Integer.parseInt(fields.get("location")), Integer.parseInt(fields.get("major")));
             session.setAttribute("acc", udao.login(username, u.getPassword()));

@@ -135,7 +135,7 @@
                                 </div>
                             <c:forEach var="j" items="${banner}">
                                 <div class="carousel-item ">
-                                    <a href="job_detail?id=${j.jobid}"><img style="width: 600px; height: 150px" src="https://i.ibb.co/wpBXMLr/home-banner.webp" class="d-block w-100" alt="..."></a>
+                                    <a href="job_detail?id=${j.jobid}"><img style="width: 600px; height: 150px" src="${j.image}" class="d-block w-100" alt="..."></a>
                                 </div>
                             </c:forEach> 
                         </div>

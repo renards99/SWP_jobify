@@ -113,6 +113,23 @@ public class CV {
         this.phonecompany = phonecompany;
     }
 
+    public CV(int id,String fullname, String dob, String gender, int locationID, String phone, String contact, int educationID, String school, String experience, String education, String location, String time,String image) {
+          this. id =id;
+        this.fullname = fullname;
+        this.dob = dob;
+        this.gender = gender;
+        this.locationID = locationID;
+        this.phone = phone;
+        this.contact = contact;
+        this.educationID = educationID;
+        this.school = school;
+        this.experience = experience;
+        this.education = education;
+        this.location = location;
+        this.time= time;
+        this.image=image;
+    }
+
     public int getId() {
         return id;
     }

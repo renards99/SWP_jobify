@@ -76,7 +76,7 @@
 
             <div class="row">
                 <div class="col-md-2 offset-md-1">
-                    <img class="img-fluid img-thumbnail" src= ${sessionScope.acc.image}
+                    <img  width="200px" height="200px" src= "${acc.image}"
                          alt="" />
                 </div>
 

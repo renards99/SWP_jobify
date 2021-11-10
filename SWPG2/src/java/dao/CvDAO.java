@@ -76,7 +76,7 @@ public class CvDAO {
             pr.setInt(3, size);
             rs=pr.executeQuery();
             while(rs.next()){
-                CV c = new CV (rs.getInt(1),rs.getString(3), rs.getString(4), rs.getString(5),rs.getInt(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getString(10),rs.getString(11),rs.getString(16),rs.getString(18), rs.getString(15));
+                CV c = new CV (rs.getInt(1),rs.getString(3), rs.getString(4), rs.getString(5),rs.getInt(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getString(10),rs.getString(11),rs.getString(16),rs.getString(18), rs.getString(15), rs.getString(12));
                 list.add(c);
             }
             return list;

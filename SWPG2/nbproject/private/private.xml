@@ -3,26 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/controller/Employee/SubmitCV.java</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/web/Public/Home.jsp</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/web/Admin/AccountManagement.jsp</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/controller/Employee/EditCV.java</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/dao/WishlistDAO.java</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/controller/Employee/CreateCV.java</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/web/Admin/BannerDetail.jsp</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/controller/Admin/BannerDetail.java</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/controller/Public/ParttimeJob.java</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/controller/Public/RemoteJob.java</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/dao/CvDAO.java</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/dao/JobDAO.java</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/controller/Employee/AddWishlist.java</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/controller/Employee/ChooseCV.java</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/web/Public/EditProfile.jsp</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/web/Admin/ListBanner.jsp</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/dao/BannerDAO.java</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/web/Admin/AccountProfile.jsp</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/controller/Public/JobDetail.java</file>
-            <file>file:/C:/Users/TNC/OneDrive/Documents/NetBeansProjects/swp/SWPG2/src/java/controller/Admin/ListBanner.java</file>
+            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/src/java/controller/Public/Home.java</file>
+            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/web/Employee/Header.jsp</file>
+            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/web/Employer/Header.jsp</file>
+            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/web/Admin/Header.jsp</file>
+            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/src/java/dao/BannerDAO.java</file>
+            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/web/Public/Header.jsp</file>
+            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/web/Public/Home.jsp</file>
+            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/src/java/model/Banner.java</file>
+            <file>file:/C:/Users/PC/Desktop/swp/SWPG2/web/Public/ViewProfile.jsp</file>
         </group>
     </open-files>
 </project-private>

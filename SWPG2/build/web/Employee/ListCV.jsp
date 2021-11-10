@@ -70,7 +70,7 @@
                                 <div class="row g-0">
                                     <div class="col-md-3">
                                         <a href="view_cv?id=${j.getId()}">
-                                            <img src="${j.image}" class="img-fluid rounded-start" alt="...">
+                                            <img style="height: 150px; width: 200px"src="${j.image}" class="img-fluid rounded-start" alt="...">
                                         </a>
                                     </div>
                                     <div class="col-md-9">

@@ -98,6 +98,9 @@ public class Home extends HttpServlet {
         ArrayList<JobType> jobtype = jobtypedao.GetAllJobType();
         ArrayList<Job> remotejob = jobdao.RemoteJob(user.getMajorID(), 0, 1);
         ArrayList<Banner> banner = bannerdao.listBanner2();
+        for (Banner banner1 : banner) {
+            response.getWriter().print(banner1.getImage());
+        }
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         String time = now.format(dtf);

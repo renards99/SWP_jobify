@@ -158,7 +158,7 @@ public class CvDAO {
             pr.setString(1, username);
             rs=pr.executeQuery();
             while(rs.next()){
-                CV c = new CV (rs.getInt(13),rs.getString(16),rs.getInt(14),rs.getString(18),rs.getString(19),rs.getString(26),rs.getString(27));
+                CV c = new CV (rs.getInt(13),rs.getString(17),rs.getInt(14),rs.getString(19),rs.getString(20),rs.getString(28),rs.getString(29));
                 list.add(c);
             }
             return list;
@@ -176,7 +176,7 @@ public class CvDAO {
             pr.setString(1, username);
             rs=pr.executeQuery();
             while(rs.next()){
-                CV c = new CV (rs.getInt(13),rs.getString(16),rs.getInt(14),rs.getString(18),rs.getString(19),rs.getString(26),rs.getString(27));
+                CV c = new CV (rs.getInt(13),rs.getString(17),rs.getInt(14),rs.getString(19),rs.getString(20),rs.getString(28),rs.getString(29));
                 list.add(c);
             }
             return list;
